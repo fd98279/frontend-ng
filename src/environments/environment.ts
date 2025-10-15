@@ -23,7 +23,7 @@ export const environment = {
   DATA_SERVICE_BASE: 'http://localhost:3030',
   PORTFOLIO_SERVICE_BASE: 'http://localhost:3030',
   ANALYTICS_SERVICE_BASE: 'http://localhost:8081',
-  QUOTES_SERVICE_BASE: 'http://localhost:5000',
+  QUOTES_SERVICE_BASE: 'http://localhost:5001',
   ANALYTICS_SOCKET_SERVICE_BASE: 'wss://localhost:8081',
   CONTABO_BUCKET_NAME: 'sravz-dev',
   testUser: {
