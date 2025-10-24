@@ -18,7 +18,12 @@ export class UserStore {
     if (typeof window !== 'undefined' && window.location.hostname === 'localhost') {
       return false;
     }
-    return (this.user?.userName === 'guest123') || (this.user?.email === 'guest123@guest.com');
+    // Return true if user is null/undefined, or if username/email is empty/null, or if it's the guest user
+    return !this.user || 
+           !this.user.userName || 
+           !this.user.email || 
+           (this.user.userName === 'guest123') || 
+           (this.user.email === 'guest123@guest.com');
   }
   private user: User;
 
