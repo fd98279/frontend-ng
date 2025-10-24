@@ -93,6 +93,9 @@ run_in_container: cd-frontend-ng-dir ## Run frondend in a seprate container with
 build-docker-image:
 	docker build --tag public.ecr.aws/b8h3z2a1/sravz/frontend-ng:$(FRONTEND_NG_IMAGE_Version) .
 
+build-docker-image-multiarch:
+	docker buildx build --platform linux/amd64,linux/arm64 --tag public.ecr.aws/b8h3z2a1/sravz/frontend-ng:$(FRONTEND_NG_IMAGE_Version) --push .
+
 build-docker-image-bin: cd-frontend-ng-dir
 	if [ "staging" == "$(environment)" ]; then \
     	aws s3 sync ../docker_volume/frontend-ng/$(environment)-gzip/ s3://sravz-$(environment)/$(FRONTEND_NG_IMAGE_BIN_Staging_Version)/ --content-encoding='gzip' --exact-timestamps --delete; \
@@ -106,5 +109,21 @@ build-docker-image-bin: cd-frontend-ng-dir
 		docker build -f Dockerfile-ng-app --tag public.ecr.aws/b8h3z2a1/sravz/frontend-ng-$(environment)-bin:$(FRONTEND_NG_IMAGE_BIN_Staging_Version) .; \
 	elif [ "production" == "$(environment)" ]; then \
 		docker build -f Dockerfile-ng-app --tag public.ecr.aws/b8h3z2a1/sravz/frontend-ng-$(environment)-bin:$(FRONTEND_NG_IMAGE_BIN_Production_Version) .; \
+	fi
+	rm -rf src/dist
+
+build-docker-image-bin-multiarch: cd-frontend-ng-dir
+	if [ "staging" == "$(environment)" ]; then \
+    	aws s3 sync ../docker_volume/frontend-ng/$(environment)-gzip/ s3://sravz-$(environment)/$(FRONTEND_NG_IMAGE_BIN_Staging_Version)/ --content-encoding='gzip' --exact-timestamps --delete; \
+	elif [ "production" == "$(environment)" ]; then \
+    	aws s3 sync ../docker_volume/frontend-ng/$(environment)-gzip/ s3://sravz-$(environment)/$(FRONTEND_NG_IMAGE_BIN_Production_Version)/ --content-encoding='gzip' --exact-timestamps --delete; \
+	fi
+	mkdir -p src/dist
+	rm -rf src/dist/*
+	cp -r ../docker_volume/frontend-ng/$(environment)/* src/dist
+	if [ "staging" == "$(environment)" ]; then \
+		docker buildx build --platform linux/amd64,linux/arm64 -f Dockerfile-ng-app --tag public.ecr.aws/b8h3z2a1/sravz/frontend-ng-$(environment)-bin:$(FRONTEND_NG_IMAGE_BIN_Staging_Version) --push .; \
+	elif [ "production" == "$(environment)" ]; then \
+		docker buildx build --platform linux/amd64,linux/arm64 -f Dockerfile-ng-app --tag public.ecr.aws/b8h3z2a1/sravz/frontend-ng-$(environment)-bin:$(FRONTEND_NG_IMAGE_BIN_Production_Version) --push .; \
 	fi
 	rm -rf src/dist
