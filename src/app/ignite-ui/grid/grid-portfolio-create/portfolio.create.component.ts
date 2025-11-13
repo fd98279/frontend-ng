@@ -101,6 +101,11 @@ export class PortfolioCreateGridComponent implements AfterViewInit {
             this.data = this.snpQuotes = message.Message as IQuote[];
             break;
           }
+          case 'RANDOM_PORTFOLIO': {
+            // Handle random portfolio generation
+            this.handleRandomPortfolioGeneration(message.Message);
+            break;
+          }
           default: {
             break;
           }
@@ -274,6 +279,50 @@ export class PortfolioCreateGridComponent implements AfterViewInit {
           return pipe.transform(result);
       }
       return result;
+  }
+
+  // Handle random portfolio generation
+  private handleRandomPortfolioGeneration(messageData: any): void {
+    if (messageData && messageData.portfolioAssets) {
+      // Clear current selection
+      this.selectedItemsNewGrid = [];
+      
+      // Update form with random portfolio name
+      if (messageData.portfolioName) {
+        this.portfolioForm.patchValue({
+          name: messageData.portfolioName,
+          description: messageData.portfolioAssets.length > 0 ? 
+            `Random portfolio with ${messageData.portfolioAssets.length} assets from multiple asset classes` : 
+            'Random portfolio'
+        });
+      }
+      
+      // Add the random assets to the portfolio grid
+      messageData.portfolioAssets.forEach((asset: any) => {
+        // Ensure the asset has all required properties
+        const portfolioAsset = {
+          ...asset,
+          Weight_Pct: asset.Weight_Pct || 0,
+          Weight_Price: asset.Weight_Price || 0,
+          Country: asset.Country || 'Unknown',
+          High: asset.High || asset.Last || 0,
+          Low: asset.Low || asset.Last || 0,
+          Change: asset.Change || 0,
+          PercentChange: asset.PercentChange || 0,
+          Time: asset.Time || new Date()
+        };
+        
+        this.selectedItemsNewGrid.push(portfolioAsset);
+      });
+
+      // Auto-scroll to the portfolio assets section
+      setTimeout(() => {
+        const portfolioSection = document.querySelector('.grid__wrapper1:last-child');
+        if (portfolioSection) {
+          portfolioSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 100);
+    }
   }
 }
 
