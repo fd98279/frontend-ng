@@ -1,0 +1,208 @@
+.portfolio-header-card {
+  margin-bottom: 24px;
+  
+  .igx-card__header {
+    padding: 16px 24px;
+    
+    .igx-card__header-title {
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: var(--igx-primary-500);
+    }
+  }
+
+  .igx-card__actions {
+    gap: 8px;
+    
+    a[igxButton] {
+      min-width: auto;
+      background-color: var(--igx-info-500);
+      color: white;
+      border-radius: 6px;
+      padding: 8px 12px;
+      
+      &:hover {
+        background-color: var(--igx-info-600);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+      
+      igx-icon {
+        margin: 0;
+        color: white;
+      }
+    }
+    
+    button[igxButton] {
+      background: linear-gradient(135deg, var(--igx-success-500) 0%, var(--igx-success-600) 100%);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 20px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      
+      &:hover:not(:disabled) {
+        background: linear-gradient(135deg, var(--igx-success-600) 0%, var(--igx-success-700) 100%);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+      }
+      
+      &:disabled {
+        background: var(--igx-gray-300);
+        color: var(--igx-gray-500);
+        cursor: not-allowed;
+        transform: none;
+        box-shadow: none;
+      }
+      
+      igx-icon {
+        margin-right: 8px;
+        color: white;
+      }
+    }
+  }
+}
+
+.portfolio-assets-card {
+  margin-bottom: 24px;
+  
+  .igx-card__header {
+    padding: 16px 24px;
+    background: linear-gradient(135deg, var(--igx-secondary-100) 0%, var(--igx-secondary-50) 100%);
+    
+    .igx-card__header-title {
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: var(--igx-secondary-700);
+    }
+  }
+
+  .igx-card__actions {
+    button[igxButton] {
+      background: linear-gradient(135deg, var(--igx-warn-500) 0%, var(--igx-warn-600) 100%);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 18px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      
+      &:hover:not(:disabled) {
+        background: linear-gradient(135deg, var(--igx-warn-600) 0%, var(--igx-warn-700) 100%);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+      }
+      
+      &:disabled {
+        background: var(--igx-gray-300);
+        color: var(--igx-gray-500);
+        cursor: not-allowed;
+        transform: none;
+        box-shadow: none;
+        
+        igx-icon {
+          color: var(--igx-gray-500);
+        }
+      }
+      
+      igx-icon {
+        margin-right: 8px;
+        color: white;
+        transition: transform 0.3s ease;
+        
+        &.rotate {
+          animation: spin 1s linear infinite;
+        }
+      }
+    }
+  }
+  
+  .igx-card__content {
+    padding: 0;
+    
+    grid-portfolios-assests {
+      display: block;
+      padding: 16px;
+    }
+  }
+}
+
+.portfolio-tearsheet-card {
+  .igx-card__content {
+    padding: 0;
+    
+    portfolio-tearsheet {
+      display: block;
+      padding: 16px;
+    }
+  }
+}
+
+// Animation for rotating refresh icon
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+// Enhanced button focus and active states
+button[igxButton] {
+  &:focus {
+    outline: 2px solid var(--igx-primary-200);
+    outline-offset: 2px;
+  }
+  
+  &:active {
+    transform: translateY(0px) !important;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2) !important;
+  }
+}
+
+// Additional button animation
+.portfolio-header-card button[igxButton],
+.portfolio-assets-card button[igxButton] {
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+  }
+  
+  &:hover::before {
+    left: 100%;
+  }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .portfolio-header-card,
+  .portfolio-assets-card {
+    .igx-card__header {
+      flex-direction: column;
+      gap: 12px;
+      
+      .igx-card__actions {
+        align-self: stretch;
+        justify-content: flex-end;
+        
+        button[igxButton] {
+          width: 100%;
+          justify-content: center;
+        }
+      }
+    }
+  }
+}

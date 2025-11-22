@@ -40,5 +40,10 @@ export class PortfolioService {
         .pipe(catchError(this.rxjsHelperService.handleError<any>('createPortfolio', [])));
     }
 
+    refreshPnL(portfolioId: string) {
+        return this.http.get<any>(`${this.settingsService.getAppConstants().quotesServiceBaseUri}/pnl/calculate?portfolio_id=${portfolioId}`)
+            .pipe(catchError(this.rxjsHelperService.handleError<any>('refreshPnL', null)));
+    }
+
 
 }

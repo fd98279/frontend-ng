@@ -47,7 +47,8 @@ import { IgxComboModule,
   IgxTooltipModule,
   IgxCheckboxModule,
   IgxActionStripModule,
-  IgxToastModule} from '@infragistics/igniteui-angular';
+  IgxToastModule,
+  IgxCardModule} from '@infragistics/igniteui-angular';
 import { IgxRadialGaugeModule } from 'igniteui-angular-gauges';
 import { AuthModule } from './@auth/auth.module';
 import { CoreModule } from './@core/core.module';
@@ -140,6 +141,7 @@ export class SocketData extends Socket {
         IgxRippleModule,
         IgxTooltipModule,
         IgxCheckboxModule,
+        IgxCardModule,
         // HomeModule,
         DisqusModule,
         AuthModule.forRoot(),

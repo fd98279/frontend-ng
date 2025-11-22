@@ -11,27 +11,44 @@
     </div>
 
 </igx-dialog>
-<h5>Portfolios
-  <!-- <a href="https://youtu.be/h6OVjj4NoCc" target="_blank" class="pull-right" style="margin-left:5px">
-    <span class="fa fa-youtube"></span>
-  </a> -->
-  <a href="https://docs.sravz.com/docs/data/portfolios/" target="_blank" class="pull-right" style="margin-left:5px">
-    <span class="fa fa-book"></span>
-  </a>
-  <button class="btn btn-primary pull-right btn-sm" [routerLink]="'/portfolio/create'">
-    <i class="fa fa-plus"></i>
-  </button>
-</h5>
+<igx-card class="portfolio-header-card">
+  <igx-card-header>
+    <h3 igxCardHeaderTitle>Portfolios</h3>
+    <igx-card-actions>
+      <a href="https://docs.sravz.com/docs/data/portfolios/" target="_blank" igxButton="flat" igxRipple>
+        <igx-icon>menu_book</igx-icon>
+      </a>
+      <button igxButton="raised" igxRipple [routerLink]="'/portfolio/create'">
+        <igx-icon>add</igx-icon>
+        Create Portfolio
+      </button>
+    </igx-card-actions>
+  </igx-card-header>
+</igx-card>
 
 <grid-portfolios *ngIf="portfolios?.length > 0" (deleteEvent)="DeleteRow($event)" [isDeleteIcon] = "true" [isDetailIcon] = "true" (rowDetailEvent)="RowDetails($event)"
   [portfoliosEvents]="portfolios"></grid-portfolios>
 
 <div *ngIf="selectedPortfolio">
-  <h5>{{selectedPortfolio.name}} assets</h5>
-  <grid-portfolios-assests *ngIf="portfolioAssets?.length > 0" [portfolioAssetsEvents]="portfolioAssets">
-  </grid-portfolios-assests>
+  <igx-card class="portfolio-assets-card">
+    <igx-card-header>
+      <h3 igxCardHeaderTitle>{{selectedPortfolio.name}} Assets</h3>
+      <igx-card-actions>
+        <button igxButton="raised" igxRipple (click)="refreshPnL()" [disabled]="isRefreshingPnL">
+          <igx-icon [class.rotate]="isRefreshingPnL">refresh</igx-icon>
+          {{isRefreshingPnL ? 'Refreshing...' : 'Refresh PnL'}}
+        </button>
+      </igx-card-actions>
+    </igx-card-header>
+    <igx-card-content>
+      <grid-portfolios-assests *ngIf="portfolioAssets?.length > 0" [portfolioAssetsEvents]="portfolioAssets">
+      </grid-portfolios-assests>
+    </igx-card-content>
+  </igx-card>
 </div>
 
-<div class="layout-sample">
-  <portfolio-tearsheet [portfolioName]="portfolioName"></portfolio-tearsheet>
-</div>
+<igx-card class="portfolio-tearsheet-card">
+  <igx-card-content>
+    <portfolio-tearsheet [portfolioName]="portfolioName"></portfolio-tearsheet>
+  </igx-card-content>
+</igx-card>

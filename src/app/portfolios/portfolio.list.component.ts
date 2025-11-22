@@ -10,7 +10,8 @@ import { IPortfolioAsset } from '../quotes/quotes.model';
 import { IgxDialogComponent } from '@infragistics/igniteui-angular';
 
 @Component({
-  templateUrl: './portfolio.list.component.html'
+  templateUrl: './portfolio.list.component.html',
+  styleUrls: ['./portfolio.list.component.scss']
 })
 
 
@@ -28,6 +29,7 @@ export class PortfolioListComponent implements OnInit  {
   public selectedPortfolio: IPortfolio;
   public portfolioName: string;
   public portfolioToDelete: any;
+  public isRefreshingPnL: boolean = false;
 
   @ViewChild(IgxDialogComponent, { static: false }) public dialog: IgxDialogComponent;
   @ViewChild(PortfolioTearsheetComponent, {static: false}) portfolioTearsheetComponent: PortfolioTearsheetComponent;
@@ -86,6 +88,28 @@ export class PortfolioListComponent implements OnInit  {
     this.enableSubmitButton = true;
     this.portfolioToDelete = cell;
     this.OpenModal('Delete Portfolio', 'Delete');
+  }
+
+  public refreshPnL() {
+    if (!this.selectedPortfolio || this.isRefreshingPnL) {
+      return;
+    }
+
+    this.isRefreshingPnL = true;
+    const portfolioId = this.selectedPortfolio._id;
+    
+    this.portfolioService.refreshPnL(portfolioId)
+      .subscribe((response) => {
+        if (response && response.portfolioassets) {
+          this.portfolioAssets = response.portfolioassets;
+          // Also update the portfolio assets in the selected portfolio
+          this.selectedPortfolio.portfolioassets = response.portfolioassets;
+        }
+        this.isRefreshingPnL = false;
+      }, (error) => {
+        console.error('Error refreshing PnL:', error);
+        this.isRefreshingPnL = false;
+      });
   }
 
 }
