@@ -1,105 +1,112 @@
 <div igxLayout igxLayoutDir="column" class="layout-box">
-    <div igxLayout igxLayoutJustify="flex-end" class="layout-box__el">
-        <div>
-            <igx-input-group>
-                <input class="gridSample__filter" igxInput type="text" placeholder="Filter by type"
-                    (input)="filter($event.target.value, 'type')">
-            </igx-input-group>
-        </div>
-        <div>
-            <igx-input-group>
-                <input class="gridSample__filter" igxInput type="text" placeholder="Filter by condition"
-                    (input)="filter($event.target.value, 'condition')">
-            </igx-input-group>
-        </div>
-        <div>
-            <button style="margin: 5px;" class="pull-right" igxButton="contained" (click)="reset()"
-                igxRipple>Reset</button>
-        </div>
+  <div igxLayout igxLayoutJustify="flex-end" class="layout-box__el">
+    <div>
+      <igx-input-group>
+        <input class="gridSample__filter" igxInput type="text" placeholder="Filter by type"
+          (input)="filter($event.target.value, 'type')">
+      </igx-input-group>
     </div>
-    <div class="layout-box__el" style="padding-top: 10px;">
-        <igx-grid #grid1 [batchEditing]="true" [data]="alerts"  height="600px"
-            [primaryKey]="'_id'" [allowFiltering]="true" [rowEditable]="true">
-            <igx-action-strip #actionstrip>
-                <button title="Edit" igxIconButton="flat" igxRipple (click)='startEdit(actionstrip.context)'>
-                    <igx-icon>edit</igx-icon>
-                </button>
-                <button title="Undo All" igxIconButton="flat" igxRipple *ngIf='isDirty(actionstrip.context)'
-                    (click)='undo(actionstrip.context)'>
-                    <igx-icon>undo</igx-icon>
-                </button>
-                <button title="Redo All" igxIconButton="flat" igxRipple
-                    *ngIf='!isDirty(actionstrip.context) && hasDiscardedTransactions(actionstrip.context)'
-                    (click)='redo(actionstrip.context)'>
-                    <igx-icon>redo</igx-icon>
-                </button>
-                <button title='Save' igxIconButton="flat" igxRipple *ngIf='isDirty(actionstrip.context)'
-                    (click)='commit(actionstrip.context)'>
-                    <igx-icon>save</igx-icon>
-                </button>
-                <button title="Delete" igxIconButton="flat" igxRipple *ngIf='!isDeleted(actionstrip.context)'
-                    (click)='actionstrip.context.delete()'>
-                    <igx-icon>delete</igx-icon>
-                </button>
-            </igx-action-strip>
-            <!-- <igx-column [editable]="false">
-                    <ng-template igxCell let-cell="cell" let-val>
-                        <button igxButton (click)="delete(cell)"  [disabled]="cell.row.deleted">Delete</button>
-                    </ng-template>
-                </igx-column> -->
-            <!-- <igx-column field="id" header="ID" [editable]="false">
-                    <ng-template igxCell let-val>
-                        <div class="cell__inner">
-                            {{ val }}
-                        </div>
-                    </ng-template>
-                </igx-column> -->
-
-            <igx-column field="type" header="Type">
-                <ng-template igxCell let-val>
-                    <div class="cell__inner">
-                        {{ val }}
-                    </div>
-                </ng-template>
-            </igx-column>
-
-            <igx-column field="condition" header="Condition">
-                <ng-template igxCell let-val>
-                    <div class="cell__inner">
-                        {{ val }}
-                    </div>
-                </ng-template>
-            </igx-column>
-        </igx-grid>
-        <div class="buttons-row">
-            <button igxButton (click)="addRow()">Add Row</button>
-            <div class="buttons-wrapper">
-                <button igxButton [disabled]="!grid1.transactions.canUndo" (click)="undo()">Undo</button>
-                <button igxButton [disabled]="!grid1.transactions.canRedo" (click)="redo()">Redo</button>
-                <button igxButton [disabled]="grid1.transactions.getAggregatedChanges(false).length < 1"
-                    (click)="openCommitDialog()">Commit</button>
-            </div>
-        </div>
-        <igx-dialog #dialog title="Submit the following transactions?">
-            <igx-grid #dialogGrid [data]="transactionsData" [rowEditable]="true" [rowHeight]="64" [primaryKey]="'id'"
-                width="600px" height="300px" [emptyGridMessage]="'No available transactions'">
-                <!-- <igx-column field="id" header="ID" [dataType]="'string'" width="100px"></igx-column>  -->
-                <igx-column field="type" header="Type" width="150px" [sortable]="true">
-                    <ng-template igxCell let-cell="cell" let-val>
-                        <span [class]="classFromType(val)">{{ typeFormatter(val) }}</span>
-                    </ng-template>
-                </igx-column>
-                <igx-column field="newValue" header="Value" width="900px">
-                    <ng-template igxCell let-cell="cell" let-val>
-                        <span class="transaction-log">{{ stateFormatter(val) }}</span>
-                    </ng-template>
-                </igx-column>
-            </igx-grid>
-            <div class="buttons-wrapper">
-                <button igxButton (click)="commit()">Commit</button>
-                <button igxButton (click)="discard()">Discard</button>
-                <button igxButton (click)="dialog.close()">Cancel</button>
-            </div>
-        </igx-dialog>
+    <div>
+      <igx-input-group>
+        <input class="gridSample__filter" igxInput type="text" placeholder="Filter by condition"
+          (input)="filter($event.target.value, 'condition')">
+      </igx-input-group>
     </div>
+    <div>
+      <button style="margin: 5px;" class="pull-right" igxButton="contained" (click)="reset()"
+      igxRipple>Reset</button>
+    </div>
+  </div>
+  <div class="layout-box__el" style="padding-top: 10px;">
+    <igx-grid #grid1 [batchEditing]="true" [data]="alerts"  height="600px"
+      [primaryKey]="'_id'" [allowFiltering]="true" [rowEditable]="true">
+      <igx-action-strip #actionstrip>
+        <button title="Edit" igxIconButton="flat" igxRipple (click)='startEdit(actionstrip.context)'>
+          <igx-icon>edit</igx-icon>
+        </button>
+        @if (isDirty(actionstrip.context)) {
+          <button title="Undo All" igxIconButton="flat" igxRipple
+            (click)='undo(actionstrip.context)'>
+            <igx-icon>undo</igx-icon>
+          </button>
+        }
+        @if (!isDirty(actionstrip.context) && hasDiscardedTransactions(actionstrip.context)) {
+          <button title="Redo All" igxIconButton="flat" igxRipple
+            (click)='redo(actionstrip.context)'>
+            <igx-icon>redo</igx-icon>
+          </button>
+        }
+        @if (isDirty(actionstrip.context)) {
+          <button title='Save' igxIconButton="flat" igxRipple
+            (click)='commit(actionstrip.context)'>
+            <igx-icon>save</igx-icon>
+          </button>
+        }
+        @if (!isDeleted(actionstrip.context)) {
+          <button title="Delete" igxIconButton="flat" igxRipple
+            (click)='actionstrip.context.delete()'>
+            <igx-icon>delete</igx-icon>
+          </button>
+        }
+      </igx-action-strip>
+      <!-- <igx-column [editable]="false">
+      <ng-template igxCell let-cell="cell" let-val>
+        <button igxButton (click)="delete(cell)"  [disabled]="cell.row.deleted">Delete</button>
+      </ng-template>
+    </igx-column> -->
+    <!-- <igx-column field="id" header="ID" [editable]="false">
+    <ng-template igxCell let-val>
+      <div class="cell__inner">
+        {{ val }}
+      </div>
+    </ng-template>
+  </igx-column> -->
+
+  <igx-column field="type" header="Type">
+    <ng-template igxCell let-val>
+      <div class="cell__inner">
+        {{ val }}
+      </div>
+    </ng-template>
+  </igx-column>
+
+  <igx-column field="condition" header="Condition">
+    <ng-template igxCell let-val>
+      <div class="cell__inner">
+        {{ val }}
+      </div>
+    </ng-template>
+  </igx-column>
+</igx-grid>
+<div class="buttons-row">
+  <button igxButton (click)="addRow()">Add Row</button>
+  <div class="buttons-wrapper">
+    <button igxButton [disabled]="!grid1.transactions.canUndo" (click)="undo()">Undo</button>
+    <button igxButton [disabled]="!grid1.transactions.canRedo" (click)="redo()">Redo</button>
+    <button igxButton [disabled]="grid1.transactions.getAggregatedChanges(false).length < 1"
+    (click)="openCommitDialog()">Commit</button>
+  </div>
+</div>
+<igx-dialog #dialog title="Submit the following transactions?">
+  <igx-grid #dialogGrid [data]="transactionsData" [rowEditable]="true" [rowHeight]="64" [primaryKey]="'id'"
+    width="600px" height="300px" [emptyGridMessage]="'No available transactions'">
+    <!-- <igx-column field="id" header="ID" [dataType]="'string'" width="100px"></igx-column>  -->
+    <igx-column field="type" header="Type" width="150px" [sortable]="true">
+      <ng-template igxCell let-cell="cell" let-val>
+        <span [class]="classFromType(val)">{{ typeFormatter(val) }}</span>
+      </ng-template>
+    </igx-column>
+    <igx-column field="newValue" header="Value" width="900px">
+      <ng-template igxCell let-cell="cell" let-val>
+        <span class="transaction-log">{{ stateFormatter(val) }}</span>
+      </ng-template>
+    </igx-column>
+  </igx-grid>
+  <div class="buttons-wrapper">
+    <button igxButton (click)="commit()">Commit</button>
+    <button igxButton (click)="discard()">Discard</button>
+    <button igxButton (click)="dialog.close()">Cancel</button>
+  </div>
+</igx-dialog>
+</div>
 </div>

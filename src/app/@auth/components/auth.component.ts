@@ -10,9 +10,9 @@ import { NbAuthService } from '@nebular/auth';
 import { takeWhile } from 'rxjs/operators';
 
 @Component({
-  selector: 'ngx-auth',
-  styleUrls: ['./auth.component.scss'],
-  template: `
+    selector: 'ngx-auth',
+    styleUrls: ['./auth.component.scss'],
+    template: `
   <igx-card>
   <igx-card-header>
   <nav class="navigation">
@@ -29,6 +29,7 @@ import { takeWhile } from 'rxjs/operators';
   </igx-card-content>
 </igx-card>
   `,
+    standalone: false
 })
 export class NgxAuthComponent implements OnDestroy {
 

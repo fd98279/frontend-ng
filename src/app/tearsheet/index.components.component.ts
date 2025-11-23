@@ -5,8 +5,9 @@ import { IAsset } from '../assets/asset.model';
 import { DefaultSortingStrategy, IgxGridComponent, SortingDirection } from '@infragistics/igniteui-angular';
 
 @Component({
-  selector: 'index-components-component',
-  templateUrl: './index.components.component.html'
+    selector: 'index-components-component',
+    templateUrl: './index.components.component.html',
+    standalone: false
 })
 
 export class IndexComponentsComponent implements OnInit {

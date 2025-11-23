@@ -3,8 +3,9 @@ import { IAsset } from './asset.model';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'sravz-asset-list-component',
-  templateUrl: './sravz.assets.list.component.html'
+    selector: 'sravz-asset-list-component',
+    templateUrl: './sravz.assets.list.component.html',
+    standalone: false
 })
 
 

@@ -27,9 +27,10 @@ export enum UserFormMode {
 }
 
 @Component({
-  selector: 'ngx-user',
-  templateUrl: './user.component.html',
-  styleUrls: ['./user.component.scss'],
+    selector: 'ngx-user',
+    templateUrl: './user.component.html',
+    styleUrls: ['./user.component.scss'],
+    standalone: false
 })
 export class UserComponent implements OnInit, OnDestroy {
   userForm: UntypedFormGroup;

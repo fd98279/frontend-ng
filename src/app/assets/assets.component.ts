@@ -9,7 +9,8 @@ import { PersistanceService } from '../common/persistance.service';
 declare var TradingView;
 
 @Component({
-  templateUrl: './assets.component.html'
+    templateUrl: './assets.component.html',
+    standalone: false
 })
 
 

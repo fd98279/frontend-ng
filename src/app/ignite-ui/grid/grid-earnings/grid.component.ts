@@ -26,7 +26,8 @@ import { IEarnings } from '../../../earnings/earnings';
 @Component({
     selector: 'grid-earnings',
     styleUrls: ['./grid.component.scss'],
-    templateUrl: './grid.component.html'
+    templateUrl: './grid.component.html',
+    standalone: false
 })
 export class EarningsGridComponent implements OnInit, OnDestroy, AfterViewInit {
     @ViewChild(IgxDropDownComponent) public igxDropDown: IgxDropDownComponent;

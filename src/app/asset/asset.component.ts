@@ -3,8 +3,9 @@ import { Router } from '@angular/router';
 import { IAsset } from '../assets/asset.model';
 
 @Component({
-  selector: 'asset-component',
-  templateUrl: './asset.component.html'
+    selector: 'asset-component',
+    templateUrl: './asset.component.html',
+    standalone: false
 })
 
 export class AssetComponent implements OnInit, AfterViewInit {

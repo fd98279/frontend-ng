@@ -23,7 +23,7 @@ import { IAlert } from '../../../alert/alert';
     selector: 'grid-alerts',
     styleUrls: ['./grid.component.scss'],
     templateUrl: './grid.component.html',
-
+    standalone: false
 })
 export class AlertsGridComponent implements OnInit, OnDestroy {
 

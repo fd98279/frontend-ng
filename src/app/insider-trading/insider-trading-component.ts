@@ -6,6 +6,7 @@ import { IInsiderTrade } from './insider-trading';
 @Component({
     templateUrl: './insider-trading-component.html',
     styleUrls: ['insider-trading-component.scss'],
+    standalone: false
 })
 
 export class InsiderTradingComponent implements OnInit {

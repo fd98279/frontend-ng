@@ -9,7 +9,10 @@ import { NbAuthService, NbAuthToken } from '@nebular/auth';
 import { Observable, of as observableOf } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-@Pipe({ name: 'ngxAuthToken' })
+@Pipe({
+    name: 'ngxAuthToken',
+    standalone: false
+})
 export class AuthPipe implements PipeTransform {
   constructor(private authService: NbAuthService) {}
 

@@ -1,429 +1,489 @@
 <igx-tabs>
-    <igx-tab-item>
-        <igx-tab-header>
-            <span igxTabHeaderLabel>Details</span>
-        </igx-tab-header>
-        <igx-tab-content>
-            <div>
-                <h6>General Information</h6>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Header</th>
-                            <th scope="col">Details</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let key of fundamentals?.General | objectKeys">
-                            <td *ngIf="!isArray(fundamentals.General[key])">{{key}}</td>
-                            <td *ngIf="!isArray(fundamentals.General[key])">{{fundamentals.General[key]}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <br>
-                <h6>Technical Information</h6>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Header</th>
-                            <th scope="col">Details</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let key of fundamentals?.Technicals | objectKeys">
-                            <td *ngIf="!isArray(fundamentals.Technicals[key])">{{key}}</td>
-                            <td *ngIf="!isArray(fundamentals.Technicals[key])">{{fundamentals.Technicals[key]}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <br>
-                <h6>Details</h6>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Header</th>
-                            <th scope="col">Details</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let key of fundamentals?.General2 | objectKeys">
-                            <td *ngIf="!isArray(fundamentals.General2[key])">{{key}}</td>
-                            <td *ngIf="!isArray(fundamentals.General2[key])">{{fundamentals.General2[key]}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <br>
-                <h6>Market Capitalization</h6>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Header</th>
-                            <th scope="col">Details</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let key of fundamentals?.Market_Capitalisation | objectKeys">
-                            <td *ngIf="!isArray(fundamentals.Market_Capitalisation[key])">{{key}}</td>
-                            <td *ngIf="!isArray(fundamentals.Market_Capitalisation[key])">
-                                {{fundamentals.Market_Capitalisation[key]}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <br>
+  <igx-tab-item>
+    <igx-tab-header>
+      <span igxTabHeaderLabel>Details</span>
+    </igx-tab-header>
+    <igx-tab-content>
+      <div>
+        <h6>General Information</h6>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Header</th>
+              <th scope="col">Details</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (key of fundamentals?.General | objectKeys; track key) {
+              <tr>
+                @if (!isArray(fundamentals.General[key])) {
+                  <td>{{key}}</td>
+                }
+                @if (!isArray(fundamentals.General[key])) {
+                  <td>{{fundamentals.General[key]}}</td>
+                }
+              </tr>
+            }
+          </tbody>
+        </table>
+        <br>
+          <h6>Technical Information</h6>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Header</th>
+                <th scope="col">Details</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (key of fundamentals?.Technicals | objectKeys; track key) {
+                <tr>
+                  @if (!isArray(fundamentals.Technicals[key])) {
+                    <td>{{key}}</td>
+                  }
+                  @if (!isArray(fundamentals.Technicals[key])) {
+                    <td>{{fundamentals.Technicals[key]}}</td>
+                  }
+                </tr>
+              }
+            </tbody>
+          </table>
+          <br>
+            <h6>Details</h6>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Header</th>
+                  <th scope="col">Details</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (key of fundamentals?.General2 | objectKeys; track key) {
+                  <tr>
+                    @if (!isArray(fundamentals.General2[key])) {
+                      <td>{{key}}</td>
+                    }
+                    @if (!isArray(fundamentals.General2[key])) {
+                      <td>{{fundamentals.General2[key]}}</td>
+                    }
+                  </tr>
+                }
+              </tbody>
+            </table>
+            <br>
+              <h6>Market Capitalization</h6>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Header</th>
+                    <th scope="col">Details</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for (key of fundamentals?.Market_Capitalisation | objectKeys; track key) {
+                    <tr>
+                      @if (!isArray(fundamentals.Market_Capitalisation[key])) {
+                        <td>{{key}}</td>
+                      }
+                      @if (!isArray(fundamentals.Market_Capitalisation[key])) {
+                        <td>
+                        {{fundamentals.Market_Capitalisation[key]}}</td>
+                      }
+                    </tr>
+                  }
+                </tbody>
+              </table>
+              <br>
                 <h6>Morning Star</h6>
                 <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Header</th>
-                            <th scope="col">Details</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let key of fundamentals?.MorningStar | objectKeys">
-                            <td *ngIf="!isArray(fundamentals.MorningStar[key])">{{key}}</td>
-                            <td *ngIf="!isArray(fundamentals.MorningStar[key])">{{fundamentals.MorningStar[key]}}</td>
-                        </tr>
-                    </tbody>
+                  <thead>
+                    <tr>
+                      <th scope="col">Header</th>
+                      <th scope="col">Details</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @for (key of fundamentals?.MorningStar | objectKeys; track key) {
+                      <tr>
+                        @if (!isArray(fundamentals.MorningStar[key])) {
+                          <td>{{key}}</td>
+                        }
+                        @if (!isArray(fundamentals.MorningStar[key])) {
+                          <td>{{fundamentals.MorningStar[key]}}</td>
+                        }
+                      </tr>
+                    }
+                  </tbody>
                 </table>
                 <br>
-                <h6>Valuation - Rates</h6>
-                <table class="table">
+                  <h6>Valuation - Rates</h6>
+                  <table class="table">
                     <thead>
-                        <tr>
-                            <th scope="col">Header</th>
-                            <th scope="col">Details</th>
-                        </tr>
+                      <tr>
+                        <th scope="col">Header</th>
+                        <th scope="col">Details</th>
+                      </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let key of fundamentals?.ValuationsGrowth?.Valuations_Rates_Portfolio | objectKeys">
-                            <td *ngIf="!isArray(fundamentals?.ValuationsGrowth?.Valuations_Rates_Portfolio[key])">
-                                {{key}}</td>
-                            <td *ngIf="!isArray(fundamentals?.ValuationsGrowth?.Valuations_Rates_Portfolio)">
-                                {{fundamentals?.ValuationsGrowth?.Valuations_Rates_Portfolio[key]}}</td>
+                      @for (key of fundamentals?.ValuationsGrowth?.Valuations_Rates_Portfolio | objectKeys; track key) {
+                        <tr>
+                          @if (!isArray(fundamentals?.ValuationsGrowth?.Valuations_Rates_Portfolio[key])) {
+                            <td>
+                            {{key}}</td>
+                          }
+                          @if (!isArray(fundamentals?.ValuationsGrowth?.Valuations_Rates_Portfolio)) {
+                            <td>
+                            {{fundamentals?.ValuationsGrowth?.Valuations_Rates_Portfolio[key]}}</td>
+                          }
                         </tr>
+                      }
                     </tbody>
-                </table>
-                <h6>Valuation - Rates To Category</h6>
-                <table class="table">
+                  </table>
+                  <h6>Valuation - Rates To Category</h6>
+                  <table class="table">
                     <thead>
-                        <tr>
-                            <th scope="col">Header</th>
-                            <th scope="col">Details</th>
-                        </tr>
+                      <tr>
+                        <th scope="col">Header</th>
+                        <th scope="col">Details</th>
+                      </tr>
                     </thead>
                     <tbody>
+                      @for (key of fundamentals?.ValuationsGrowth?.Valuations_Rates_To_Category | objectKeys; track key) {
                         <tr
-                            *ngFor="let key of fundamentals?.ValuationsGrowth?.Valuations_Rates_To_Category | objectKeys">
-                            <td *ngIf="!isArray(fundamentals?.ValuationsGrowth?.Valuations_Rates_To_Category[key])">
-                                {{key}}</td>
-                            <td *ngIf="!isArray(fundamentals?.ValuationsGrowth?.Valuations_Rates_To_Category)">
-                                {{fundamentals?.ValuationsGrowth?.Valuations_Rates_To_Category[key]}}</td>
+                          >
+                          @if (!isArray(fundamentals?.ValuationsGrowth?.Valuations_Rates_To_Category[key])) {
+                            <td>
+                            {{key}}</td>
+                          }
+                          @if (!isArray(fundamentals?.ValuationsGrowth?.Valuations_Rates_To_Category)) {
+                            <td>
+                            {{fundamentals?.ValuationsGrowth?.Valuations_Rates_To_Category[key]}}</td>
+                          }
                         </tr>
+                      }
                     </tbody>
-                </table>
-                <h6>Valuation - Growth Rates Portfolio</h6>
-                <table class="table">
+                  </table>
+                  <h6>Valuation - Growth Rates Portfolio</h6>
+                  <table class="table">
                     <thead>
-                        <tr>
-                            <th scope="col">Header</th>
-                            <th scope="col">Details</th>
-                        </tr>
+                      <tr>
+                        <th scope="col">Header</th>
+                        <th scope="col">Details</th>
+                      </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let key of fundamentals?.ValuationsGrowth?.Growth_Rates_Portfolio | objectKeys">
-                            <td *ngIf="!isArray(fundamentals?.ValuationsGrowth?.Growth_Rates_Portfolio[key])">{{key}}
+                      @for (key of fundamentals?.ValuationsGrowth?.Growth_Rates_Portfolio | objectKeys; track key) {
+                        <tr>
+                          @if (!isArray(fundamentals?.ValuationsGrowth?.Growth_Rates_Portfolio[key])) {
+                            <td>{{key}}
                             </td>
-                            <td *ngIf="!isArray(fundamentals?.ValuationsGrowth?.Growth_Rates_Portfolio)">
-                                {{fundamentals?.ValuationsGrowth?.Growth_Rates_Portfolio[key]}}</td>
+                          }
+                          @if (!isArray(fundamentals?.ValuationsGrowth?.Growth_Rates_Portfolio)) {
+                            <td>
+                            {{fundamentals?.ValuationsGrowth?.Growth_Rates_Portfolio[key]}}</td>
+                          }
                         </tr>
+                      }
                     </tbody>
-                </table>
-                <h6>Valuation - Growth Rates To Category</h6>
-                <table class="table">
+                  </table>
+                  <h6>Valuation - Growth Rates To Category</h6>
+                  <table class="table">
                     <thead>
-                        <tr>
-                            <th scope="col">Header</th>
-                            <th scope="col">Details</th>
-                        </tr>
+                      <tr>
+                        <th scope="col">Header</th>
+                        <th scope="col">Details</th>
+                      </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let key of fundamentals?.ValuationsGrowth?.Growth_Rates_To_Category | objectKeys">
-                            <td *ngIf="!isArray(fundamentals?.ValuationsGrowth?.Growth_Rates_To_Category[key])">{{key}}
+                      @for (key of fundamentals?.ValuationsGrowth?.Growth_Rates_To_Category | objectKeys; track key) {
+                        <tr>
+                          @if (!isArray(fundamentals?.ValuationsGrowth?.Growth_Rates_To_Category[key])) {
+                            <td>{{key}}
                             </td>
-                            <td *ngIf="!isArray(fundamentals?.ValuationsGrowth?.Growth_Rates_To_Category)">
-                                {{fundamentals?.ValuationsGrowth?.Growth_Rates_To_Category[key]}}</td>
+                          }
+                          @if (!isArray(fundamentals?.ValuationsGrowth?.Growth_Rates_To_Category)) {
+                            <td>
+                            {{fundamentals?.ValuationsGrowth?.Growth_Rates_To_Category[key]}}</td>
+                          }
                         </tr>
+                      }
                     </tbody>
-                </table>
-                <h6>Performance</h6>
-                <table class="table">
+                  </table>
+                  <h6>Performance</h6>
+                  <table class="table">
                     <thead>
-                        <tr>
-                            <th scope="col">Header</th>
-                            <th scope="col">Details</th>
-                        </tr>
+                      <tr>
+                        <th scope="col">Header</th>
+                        <th scope="col">Details</th>
+                      </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let key of fundamentals?.Performance | objectKeys">
-                            <td *ngIf="!isArray(fundamentals?.Performance[key])">{{key}}</td>
-                            <td *ngIf="!isArray(fundamentals?.Performance)">{{fundamentals?.Performance[key]}}</td>
+                      @for (key of fundamentals?.Performance | objectKeys; track key) {
+                        <tr>
+                          @if (!isArray(fundamentals?.Performance[key])) {
+                            <td>{{key}}</td>
+                          }
+                          @if (!isArray(fundamentals?.Performance)) {
+                            <td>{{fundamentals?.Performance[key]}}</td>
+                          }
                         </tr>
+                      }
                     </tbody>
-                </table>
-                <br>
-                <h6>Fixed Income</h6>
-                <igx-grid #grid1 [data]="fundamentals?.FixedIncomeItems"  height="600px"
-                    [allowFiltering]="true">
-                    <igx-paginator [perPage]="10">
-                    </igx-paginator>
-                    <igx-column field="Name" header="Name" sortable="true">
+                  </table>
+                  <br>
+                    <h6>Fixed Income</h6>
+                    <igx-grid #grid1 [data]="fundamentals?.FixedIncomeItems"  height="600px"
+                      [allowFiltering]="true">
+                      <igx-paginator [perPage]="10">
+                      </igx-paginator>
+                      <igx-column field="Name" header="Name" sortable="true">
                         <ng-template igxCell let-val>
-                            <div class="cell__inner">
-                                {{ val }}
-                            </div>
+                          <div class="cell__inner">
+                            {{ val }}
+                          </div>
                         </ng-template>
-                    </igx-column>
-                    <igx-column field="Fund_%" header="Fund_%" sortable="true">
+                      </igx-column>
+                      <igx-column field="Fund_%" header="Fund_%" sortable="true">
                         <ng-template igxCell let-val>
-                            <div class="cell__inner">
-                                {{ val }}
-                            </div>
+                          <div class="cell__inner">
+                            {{ val }}
+                          </div>
                         </ng-template>
-                    </igx-column>
-                    <igx-column field="Relative_to_Category" header="Relative_to_Category" sortable="true">
+                      </igx-column>
+                      <igx-column field="Relative_to_Category" header="Relative_to_Category" sortable="true">
                         <ng-template igxCell let-val>
-                            <div class="cell__inner">
-                                {{ val }}
-                            </div>
+                          <div class="cell__inner">
+                            {{ val }}
+                          </div>
                         </ng-template>
-                    </igx-column>
-                </igx-grid>
-                <br>
-                <h6>Asset Allocation</h6>
-                <igx-grid #grid1 [data]="fundamentals?.Asset_Allocation"  height="600px"
-                    [allowFiltering]="true">
-                    <igx-paginator [perPage]="10">
-                    </igx-paginator>
-                    <igx-column field="Name" header="Name" sortable="true">
-                        <ng-template igxCell let-val>
+                      </igx-column>
+                    </igx-grid>
+                    <br>
+                      <h6>Asset Allocation</h6>
+                      <igx-grid #grid1 [data]="fundamentals?.Asset_Allocation"  height="600px"
+                        [allowFiltering]="true">
+                        <igx-paginator [perPage]="10">
+                        </igx-paginator>
+                        <igx-column field="Name" header="Name" sortable="true">
+                          <ng-template igxCell let-val>
                             <div class="cell__inner">
-                                {{ val }}
+                              {{ val }}
                             </div>
-                        </ng-template>
-                    </igx-column>
-                    <igx-column field="Long_%" header="Long_%" sortable="true">
-                        <ng-template igxCell let-val>
+                          </ng-template>
+                        </igx-column>
+                        <igx-column field="Long_%" header="Long_%" sortable="true">
+                          <ng-template igxCell let-val>
                             <div class="cell__inner">
-                                {{ val }}
+                              {{ val }}
                             </div>
-                        </ng-template>
-                    </igx-column>
-                    <igx-column field="Short_%" header="Short_%" sortable="true">
-                        <ng-template igxCell let-val>
+                          </ng-template>
+                        </igx-column>
+                        <igx-column field="Short_%" header="Short_%" sortable="true">
+                          <ng-template igxCell let-val>
                             <div class="cell__inner">
-                                {{ val }}
+                              {{ val }}
                             </div>
-                        </ng-template>
-                    </igx-column>
-                    <igx-column field="Net_Assets_%" header="Net_Assets_%" sortable="true">
-                        <ng-template igxCell let-val>
+                          </ng-template>
+                        </igx-column>
+                        <igx-column field="Net_Assets_%" header="Net_Assets_%" sortable="true">
+                          <ng-template igxCell let-val>
                             <div class="cell__inner">
-                                {{ val }}
+                              {{ val }}
                             </div>
-                        </ng-template>
-                    </igx-column>
-                </igx-grid>
-                <br>
-                <h6>World Region Holdings</h6>
-                <igx-grid #grid1 [data]="fundamentals?.WorldRegionHoldings" 
-                    height="600px" [allowFiltering]="true">
-                    <igx-paginator [perPage]="10">
-                    </igx-paginator>
-                    <igx-column field="Name" header="Name" sortable="true">
-                        <ng-template igxCell let-val>
-                            <div class="cell__inner">
+                          </ng-template>
+                        </igx-column>
+                      </igx-grid>
+                      <br>
+                        <h6>World Region Holdings</h6>
+                        <igx-grid #grid1 [data]="fundamentals?.WorldRegionHoldings"
+                          height="600px" [allowFiltering]="true">
+                          <igx-paginator [perPage]="10">
+                          </igx-paginator>
+                          <igx-column field="Name" header="Name" sortable="true">
+                            <ng-template igxCell let-val>
+                              <div class="cell__inner">
                                 {{ val }}
-                            </div>
-                        </ng-template>
-                    </igx-column>
-                    <igx-column field="Equity_%" header="Equity_%" sortable="true">
-                        <ng-template igxCell let-val>
-                            <div class="cell__inner">
+                              </div>
+                            </ng-template>
+                          </igx-column>
+                          <igx-column field="Equity_%" header="Equity_%" sortable="true">
+                            <ng-template igxCell let-val>
+                              <div class="cell__inner">
                                 {{ val }}
-                            </div>
-                        </ng-template>
-                    </igx-column>
-                    <igx-column field="Relative_to_Category" header="Relative_to_Category" sortable="true">
-                        <ng-template igxCell let-val>
-                            <div class="cell__inner">
+                              </div>
+                            </ng-template>
+                          </igx-column>
+                          <igx-column field="Relative_to_Category" header="Relative_to_Category" sortable="true">
+                            <ng-template igxCell let-val>
+                              <div class="cell__inner">
                                 {{ val }}
+                              </div>
+                            </ng-template>
+                          </igx-column>
+                        </igx-grid>
+                        <br>
+                          <h6>Sector Weights</h6>
+                          <igx-grid #grid1 [data]="fundamentals?.Sector_Weights"  height="600px"
+                            [allowFiltering]="true">
+                            <igx-paginator [perPage]="10">
+                            </igx-paginator>
+                            <igx-column field="Name" header="Name" sortable="true">
+                              <ng-template igxCell let-val>
+                                <div class="cell__inner">
+                                  {{ val }}
+                                </div>
+                              </ng-template>
+                            </igx-column>
+                            <igx-column field="Equity_%" header="Equity_%" sortable="true">
+                              <ng-template igxCell let-val>
+                                <div class="cell__inner">
+                                  {{ val }}
+                                </div>
+                              </ng-template>
+                            </igx-column>
+                            <igx-column field="Relative_to_Category" header="Relative_to_Category" sortable="true">
+                              <ng-template igxCell let-val>
+                                <div class="cell__inner">
+                                  {{ val }}
+                                </div>
+                              </ng-template>
+                            </igx-column>
+                          </igx-grid>
+                          <br>
+                            <h6>Top 10 Holdings</h6>
+                            <igx-grid #grid1 [data]="fundamentals?.Top_10_Holdings"  height="600px"
+                              [allowFiltering]="true">
+                              <igx-paginator [perPage]="10">
+                              </igx-paginator>
+                              <igx-column field="Code" header="Code" sortable="true">
+                                <ng-template igxCell let-val>
+                                  <div class="cell__inner">
+                                    {{ val }}
+                                  </div>
+                                </ng-template>
+                              </igx-column>
+                              <igx-column field="Exchange" header="Exchange" sortable="true">
+                                <ng-template igxCell let-val>
+                                  <div class="cell__inner">
+                                    {{ val }}
+                                  </div>
+                                </ng-template>
+                              </igx-column>
+                              <igx-column field="Name" header="Name" sortable="true">
+                                <ng-template igxCell let-val>
+                                  <div class="cell__inner">
+                                    {{ val }}
+                                  </div>
+                                </ng-template>
+                              </igx-column>
+                              <igx-column field="Sector" header="Sector" sortable="true">
+                                <ng-template igxCell let-val>
+                                  <div class="cell__inner">
+                                    {{ val }}
+                                  </div>
+                                </ng-template>
+                              </igx-column>
+                              <igx-column field="Industry" header="Industry" sortable="true">
+                                <ng-template igxCell let-val>
+                                  <div class="cell__inner">
+                                    {{ val }}
+                                  </div>
+                                </ng-template>
+                              </igx-column>
+                              <igx-column field="Country" header="Country" sortable="true">
+                                <ng-template igxCell let-val>
+                                  <div class="cell__inner">
+                                    {{ val }}
+                                  </div>
+                                </ng-template>
+                              </igx-column>
+                              <igx-column field="Region" header="Region" sortable="true">
+                                <ng-template igxCell let-val>
+                                  <div class="cell__inner">
+                                    {{ val }}
+                                  </div>
+                                </ng-template>
+                              </igx-column>
+                              <igx-column field="Assets_%" header="Assets_Percent" sortable="true">
+                                <ng-template igxCell let-val>
+                                  <div class="cell__inner">
+                                    {{ val }}
+                                  </div>
+                                </ng-template>
+                              </igx-column>
+                            </igx-grid>
+                            <br>
+                              <h6>Holdings</h6>
+                              <igx-grid #grid1 [data]="fundamentals?.Holdings"  height="600px"
+                                [allowFiltering]="true">
+                                <igx-paginator [perPage]="10">
+                                </igx-paginator>
+                                <igx-column field="Code" header="Code" sortable="true">
+                                  <ng-template igxCell let-val>
+                                    <div class="cell__inner">
+                                      {{ val }}
+                                    </div>
+                                  </ng-template>
+                                </igx-column>
+                                <igx-column field="Exchange" header="Exchange" sortable="true">
+                                  <ng-template igxCell let-val>
+                                    <div class="cell__inner">
+                                      {{ val }}
+                                    </div>
+                                  </ng-template>
+                                </igx-column>
+                                <igx-column field="Name" header="Name" sortable="true">
+                                  <ng-template igxCell let-val>
+                                    <div class="cell__inner">
+                                      {{ val }}
+                                    </div>
+                                  </ng-template>
+                                </igx-column>
+                                <igx-column field="Sector" header="Sector" sortable="true">
+                                  <ng-template igxCell let-val>
+                                    <div class="cell__inner">
+                                      {{ val }}
+                                    </div>
+                                  </ng-template>
+                                </igx-column>
+                                <igx-column field="Industry" header="Industry" sortable="true">
+                                  <ng-template igxCell let-val>
+                                    <div class="cell__inner">
+                                      {{ val }}
+                                    </div>
+                                  </ng-template>
+                                </igx-column>
+                                <igx-column field="Country" header="Country" sortable="true">
+                                  <ng-template igxCell let-val>
+                                    <div class="cell__inner">
+                                      {{ val }}
+                                    </div>
+                                  </ng-template>
+                                </igx-column>
+                                <igx-column field="Region" header="Region" sortable="true">
+                                  <ng-template igxCell let-val>
+                                    <div class="cell__inner">
+                                      {{ val }}
+                                    </div>
+                                  </ng-template>
+                                </igx-column>
+                                <igx-column field="Assets_%" header="Assets_Percent" sortable="true">
+                                  <ng-template igxCell let-val>
+                                    <div class="cell__inner">
+                                      {{ val }}
+                                    </div>
+                                  </ng-template>
+                                </igx-column>
+                              </igx-grid>
                             </div>
-                        </ng-template>
-                    </igx-column>
-                </igx-grid>
-                <br>
-                <h6>Sector Weights</h6>
-                <igx-grid #grid1 [data]="fundamentals?.Sector_Weights"  height="600px"
-                    [allowFiltering]="true">
-                    <igx-paginator [perPage]="10">
-                    </igx-paginator>
-                    <igx-column field="Name" header="Name" sortable="true">
-                        <ng-template igxCell let-val>
-                            <div class="cell__inner">
-                                {{ val }}
-                            </div>
-                        </ng-template>
-                    </igx-column>
-                    <igx-column field="Equity_%" header="Equity_%" sortable="true">
-                        <ng-template igxCell let-val>
-                            <div class="cell__inner">
-                                {{ val }}
-                            </div>
-                        </ng-template>
-                    </igx-column>
-                    <igx-column field="Relative_to_Category" header="Relative_to_Category" sortable="true">
-                        <ng-template igxCell let-val>
-                            <div class="cell__inner">
-                                {{ val }}
-                            </div>
-                        </ng-template>
-                    </igx-column>
-                </igx-grid>
-                <br>
-                <h6>Top 10 Holdings</h6>
-                <igx-grid #grid1 [data]="fundamentals?.Top_10_Holdings"  height="600px"
-                    [allowFiltering]="true">
-                    <igx-paginator [perPage]="10">
-                    </igx-paginator>
-                    <igx-column field="Code" header="Code" sortable="true">
-                        <ng-template igxCell let-val>
-                            <div class="cell__inner">
-                                {{ val }}
-                            </div>
-                        </ng-template>
-                    </igx-column>
-                    <igx-column field="Exchange" header="Exchange" sortable="true">
-                        <ng-template igxCell let-val>
-                            <div class="cell__inner">
-                                {{ val }}
-                            </div>
-                        </ng-template>
-                    </igx-column>
-                    <igx-column field="Name" header="Name" sortable="true">
-                        <ng-template igxCell let-val>
-                            <div class="cell__inner">
-                                {{ val }}
-                            </div>
-                        </ng-template>
-                    </igx-column>
-                    <igx-column field="Sector" header="Sector" sortable="true">
-                        <ng-template igxCell let-val>
-                            <div class="cell__inner">
-                                {{ val }}
-                            </div>
-                        </ng-template>
-                    </igx-column>
-                    <igx-column field="Industry" header="Industry" sortable="true">
-                        <ng-template igxCell let-val>
-                            <div class="cell__inner">
-                                {{ val }}
-                            </div>
-                        </ng-template>
-                    </igx-column>
-                    <igx-column field="Country" header="Country" sortable="true">
-                        <ng-template igxCell let-val>
-                            <div class="cell__inner">
-                                {{ val }}
-                            </div>
-                        </ng-template>
-                    </igx-column>
-                    <igx-column field="Region" header="Region" sortable="true">
-                        <ng-template igxCell let-val>
-                            <div class="cell__inner">
-                                {{ val }}
-                            </div>
-                        </ng-template>
-                    </igx-column>
-                    <igx-column field="Assets_%" header="Assets_Percent" sortable="true">
-                        <ng-template igxCell let-val>
-                            <div class="cell__inner">
-                                {{ val }}
-                            </div>
-                        </ng-template>
-                    </igx-column>
-                </igx-grid>
-                <br>
-                <h6>Holdings</h6>
-                <igx-grid #grid1 [data]="fundamentals?.Holdings"  height="600px"
-                    [allowFiltering]="true">
-                    <igx-paginator [perPage]="10">
-                    </igx-paginator>
-                    <igx-column field="Code" header="Code" sortable="true">
-                        <ng-template igxCell let-val>
-                            <div class="cell__inner">
-                                {{ val }}
-                            </div>
-                        </ng-template>
-                    </igx-column>
-                    <igx-column field="Exchange" header="Exchange" sortable="true">
-                        <ng-template igxCell let-val>
-                            <div class="cell__inner">
-                                {{ val }}
-                            </div>
-                        </ng-template>
-                    </igx-column>
-                    <igx-column field="Name" header="Name" sortable="true">
-                        <ng-template igxCell let-val>
-                            <div class="cell__inner">
-                                {{ val }}
-                            </div>
-                        </ng-template>
-                    </igx-column>
-                    <igx-column field="Sector" header="Sector" sortable="true">
-                        <ng-template igxCell let-val>
-                            <div class="cell__inner">
-                                {{ val }}
-                            </div>
-                        </ng-template>
-                    </igx-column>
-                    <igx-column field="Industry" header="Industry" sortable="true">
-                        <ng-template igxCell let-val>
-                            <div class="cell__inner">
-                                {{ val }}
-                            </div>
-                        </ng-template>
-                    </igx-column>
-                    <igx-column field="Country" header="Country" sortable="true">
-                        <ng-template igxCell let-val>
-                            <div class="cell__inner">
-                                {{ val }}
-                            </div>
-                        </ng-template>
-                    </igx-column>
-                    <igx-column field="Region" header="Region" sortable="true">
-                        <ng-template igxCell let-val>
-                            <div class="cell__inner">
-                                {{ val }}
-                            </div>
-                        </ng-template>
-                    </igx-column>
-                    <igx-column field="Assets_%" header="Assets_Percent" sortable="true">
-                        <ng-template igxCell let-val>
-                            <div class="cell__inner">
-                                {{ val }}
-                            </div>
-                        </ng-template>
-                    </igx-column>
-                </igx-grid>
-            </div>
-        </igx-tab-content>
-    </igx-tab-item>
-    <!-- <igx-tab-item>
-        <igx-tab-header>
-            <span igxTabHeaderLabel>Raw Data</span>
-        </igx-tab-header>
-        <igx-tab-content>
-            <pre>{{fundamentals | json}}</pre>
-        </igx-tab-content>
-    </igx-tab-item> -->
-</igx-tabs>
+                          </igx-tab-content>
+                        </igx-tab-item>
+                        <!-- <igx-tab-item>
+                        <igx-tab-header>
+                          <span igxTabHeaderLabel>Raw Data</span>
+                        </igx-tab-header>
+                        <igx-tab-content>
+                          <pre>{{fundamentals | json}}</pre>
+                        </igx-tab-content>
+                      </igx-tab-item> -->
+                    </igx-tabs>

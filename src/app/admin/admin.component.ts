@@ -3,10 +3,9 @@ import { environment } from '../../environments/environment';
 
 
 @Component({
-  templateUrl: './admin.component.html',
-  providers: [
-
-  ]
+    templateUrl: './admin.component.html',
+    providers: [],
+    standalone: false
 })
 
 

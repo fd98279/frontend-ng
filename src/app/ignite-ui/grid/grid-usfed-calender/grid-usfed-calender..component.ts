@@ -23,7 +23,8 @@ import { IEvent, IUsFedCalendar,  } from '../../../economics/economic.model';
 @Component({
     selector: 'grid-usfed-calender',
     styleUrls: ['./grid-usfed-calender.component.scss'],
-    templateUrl: './grid-usfed-calender.component.html'
+    templateUrl: './grid-usfed-calender.component.html',
+    standalone: false
 })
 export class GridUsFedCalenderComponent implements OnInit, OnDestroy {
     @ViewChild(IgxDropDownComponent) public igxDropDown: IgxDropDownComponent;
@@ -103,7 +104,10 @@ export class GridUsFedCalenderComponent implements OnInit, OnDestroy {
 
 }
 
-@Pipe({ name: 'startsWith' })
+@Pipe({
+    name: 'startsWith',
+    standalone: false
+})
 export class AutocompletePipeStartsWith implements PipeTransform {
     public transform(collection: any[], term = '') {
         return collection.filter((item) => item.toString().toLowerCase().startsWith(term.toString().toLowerCase()));

@@ -1,476 +1,510 @@
 <div class="main" igxLayout>
-    <igx-nav-drawer id="navigation" #drawer [isOpen]="drawerState.open" [(pin)]="drawerState.pin" [pinThreshold]="0">
-        <ng-template igxDrawer>
-            <nav>
-                <span igxDrawerItem class="parent_item" [isHeader]="true" (click)="showSubMenu(1)">Data</span>
-                <div *ngIf="showDataGroup" class="sub_item">
-                    <span>
-                        <a class="dropdown-item waves-light" routerLink="/ig/market-dashboard"
-                            routerLinkActive="router-link-active">Dashboard</a>
-                    </span>
-                    <span>
-                        <a class="dropdown-item waves-light" routerLink="/asset/list"
-                            routerLinkActive="router-link-active">Assets</a>
-                    </span>
-                    <span>
-                        <a class="dropdown-item waves-light" routerLink="/asset/all"
-                            routerLinkActive="router-link-active">Charts</a>
-                    </span>
-                    <span>
-                        <a class="dropdown-item waves-light" routerLink="/earnings/earnings"
-                            routerLinkActive="router-link-active">Earnings</a>
-                    </span>
-                    <span>
-                        <a class="dropdown-item waves-light" routerLink="/fundamentals/fundamentals"
-                            routerLinkActive="router-link-active">Fundamentals</a>
-                    </span>
-                    <span>
-                        <a class="dropdown-item waves-light" routerLink="/insider-trades/all"
-                            routerLinkActive="router-link-active">Insider Trades</a>
-                    </span>
-                    <span>
-                        <a class="dropdown-item waves-light" routerLink="/feeds/feed"
-                            routerLinkActive="router-link-active">News</a>
-                    </span>
-                    <span>
-                        <a class="dropdown-item waves-light" routerLink="/portfolio/list"
-                            routerLinkActive="router-link-active">Portfolios</a>
-                    </span>
-                    <span>
-                        <a class="dropdown-item waves-light" routerLink="/quotes/list"
-                            routerLinkActive="router-link-active">Quotes</a>
-                    </span>
-                </div>
-                <span igxDrawerItem [isHeader]="true" (click)="showSubMenu(2)">Finance</span>
-                <div *ngIf="showFinanceGroup" class="sub_item">
-                    <span>
-                        <a class="dropdown-item waves-light" routerLink="/bond/bond"
-                            routerLinkActive="router-link-active">Bonds</a>
-                    </span>
-                    <span>
-                        <a class="dropdown-item waves-light" routerLink="/etfs/etfs"
-                            routerLinkActive="router-link-active">ETFs</a>
-                    </span>
-                    <span>
-                        <a class="dropdown-item waves-light" routerLink="/forex/all"
-                            routerLinkActive="router-link-active">Forex</a>
-                    </span>
-                    <span>
-                        <a class="dropdown-item waves-light" routerLink="/futures/all"
-                            routerLinkActive="router-link-active">Futures</a>
-                    </span>
-                    <span>
-                        <a class="dropdown-item waves-light" routerLink="/marketindex/index"
-                            routerLinkActive="router-link-active">Indices</a>
-                    </span>
-                    <span>
-                        <a class="dropdown-item waves-light" routerLink="/rates/mortgage"
-                            routerLinkActive="router-link-active">Mortgage Rates</a>
-                    </span>
-                    <span>
-                        <a class="dropdown-item waves-light" routerLink="/mutualfunds/mutualfunds"
-                            routerLinkActive="router-link-active">Mutual Funds</a>
-                    </span>
-                    <span>
-                        <a class="dropdown-item waves-light" routerLink="/option/option"
-                            routerLinkActive="router-link-active">Options</a>
-                    </span>
-                    <span>
-                        <a class="dropdown-item waves-light" routerLink="/rates/all"
-                            routerLinkActive="router-link-active">Rates</a>
-                    </span>
-                </div>
-                <span igxDrawerItem [isHeader]="true" (click)="showSubMenu(3)">Crypto</span>
-                <div *ngIf="showCryptoGroup" class="sub_item">
-                    <span>
-                        <a class="dropdown-item waves-light" routerLink="/crypto/all"
-                            routerLinkActive="router-link-active">Assets</a>
-                    </span>
-                </div>
-                <span igxDrawerItem [isHeader]="true" (click)="showSubMenu(4)">Economics</span>
-                <div *ngIf="showEconomicsGroup" class="sub_item">
-                    <span>
-                        <a class="dropdown-item waves-light" routerLink="/economics/calendar"
-                            routerLinkActive="router-link-active">Calendar</a>
-                    </span>
-                </div>
-                <span igxDrawerItem [isHeader]="true" (click)="showSubMenu(5)">Analytics</span>
-                <div *ngIf="showAnalyticsGroup" class="sub_item">
-                    <span>
-                        <a class="dropdown-item waves-light" routerLink="/analytics/all"
-                            [queryParams]="{'analyticsType':'PCA Analysis','assetType':'portfolio'}"
-                            routerLinkActive="router-link-active">PCA Analysis</a>
-                    </span>
-                    <span>
-                        <a class="dropdown-item waves-light" routerLink="/analytics/all"
-                            [queryParams]="{'analyticsType':'Prophet Model Analysis', 'assetType': 'asset'}"
-                            routerLinkActive="router-link-active">Prophet Model Analysis</a>
-                    </span>
-                    <span>
-                        <a class="dropdown-item waves-light" routerLink="/analytics/all"
-                            [queryParams]="{'analyticsType':'Pyfolio Returns Analysis', 'assetType': 'asset'}"
-                            routerLinkActive="router-link-active">Pyfolio Returns Analysis</a>
-                    </span>
-                    <span>
-                        <a class="dropdown-item waves-light" routerLink="/analytics/all"
-                            [queryParams]="{'analyticsType':'Rolling Statistics', 'assetType':'asset'}"
-                            routerLinkActive="router-link-active">Rolling Statistics</a>
-                    </span>
-                    <span>
-                        <a class="dropdown-item waves-light" routerLink="/analytics/all"
-                            [queryParams]="{'analyticsType':'Time Series Analysis', 'assetType': 'asset'}"
-                            routerLinkActive="router-link-active">Time Series Analysis</a>
-                    </span>
-                    <span>
-                        <a class="dropdown-item waves-light" routerLink="/analytics/all"
-                            [queryParams]="{'analyticsType':'Covariance Analysis', 'assetType': 'portfolio'}"
-                            routerLinkActive="router-link-active">Covariance Analysis</a>
-                    </span>
-                    <span>
-                        <a class="dropdown-item waves-light" routerLink="/ytd/all"
-                            routerLinkActive="router-link-active">Year To Date Analysis</a>
-                    </span>
-                    <span>
-                        <a class="dropdown-item waves-light" routerLink="/spread/all"
-                            routerLinkActive="router-link-active">Spread Analysis</a>
-                    </span>
-                    <span>
-                        <a class="dropdown-item waves-light" routerLink="/analytics/all"
-                            [queryParams]="{'analyticsType':'Leveraged Funds','assetType':'portfolio'}"
-                            routerLinkActive="router-link-active">Leveraged Funds</a>
-                    </span>                    
-                    <span>
-                        <a class="dropdown-item waves-light" routerLink="/alert/alert"
-                            routerLinkActive="router-link-active">Alerts</a>
-                    </span>
-                    <span>
-                        <a class="dropdown-item waves-light" routerLink="/ibkr/all"
-                            routerLinkActive="router-link-active">IBKR</a>
-                    </span>
-                </div>
-                <span igxDrawerItem [isHeader]="true" (click)="showSubMenu(6)">Links</span>
-                <div *ngIf="showLinksGroup" class="sub_item">
-                    <span>
-                        <a class="dropdown-item waves-light" routerLink="/about"
-                            routerLinkActive="router-link-active">About</a>
-                    </span>
-                    <span>
-                        <a class="dropdown-item waves-light" routerLink="/training"
-                            routerLinkActive="router-link-active">Knowledge Center</a>
-                    </span>
-                    <span>
-                        <a class="dropdown-item waves-light" routerLink="/careers"
-                            routerLinkActive="router-link-active">Careers</a>
-                    </span>
-                    <span>
-                        <a class="dropdown-item waves-light" routerLink="/contactus"
-                            routerLinkActive="router-link-active">Contact Us</a>
-                    </span>
-                    <!-- <span *ngIf="isAdmin"> -->
-                    <span>
-                        <a class="dropdown-item waves-light" routerLink="/admin"
-                            routerLinkActive="router-link-active">Admin</a>
-                    </span>
-                    <span>
-                        <a class="dropdown-item waves-light" routerLink="/settings"
-                            routerLinkActive="router-link-active">Settings</a>
-                    </span>
-                </div>
-            </nav>
-        </ng-template>
-        <ng-template igxDrawerMini>
-            <nav>
-                <span igxDrawerItem [isHeader]="true" (click)="showSubMenu(1)">
-                    <span class="material-icons">folder</span>
-                </span>
-                <div *ngIf="showDataGroup" class="sub_item">
-                    <span>
-                        <a class="dropdown-item waves-light" routerLink="/ig/market-dashboard"
-                            routerLinkActive="router-link-active">
-                            <igx-icon family="imx-icons" name="terminal"></igx-icon>
-                        </a>
-                    </span>
-                    <span>
-                        <a class="dropdown-item waves-light" routerLink="/asset/list"
-                            routerLinkActive="router-link-active">
-                            <span class="material-icons">analytics</span>
-                        </a>
-                    </span>
-                    <span>
-                        <a class="dropdown-item waves-light" routerLink="/asset/all"
-                            routerLinkActive="router-link-active"><span class="material-icons">show_chart</span></a>
-                    </span>
-                    <span>
-                        <a class="dropdown-item waves-light" routerLink="/earnings/earnings"
-                            routerLinkActive="router-link-active"><span class="material-icons">
-                                money</span></a>
-                    </span>
-                    <span>
-                        <a class="dropdown-item waves-light" routerLink="/fundamentals/fundamentals"
-                            routerLinkActive="router-link-active">
-                            <igx-icon family="imx-icons" name="scales-balanced"></igx-icon>
-                        </a>
-                    </span>
-                    <span>
-                        <a class="dropdown-item waves-light" routerLink="/insider-trades/all"
-                            routerLinkActive="router-link-active"><span class="material-icons">
-                                do_not_disturb_on_total_silence
-                            </span></a>
-                    </span>
-                    <span>
-                        <a class="dropdown-item waves-light" routerLink="/feeds/feed"
-                            routerLinkActive="router-link-active"><span class="material-icons">
-                                feed
-                            </span></a>
-                    </span>
-                    <span>
-                        <a class="dropdown-item waves-light" routerLink="/portfolio/list"
-                            routerLinkActive="router-link-active"><span class="material-icons">
-                                account_balance_wallet
-                            </span></a>
-                    </span>
-                    <span>
-                        <a class="dropdown-item waves-light" routerLink="/quotes/list"
-                            routerLinkActive="router-link-active"><span class="material-icons">
-                                request_quote
-                            </span></a>
-                    </span>
-                </div>
-                <span igxDrawerItem [isHeader]="true" (click)="showSubMenu(2)"><span class="material-icons">
-                        attach_money
-                    </span></span>
-                <div *ngIf="showFinanceGroup" class="sub_item">
-                    <span>
-                        <a class="dropdown-item waves-light" routerLink="/marketindex/index"
-                            routerLinkActive="router-link-active"><span class="material-icons">
-                                list
-                            </span></a>
-                    </span>
-                    <span>
-                        <a class="dropdown-item waves-light" routerLink="/forex/all"
-                            routerLinkActive="router-link-active"><span class="material-icons">
-                                currency_exchange
-                            </span></a>
-                    </span>
-                    <span>
-                        <a class="dropdown-item waves-light" routerLink="/futures/all"
-                            routerLinkActive="router-link-active">
-                            <igx-icon family="imx-icons" name="pay-date"></igx-icon>
-                        </a>
-                    </span>
-                    <span>
-                        <a class="dropdown-item waves-light" routerLink="/rates/all"
-                            routerLinkActive="router-link-active">
-                            <igx-icon family="imx-icons" name="debt"></igx-icon>
-                        </a>
-                    </span>
-                    <span>
-                        <a class="dropdown-item waves-light" routerLink="/etfs/etfs"
-                            routerLinkActive="router-link-active">
-                            <igx-icon family="imx-icons" name="money-bag"></igx-icon>
-                        </a>
-                    </span>
-                    <span>
-                        <a class="dropdown-item waves-light" routerLink="/bond/bond"
-                            routerLinkActive="router-link-active"><span class="material-icons">
-                                format_bold
-                            </span></a>
-                    </span>
-                    <span>
-                        <a class="dropdown-item waves-light" routerLink="/option/option"
-                            routerLinkActive="router-link-active"><span class="material-icons">
-                                keyboard_option_key
-                            </span></a>
-                    </span>
-                    <span>
-                        <a class="dropdown-item waves-light" routerLink="/mutualfunds/mutualfunds"
-                            routerLinkActive="router-link-active">
-                            <igx-icon family="imx-icons" name="crowdfunding"></igx-icon>
-                        </a>
-                    </span>
-                    <span>
-                        <a class="dropdown-item waves-light" routerLink="/rates/mortgage"
-                            routerLinkActive="router-link-active">
-                            <igx-icon family="imx-icons" name="loan"></igx-icon>
-                        </a>
-                    </span>
-                </div>
-                <span igxDrawerItem [isHeader]="true" (click)="showSubMenu(3)"><span class="material-icons">
-                        currency_bitcoin
-                    </span></span>
-                <div *ngIf="showCryptoGroup" class="sub_item">
-                    <span>
-                        <a class="dropdown-item waves-light" routerLink="/crypto/all"
-                            routerLinkActive="router-link-active"><span class="material-icons">
-                                list
-                            </span></a>
-                    </span>
-                </div>
-                <span igxDrawerItem [isHeader]="true" (click)="showSubMenu(4)"><span class="material-icons">
-                        assured_workload
-                    </span></span>
-                <div *ngIf="showEconomicsGroup" class="sub_item">
-                    <span>
-                        <a class="dropdown-item waves-light" routerLink="/economics/calendar"
-                            routerLinkActive="router-link-active"><span class="material-icons">
-                                calendar_month
-                            </span></a>
-                    </span>
-                </div>
-                <span igxDrawerItem [isHeader]="true" (click)="showSubMenu(5)"><span class="material-icons">
-                        analytics
-                    </span></span>
-                <div *ngIf="showAnalyticsGroup" class="sub_item">
-                    <span>
-                        <a class="dropdown-item waves-light" routerLink="/analytics/all"
-                            [queryParams]="{'analyticsType':'PCA Analysis','assetType':'portfolio'}"
-                            routerLinkActive="router-link-active"><span class="material-icons">
-                                trending_up
-                            </span></a>
-                    </span>
-                    <span>
-                        <a class="dropdown-item waves-light" routerLink="/analytics/all"
-                            [queryParams]="{'analyticsType':'Prophet Model Analysis', 'assetType': 'asset'}"
-                            routerLinkActive="router-link-active"><span class="material-icons">
-                                insights
-                            </span></a>
-                    </span>
-                    <span>
-                        <a class="dropdown-item waves-light" routerLink="/analytics/all"
-                            [queryParams]="{'analyticsType':'Pyfolio Returns Analysis', 'assetType': 'asset'}"
-                            routerLinkActive="router-link-active"><span class="material-icons">
-                                account_tree
-                            </span></a>
-                    </span>
-                    <span>
-                        <a class="dropdown-item waves-light" routerLink="/analytics/all"
-                            [queryParams]="{'analyticsType':'Rolling Statistics', 'assetType':'asset'}"
-                            routerLinkActive="router-link-active"><span class="material-icons">
-                                assessment
-                            </span></a>
-                    </span>
-                    <span>
-                        <a class="dropdown-item waves-light" routerLink="/analytics/all"
-                            [queryParams]="{'analyticsType':'Time Series Analysis', 'assetType': 'asset'}"
-                            routerLinkActive="router-link-active"><span class="material-icons">
-                                multiline_chart
-                            </span></a>
-                    </span>
-                    <span>
-                        <a class="dropdown-item waves-light" routerLink="/analytics/all"
-                            [queryParams]="{'analyticsType':'Covariance Analysis', 'assetType': 'portfolio'}"
-                            routerLinkActive="router-link-active"><span class="material-icons">
-                                stacked_line_chart
-                            </span></a>
-                    </span>
-                    <span>
-                        <a class="dropdown-item waves-light" routerLink="/ytd/all"
-                            routerLinkActive="router-link-active"><span class="material-icons">
-                                addchart
-                            </span></a>
-                    </span>
-                    <span>
-                        <a class="dropdown-item waves-light" routerLink="/spread/all"
-                            routerLinkActive="router-link-active"><span class="material-icons">
-                                label
-                            </span></a>
-                    </span>           
-                    <span>
-                        <a class="dropdown-item waves-light" routerLink="/analytics/all"
-                            [queryParams]="{'analyticsType':'Leveraged Funds','assetType':'portfolio'}"
-                            routerLinkActive="router-link-active">
-                            <span class="material-icons">
-                                calculate
-                            </span>
-                        </a>
-                    </span> 
-                    <span>
-                        <a class="dropdown-item waves-light" routerLink="/alert/alert"
-                            routerLinkActive="router-link-active"><span class="material-icons">
-                                notifications
-                            </span></a>
-                    </span>
-                    <span>
-                        <a class="dropdown-item waves-light" routerLink="/ibkr/all"
-                            routerLinkActive="router-link-active"><span class="material-icons">
-                                account_balance_wallet
-                            </span></a>
-                    </span>
-                </div>
-                <span igxDrawerItem [isHeader]="true" (click)="showSubMenu(6)"><span class="material-icons">
-                        link
-                    </span></span>
-                <div *ngIf="showLinksGroup" class="sub_item">
-                    <span>
-                        <a class="dropdown-item waves-light" routerLink="/about"
-                            routerLinkActive="router-link-active"><span class="material-icons">
-                                info
-                            </span></a>
-                    </span>
-                    <span>
-                        <a class="dropdown-item waves-light" routerLink="/training"
-                            routerLinkActive="router-link-active"><span class="material-icons">
-                                school
-                            </span></a>
-                    </span>
-                    <span>
-                        <a class="dropdown-item waves-light" routerLink="/careers"
-                            routerLinkActive="router-link-active"><span class="material-icons">
-                                work
-                            </span></a>
-                    </span>
-                    <span>
-                        <a class="dropdown-item waves-light" routerLink="/contactus"
-                            routerLinkActive="router-link-active"><span class="material-icons">
-                                contact_support
-                            </span></a>
-                    </span>
-                    <!-- <span *ngIf="isAdmin"> -->
-                    <span>
-                        <a class="dropdown-item waves-light" routerLink="/admin"
-                            routerLinkActive="router-link-active"><span class="material-icons">
-                                admin_panel_settings
-                            </span></a>
-                    </span>
-                    <span>
-                        <a class="dropdown-item waves-light" routerLink="/settings"
-                            routerLinkActive="router-link-active"><span class="material-icons">
-                                settings
-                            </span></a>
-                    </span>
-                </div>
-            </nav>
-        </ng-template>
+  <igx-nav-drawer id="navigation" #drawer [isOpen]="drawerState.open" [(pin)]="drawerState.pin" [pinThreshold]="0">
+    <ng-template igxDrawer>
+      <nav>
+        <span igxDrawerItem class="parent_item" [isHeader]="true" (click)="showSubMenu(1)">Data</span>
+        @if (showDataGroup) {
+          <div class="sub_item">
+            <span>
+              <a class="dropdown-item waves-light" routerLink="/ig/market-dashboard"
+              routerLinkActive="router-link-active">Dashboard</a>
+            </span>
+            <span>
+              <a class="dropdown-item waves-light" routerLink="/asset/list"
+              routerLinkActive="router-link-active">Assets</a>
+            </span>
+            <span>
+              <a class="dropdown-item waves-light" routerLink="/asset/all"
+              routerLinkActive="router-link-active">Charts</a>
+            </span>
+            <span>
+              <a class="dropdown-item waves-light" routerLink="/earnings/earnings"
+              routerLinkActive="router-link-active">Earnings</a>
+            </span>
+            <span>
+              <a class="dropdown-item waves-light" routerLink="/fundamentals/fundamentals"
+              routerLinkActive="router-link-active">Fundamentals</a>
+            </span>
+            <span>
+              <a class="dropdown-item waves-light" routerLink="/insider-trades/all"
+              routerLinkActive="router-link-active">Insider Trades</a>
+            </span>
+            <span>
+              <a class="dropdown-item waves-light" routerLink="/feeds/feed"
+              routerLinkActive="router-link-active">News</a>
+            </span>
+            <span>
+              <a class="dropdown-item waves-light" routerLink="/portfolio/list"
+              routerLinkActive="router-link-active">Portfolios</a>
+            </span>
+            <span>
+              <a class="dropdown-item waves-light" routerLink="/quotes/list"
+              routerLinkActive="router-link-active">Quotes</a>
+            </span>
+          </div>
+        }
+        <span igxDrawerItem [isHeader]="true" (click)="showSubMenu(2)">Finance</span>
+        @if (showFinanceGroup) {
+          <div class="sub_item">
+            <span>
+              <a class="dropdown-item waves-light" routerLink="/bond/bond"
+              routerLinkActive="router-link-active">Bonds</a>
+            </span>
+            <span>
+              <a class="dropdown-item waves-light" routerLink="/etfs/etfs"
+              routerLinkActive="router-link-active">ETFs</a>
+            </span>
+            <span>
+              <a class="dropdown-item waves-light" routerLink="/forex/all"
+              routerLinkActive="router-link-active">Forex</a>
+            </span>
+            <span>
+              <a class="dropdown-item waves-light" routerLink="/futures/all"
+              routerLinkActive="router-link-active">Futures</a>
+            </span>
+            <span>
+              <a class="dropdown-item waves-light" routerLink="/marketindex/index"
+              routerLinkActive="router-link-active">Indices</a>
+            </span>
+            <span>
+              <a class="dropdown-item waves-light" routerLink="/rates/mortgage"
+              routerLinkActive="router-link-active">Mortgage Rates</a>
+            </span>
+            <span>
+              <a class="dropdown-item waves-light" routerLink="/mutualfunds/mutualfunds"
+              routerLinkActive="router-link-active">Mutual Funds</a>
+            </span>
+            <span>
+              <a class="dropdown-item waves-light" routerLink="/option/option"
+              routerLinkActive="router-link-active">Options</a>
+            </span>
+            <span>
+              <a class="dropdown-item waves-light" routerLink="/rates/all"
+              routerLinkActive="router-link-active">Rates</a>
+            </span>
+          </div>
+        }
+        <span igxDrawerItem [isHeader]="true" (click)="showSubMenu(3)">Crypto</span>
+        @if (showCryptoGroup) {
+          <div class="sub_item">
+            <span>
+              <a class="dropdown-item waves-light" routerLink="/crypto/all"
+              routerLinkActive="router-link-active">Assets</a>
+            </span>
+          </div>
+        }
+        <span igxDrawerItem [isHeader]="true" (click)="showSubMenu(4)">Economics</span>
+        @if (showEconomicsGroup) {
+          <div class="sub_item">
+            <span>
+              <a class="dropdown-item waves-light" routerLink="/economics/calendar"
+              routerLinkActive="router-link-active">Calendar</a>
+            </span>
+          </div>
+        }
+        <span igxDrawerItem [isHeader]="true" (click)="showSubMenu(5)">Analytics</span>
+        @if (showAnalyticsGroup) {
+          <div class="sub_item">
+            <span>
+              <a class="dropdown-item waves-light" routerLink="/analytics/all"
+                [queryParams]="{'analyticsType':'PCA Analysis','assetType':'portfolio'}"
+              routerLinkActive="router-link-active">PCA Analysis</a>
+            </span>
+            <span>
+              <a class="dropdown-item waves-light" routerLink="/analytics/all"
+                [queryParams]="{'analyticsType':'Prophet Model Analysis', 'assetType': 'asset'}"
+              routerLinkActive="router-link-active">Prophet Model Analysis</a>
+            </span>
+            <span>
+              <a class="dropdown-item waves-light" routerLink="/analytics/all"
+                [queryParams]="{'analyticsType':'Pyfolio Returns Analysis', 'assetType': 'asset'}"
+              routerLinkActive="router-link-active">Pyfolio Returns Analysis</a>
+            </span>
+            <span>
+              <a class="dropdown-item waves-light" routerLink="/analytics/all"
+                [queryParams]="{'analyticsType':'Rolling Statistics', 'assetType':'asset'}"
+              routerLinkActive="router-link-active">Rolling Statistics</a>
+            </span>
+            <span>
+              <a class="dropdown-item waves-light" routerLink="/analytics/all"
+                [queryParams]="{'analyticsType':'Time Series Analysis', 'assetType': 'asset'}"
+              routerLinkActive="router-link-active">Time Series Analysis</a>
+            </span>
+            <span>
+              <a class="dropdown-item waves-light" routerLink="/analytics/all"
+                [queryParams]="{'analyticsType':'Covariance Analysis', 'assetType': 'portfolio'}"
+              routerLinkActive="router-link-active">Covariance Analysis</a>
+            </span>
+            <span>
+              <a class="dropdown-item waves-light" routerLink="/ytd/all"
+              routerLinkActive="router-link-active">Year To Date Analysis</a>
+            </span>
+            <span>
+              <a class="dropdown-item waves-light" routerLink="/spread/all"
+              routerLinkActive="router-link-active">Spread Analysis</a>
+            </span>
+            <span>
+              <a class="dropdown-item waves-light" routerLink="/analytics/all"
+                [queryParams]="{'analyticsType':'Leveraged Funds','assetType':'portfolio'}"
+              routerLinkActive="router-link-active">Leveraged Funds</a>
+            </span>
+            <span>
+              <a class="dropdown-item waves-light" routerLink="/alert/alert"
+              routerLinkActive="router-link-active">Alerts</a>
+            </span>
+            <span>
+              <a class="dropdown-item waves-light" routerLink="/ibkr/all"
+              routerLinkActive="router-link-active">IBKR</a>
+            </span>
+          </div>
+        }
+        <span igxDrawerItem [isHeader]="true" (click)="showSubMenu(6)">Links</span>
+        @if (showLinksGroup) {
+          <div class="sub_item">
+            <span>
+              <a class="dropdown-item waves-light" routerLink="/about"
+              routerLinkActive="router-link-active">About</a>
+            </span>
+            <span>
+              <a class="dropdown-item waves-light" routerLink="/training"
+              routerLinkActive="router-link-active">Knowledge Center</a>
+            </span>
+            <span>
+              <a class="dropdown-item waves-light" routerLink="/careers"
+              routerLinkActive="router-link-active">Careers</a>
+            </span>
+            <span>
+              <a class="dropdown-item waves-light" routerLink="/contactus"
+              routerLinkActive="router-link-active">Contact Us</a>
+            </span>
+            <!-- <span *ngIf="isAdmin"> -->
+            <span>
+              <a class="dropdown-item waves-light" routerLink="/admin"
+              routerLinkActive="router-link-active">Admin</a>
+            </span>
+            <span>
+              <a class="dropdown-item waves-light" routerLink="/settings"
+              routerLinkActive="router-link-active">Settings</a>
+            </span>
+          </div>
+        }
+      </nav>
+    </ng-template>
+    <ng-template igxDrawerMini>
+      <nav>
+        <span igxDrawerItem [isHeader]="true" (click)="showSubMenu(1)">
+          <span class="material-icons">folder</span>
+        </span>
+        @if (showDataGroup) {
+          <div class="sub_item">
+            <span>
+              <a class="dropdown-item waves-light" routerLink="/ig/market-dashboard"
+                routerLinkActive="router-link-active">
+                <igx-icon family="imx-icons" name="terminal"></igx-icon>
+              </a>
+            </span>
+            <span>
+              <a class="dropdown-item waves-light" routerLink="/asset/list"
+                routerLinkActive="router-link-active">
+                <span class="material-icons">analytics</span>
+              </a>
+            </span>
+            <span>
+              <a class="dropdown-item waves-light" routerLink="/asset/all"
+                routerLinkActive="router-link-active"><span class="material-icons">show_chart</span></a>
+              </span>
+              <span>
+                <a class="dropdown-item waves-light" routerLink="/earnings/earnings"
+                  routerLinkActive="router-link-active"><span class="material-icons">
+                money</span></a>
+              </span>
+              <span>
+                <a class="dropdown-item waves-light" routerLink="/fundamentals/fundamentals"
+                  routerLinkActive="router-link-active">
+                  <igx-icon family="imx-icons" name="scales-balanced"></igx-icon>
+                </a>
+              </span>
+              <span>
+                <a class="dropdown-item waves-light" routerLink="/insider-trades/all"
+                  routerLinkActive="router-link-active"><span class="material-icons">
+                  do_not_disturb_on_total_silence
+                </span></a>
+              </span>
+              <span>
+                <a class="dropdown-item waves-light" routerLink="/feeds/feed"
+                  routerLinkActive="router-link-active"><span class="material-icons">
+                  feed
+                </span></a>
+              </span>
+              <span>
+                <a class="dropdown-item waves-light" routerLink="/portfolio/list"
+                  routerLinkActive="router-link-active"><span class="material-icons">
+                  account_balance_wallet
+                </span></a>
+              </span>
+              <span>
+                <a class="dropdown-item waves-light" routerLink="/quotes/list"
+                  routerLinkActive="router-link-active"><span class="material-icons">
+                  request_quote
+                </span></a>
+              </span>
+            </div>
+          }
+          <span igxDrawerItem [isHeader]="true" (click)="showSubMenu(2)"><span class="material-icons">
+            attach_money
+          </span></span>
+          @if (showFinanceGroup) {
+            <div class="sub_item">
+              <span>
+                <a class="dropdown-item waves-light" routerLink="/marketindex/index"
+                  routerLinkActive="router-link-active"><span class="material-icons">
+                  list
+                </span></a>
+              </span>
+              <span>
+                <a class="dropdown-item waves-light" routerLink="/forex/all"
+                  routerLinkActive="router-link-active"><span class="material-icons">
+                  currency_exchange
+                </span></a>
+              </span>
+              <span>
+                <a class="dropdown-item waves-light" routerLink="/futures/all"
+                  routerLinkActive="router-link-active">
+                  <igx-icon family="imx-icons" name="pay-date"></igx-icon>
+                </a>
+              </span>
+              <span>
+                <a class="dropdown-item waves-light" routerLink="/rates/all"
+                  routerLinkActive="router-link-active">
+                  <igx-icon family="imx-icons" name="debt"></igx-icon>
+                </a>
+              </span>
+              <span>
+                <a class="dropdown-item waves-light" routerLink="/etfs/etfs"
+                  routerLinkActive="router-link-active">
+                  <igx-icon family="imx-icons" name="money-bag"></igx-icon>
+                </a>
+              </span>
+              <span>
+                <a class="dropdown-item waves-light" routerLink="/bond/bond"
+                  routerLinkActive="router-link-active"><span class="material-icons">
+                  format_bold
+                </span></a>
+              </span>
+              <span>
+                <a class="dropdown-item waves-light" routerLink="/option/option"
+                  routerLinkActive="router-link-active"><span class="material-icons">
+                  keyboard_option_key
+                </span></a>
+              </span>
+              <span>
+                <a class="dropdown-item waves-light" routerLink="/mutualfunds/mutualfunds"
+                  routerLinkActive="router-link-active">
+                  <igx-icon family="imx-icons" name="crowdfunding"></igx-icon>
+                </a>
+              </span>
+              <span>
+                <a class="dropdown-item waves-light" routerLink="/rates/mortgage"
+                  routerLinkActive="router-link-active">
+                  <igx-icon family="imx-icons" name="loan"></igx-icon>
+                </a>
+              </span>
+            </div>
+          }
+          <span igxDrawerItem [isHeader]="true" (click)="showSubMenu(3)"><span class="material-icons">
+            currency_bitcoin
+          </span></span>
+          @if (showCryptoGroup) {
+            <div class="sub_item">
+              <span>
+                <a class="dropdown-item waves-light" routerLink="/crypto/all"
+                  routerLinkActive="router-link-active"><span class="material-icons">
+                  list
+                </span></a>
+              </span>
+            </div>
+          }
+          <span igxDrawerItem [isHeader]="true" (click)="showSubMenu(4)"><span class="material-icons">
+            assured_workload
+          </span></span>
+          @if (showEconomicsGroup) {
+            <div class="sub_item">
+              <span>
+                <a class="dropdown-item waves-light" routerLink="/economics/calendar"
+                  routerLinkActive="router-link-active"><span class="material-icons">
+                  calendar_month
+                </span></a>
+              </span>
+            </div>
+          }
+          <span igxDrawerItem [isHeader]="true" (click)="showSubMenu(5)"><span class="material-icons">
+            analytics
+          </span></span>
+          @if (showAnalyticsGroup) {
+            <div class="sub_item">
+              <span>
+                <a class="dropdown-item waves-light" routerLink="/analytics/all"
+                  [queryParams]="{'analyticsType':'PCA Analysis','assetType':'portfolio'}"
+                  routerLinkActive="router-link-active"><span class="material-icons">
+                  trending_up
+                </span></a>
+              </span>
+              <span>
+                <a class="dropdown-item waves-light" routerLink="/analytics/all"
+                  [queryParams]="{'analyticsType':'Prophet Model Analysis', 'assetType': 'asset'}"
+                  routerLinkActive="router-link-active"><span class="material-icons">
+                  insights
+                </span></a>
+              </span>
+              <span>
+                <a class="dropdown-item waves-light" routerLink="/analytics/all"
+                  [queryParams]="{'analyticsType':'Pyfolio Returns Analysis', 'assetType': 'asset'}"
+                  routerLinkActive="router-link-active"><span class="material-icons">
+                  account_tree
+                </span></a>
+              </span>
+              <span>
+                <a class="dropdown-item waves-light" routerLink="/analytics/all"
+                  [queryParams]="{'analyticsType':'Rolling Statistics', 'assetType':'asset'}"
+                  routerLinkActive="router-link-active"><span class="material-icons">
+                  assessment
+                </span></a>
+              </span>
+              <span>
+                <a class="dropdown-item waves-light" routerLink="/analytics/all"
+                  [queryParams]="{'analyticsType':'Time Series Analysis', 'assetType': 'asset'}"
+                  routerLinkActive="router-link-active"><span class="material-icons">
+                  multiline_chart
+                </span></a>
+              </span>
+              <span>
+                <a class="dropdown-item waves-light" routerLink="/analytics/all"
+                  [queryParams]="{'analyticsType':'Covariance Analysis', 'assetType': 'portfolio'}"
+                  routerLinkActive="router-link-active"><span class="material-icons">
+                  stacked_line_chart
+                </span></a>
+              </span>
+              <span>
+                <a class="dropdown-item waves-light" routerLink="/ytd/all"
+                  routerLinkActive="router-link-active"><span class="material-icons">
+                  addchart
+                </span></a>
+              </span>
+              <span>
+                <a class="dropdown-item waves-light" routerLink="/spread/all"
+                  routerLinkActive="router-link-active"><span class="material-icons">
+                  label
+                </span></a>
+              </span>
+              <span>
+                <a class="dropdown-item waves-light" routerLink="/analytics/all"
+                  [queryParams]="{'analyticsType':'Leveraged Funds','assetType':'portfolio'}"
+                  routerLinkActive="router-link-active">
+                  <span class="material-icons">
+                    calculate
+                  </span>
+                </a>
+              </span>
+              <span>
+                <a class="dropdown-item waves-light" routerLink="/alert/alert"
+                  routerLinkActive="router-link-active"><span class="material-icons">
+                  notifications
+                </span></a>
+              </span>
+              <span>
+                <a class="dropdown-item waves-light" routerLink="/ibkr/all"
+                  routerLinkActive="router-link-active"><span class="material-icons">
+                  account_balance_wallet
+                </span></a>
+              </span>
+            </div>
+          }
+          <span igxDrawerItem [isHeader]="true" (click)="showSubMenu(6)"><span class="material-icons">
+            link
+          </span></span>
+          @if (showLinksGroup) {
+            <div class="sub_item">
+              <span>
+                <a class="dropdown-item waves-light" routerLink="/about"
+                  routerLinkActive="router-link-active"><span class="material-icons">
+                  info
+                </span></a>
+              </span>
+              <span>
+                <a class="dropdown-item waves-light" routerLink="/training"
+                  routerLinkActive="router-link-active"><span class="material-icons">
+                  school
+                </span></a>
+              </span>
+              <span>
+                <a class="dropdown-item waves-light" routerLink="/careers"
+                  routerLinkActive="router-link-active"><span class="material-icons">
+                  work
+                </span></a>
+              </span>
+              <span>
+                <a class="dropdown-item waves-light" routerLink="/contactus"
+                  routerLinkActive="router-link-active"><span class="material-icons">
+                  contact_support
+                </span></a>
+              </span>
+              <!-- <span *ngIf="isAdmin"> -->
+              <span>
+                <a class="dropdown-item waves-light" routerLink="/admin"
+                  routerLinkActive="router-link-active"><span class="material-icons">
+                  admin_panel_settings
+                </span></a>
+              </span>
+              <span>
+                <a class="dropdown-item waves-light" routerLink="/settings"
+                  routerLinkActive="router-link-active"><span class="material-icons">
+                  settings
+                </span></a>
+              </span>
+            </div>
+          }
+        </nav>
+      </ng-template>
     </igx-nav-drawer>
     <main height="60px" igxFlex [class.mini-padding]="!drawerState.pin && drawerState.miniTemplate">
-        <igx-navbar actionButtonIcon="menu" (onAction)="drawer.toggle()">
-            <button igxIconButton="flat">
-                <span *ngIf="userStore.getUser()" routerLink="/home" routerLinkActive="router-link-active"><span
-                        class="material-icons">
-                        search</span></span>
-            </button>
-            <button igxIconButton="flat">
-                <span *ngIf="userStore.getUser()" (click)='share()'><span class="material-icons">
-                        share</span></span>
-            </button>
-            <button igxIconButton="flat">
-                <span *ngIf="userStore.getUser()" routerLink="/user/profile" routerLinkActive="router-link-active"><span
-                        class="material-icons">
-                        account_circle</span>
-                    <!-- <span>{{userStore.getUser()?.login}}{{userStore.getUser()?.userName}}</span> -->
-                </span>
-            </button>
-            <button igxIconButton="flat" *ngIf="userStore.getUser()">
-                <igx-icon fontSet="material" routerLink="/auth/logout" routerLinkActive="router-link-active">logout
-                </igx-icon>
-            </button>
-            <button igxIconButton="flat" *ngIf="!userStore.getUser()">
-                <igx-icon fontSet="material" routerLink="/auth/login" routerLinkActive="router-link-active">login
-                </igx-icon>
-            </button>
-            <igx-navbar-action>
-                <igx-icon (click)="drawer.toggle()" style="margin-right: 20px;">menu</igx-icon>
-                <a href="/home">
+      <igx-navbar actionButtonIcon="menu" (onAction)="drawer.toggle()">
+        <button igxIconButton="flat">
+          @if (userStore.getUser()) {
+            <span routerLink="/home" routerLinkActive="router-link-active"><span
+              class="material-icons">
+            search</span></span>
+          }
+        </button>
+        <button igxIconButton="flat">
+          @if (userStore.getUser()) {
+            <span (click)='share()'><span class="material-icons">
+            share</span></span>
+          }
+        </button>
+        <button igxIconButton="flat">
+          @if (userStore.getUser()) {
+            <span routerLink="/user/profile" routerLinkActive="router-link-active"><span
+              class="material-icons">
+            account_circle</span>
+            <!-- <span>{{userStore.getUser()?.login}}{{userStore.getUser()?.userName}}</span> -->
+          </span>
+        }
+      </button>
+      @if (userStore.getUser()) {
+        <button igxIconButton="flat">
+          <igx-icon fontSet="material" routerLink="/auth/logout" routerLinkActive="router-link-active">logout
+          </igx-icon>
+        </button>
+      }
+      @if (!userStore.getUser()) {
+        <button igxIconButton="flat">
+          <igx-icon fontSet="material" routerLink="/auth/login" routerLinkActive="router-link-active">login
+          </igx-icon>
+        </button>
+      }
+      <igx-navbar-action>
+        <igx-icon (click)="drawer.toggle()" style="margin-right: 20px;">menu</igx-icon>
+        <a href="/home">
                     <img width="100px" height="70px" alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMIAAABVCAYAAAAbgjvKAAAAAXNSR0
                     IArs4c6QAAAAlwSFlzAAALEwAACxMBAJqcGAAAAVlpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAAD
                     x4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IlhNUCBDb3JlIDUuNC
@@ -850,18 +884,18 @@
             <!-- <div class="app-badges">
                 <a href="https://apps.apple.com/us/app/sravz/id1571623438?itsct=apps_box_badge&amp;itscg=30200"><img
                         src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83&amp;releaseDate=1623715200&h=f1749681305635fc4c80a3352129754f"
-                        alt="Download on the App Store"></a>
-                <a
-                    href='https://play.google.com/store/apps/details?id=com.app.sravz333&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img
-                        alt='Get it on Google Play'
-                        src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'
-                        style="height: 60px;width: 140px;" /></a>
-            </div> -->
-            <div class="pull-right">
-                <a class="dropdown-item waves-light footer-company-name" routerLink="/about">Sravz LLC ©
-                    {{today | date:'yyyy'}}</a>
-            </div>
-        </footer>
-    </main>
+        alt="Download on the App Store"></a>
+        <a
+          href='https://play.google.com/store/apps/details?id=com.app.sravz333&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img
+          alt='Get it on Google Play'
+          src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'
+        style="height: 60px;width: 140px;" /></a>
+      </div> -->
+      <div class="pull-right">
+        <a class="dropdown-item waves-light footer-company-name" routerLink="/about">Sravz LLC ©
+        {{today | date:'yyyy'}}</a>
+      </div>
+    </footer>
+  </main>
 </div>
 

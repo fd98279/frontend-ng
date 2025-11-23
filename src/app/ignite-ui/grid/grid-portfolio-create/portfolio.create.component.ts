@@ -20,9 +20,10 @@ import { NumberWithCommasPipe } from '../../../@theme/pipes';
 @Injectable()
 
 @Component({
-  templateUrl: './portfolio.create.component.html',
-  selector: 'grid-portfolio-create',
-  styleUrls: ['./portfolio.create.component.scss']
+    templateUrl: './portfolio.create.component.html',
+    selector: 'grid-portfolio-create',
+    styleUrls: ['./portfolio.create.component.scss'],
+    standalone: false
 })
 
 export class PortfolioCreateGridComponent implements AfterViewInit {

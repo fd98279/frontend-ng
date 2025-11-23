@@ -2,7 +2,10 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { AutocompletePipeContains } from './auto-complete-contains-pipe';
 
 // tslint:disable-next-line:use-pipe-transform-interface
-@Pipe({ name: 'groupContains' })
+@Pipe({
+    name: 'groupContains',
+    standalone: false
+})
 export class AutocompleteGroupPipeContains extends AutocompletePipeContains {
 
   public transform = (towns: any[], term = '') => this.filterTowns(towns, term);

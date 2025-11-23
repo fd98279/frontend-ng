@@ -8,8 +8,9 @@ import { UserStore } from '../@core/stores/user.store';
 import { PersistanceService } from '../common/persistance.service';
 
 @Component({
-  selector: 'upload-component',
-  templateUrl: './upload.component.html'
+    selector: 'upload-component',
+    templateUrl: './upload.component.html',
+    standalone: false
 })
 export class UploadComponent implements OnInit {
   public uploader: FileUploader;

@@ -12,8 +12,9 @@ import { UserService, ExternalAuthService } from '../../../authentication';
 import { UserStore } from '../../../@core/stores/user.store';
 
 @Component({
-  selector: 'ngx-logout',
-  templateUrl: './logout.component.html',
+    selector: 'ngx-logout',
+    templateUrl: './logout.component.html',
+    standalone: false
 })
 export class NgxLogoutComponent implements OnInit {
 

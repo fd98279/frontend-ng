@@ -2,9 +2,10 @@ import { IgxDialogComponent } from '@infragistics/igniteui-angular';
 import { Component, ViewChild } from '@angular/core';
 
 @Component({
-  selector: 'app-login-dialog',
-  templateUrl: './login-dialog.component.html',
-  styleUrls: ['./login-dialog.component.scss']
+    selector: 'app-login-dialog',
+    templateUrl: './login-dialog.component.html',
+    styleUrls: ['./login-dialog.component.scss'],
+    standalone: false
 })
 export class LoginDialogComponent {
   public showLogin = true;

@@ -15,26 +15,28 @@
         [(ngModel)]="dashboardItemSelected" />
     </igx-input-group>
     <igx-drop-down #dashboardItemsPanel maxHeight="300px">
-      <igx-drop-down-item *ngFor="let dashboardItem of dashboardItems | startsWith:dashboardItemSelected"
-        [value]="dashboardItem">
-        {{dashboardItem}}
-      </igx-drop-down-item>
+      @for (dashboardItem of dashboardItems | startsWith:dashboardItemSelected; track dashboardItem) {
+        <igx-drop-down-item
+          [value]="dashboardItem">
+          {{dashboardItem}}
+        </igx-drop-down-item>
+      }
     </igx-drop-down>
   </div>
 
   <div class="app__row">
     <app-list-cases class="app__list--dashboardItem" #futuresList type="Futures"
-      [hidden]="showDashboardItem('Futures')"></app-list-cases>
+    [hidden]="showDashboardItem('Futures')"></app-list-cases>
   </div>
 
   <div class="app__row">
     <app-list-cases class="app__list--dashboardItem" #indexesList type="Indexes"
-      [hidden]="showDashboardItem('Indexes')"></app-list-cases>
+    [hidden]="showDashboardItem('Indexes')"></app-list-cases>
   </div>
 
   <div class="app__row">
     <app-list-cases class="app__list--dashboardItem" #currenciesList type="Currencies"
-      [hidden]="showDashboardItem('Currencies')"></app-list-cases>
+    [hidden]="showDashboardItem('Currencies')"></app-list-cases>
   </div>
 
   <div class="app__row">
@@ -49,12 +51,12 @@
 
   <div class="app__row">
     <app-list-cases class="app__list--dashboardItem" #mutualFundsList type="Mutual Funds"
-      [hidden]="showDashboardItem('Mutual Funds')"></app-list-cases>
+    [hidden]="showDashboardItem('Mutual Funds')"></app-list-cases>
   </div>
 
   <div class="app__row">
     <app-list-cases class="app__list--dashboardItem" #earningsList type="Earnings"
-      [hidden]="showDashboardItem('Earnings')"></app-list-cases>
+    [hidden]="showDashboardItem('Earnings')"></app-list-cases>
   </div>
 
   <div class="app__row">
@@ -64,12 +66,12 @@
 
   <div class="app__row">
     <app-list-cases class="app__list--dashboardItem" #portfoliosList type="Portfolios"
-      [hidden]="showDashboardItem('Portfolios')"></app-list-cases>
+    [hidden]="showDashboardItem('Portfolios')"></app-list-cases>
   </div>
 
   <div class="app__row">
     <app-list-cases class="app__list--dashboardItem" #mortgageRatesList type="Mortage Rates"
-      [hidden]="showDashboardItem('Mortage Rates')"></app-list-cases>
+    [hidden]="showDashboardItem('Mortage Rates')"></app-list-cases>
   </div>
 
   <div class="app__row">
@@ -79,30 +81,30 @@
 
   <div class="app__row">
     <app-list-cases class="app__list--dashboardItem" #economicCalendarList type="Economic Calendar"
-      [hidden]="showDashboardItem('Economic Calendar')"></app-list-cases>
+    [hidden]="showDashboardItem('Economic Calendar')"></app-list-cases>
   </div>
 
   <div class="app__row">
     <app-list-cases class="app__list--dashboardItem" #analyticsList type="Analytics"
-      [hidden]="showDashboardItem('Analytics')"></app-list-cases>
+    [hidden]="showDashboardItem('Analytics')"></app-list-cases>
   </div>
 
   <!-- <div class="app__row app__row--left">
-      <app-list-cases class="app__list--confirmed" #confirmedList type="Confirmed" (regionSelected)="onRegionSelected($event)"></app-list-cases>
-      <section class="app__col app__col--map">
-        <h1 class="app__mobile-header">Coronavirus <strong>COVID-19</strong> Global Cases</h1>
-        <app-map-cases #map></app-map-cases>
-      </section>
-    </div> -->
+  <app-list-cases class="app__list--confirmed" #confirmedList type="Confirmed" (regionSelected)="onRegionSelected($event)"></app-list-cases>
+  <section class="app__col app__col--map">
+    <h1 class="app__mobile-header">Coronavirus <strong>COVID-19</strong> Global Cases</h1>
+    <app-map-cases #map></app-map-cases>
+  </section>
+</div> -->
 
-  <!-- <div class="app__col app__col--stats">
-        <div class="app__row app__list-stack">
-            <app-list-cases class="app__list--dashboardItem" #dashboardItemList type="Indexes"></app-list-cases>
-            <app-list-cases class="app__list--recovered" #recoveredList type="Currencies"></app-list-cases>
-            <app-list-cases class="app__list--dashboardItem" #dashboardItemList type="Rates"></app-list-cases>
-            <app-list-cases class="app__list--recovered" #recoveredList type="ETFs"></app-list-cases>
-            <app-list-cases class="app__list--dashboardItem" #dashboardItemList type="Mutual Funds"></app-list-cases>
-        </div>
-        <app-timeline-chart class="app-timeline-chart" #charts></app-timeline-chart>
-    </div> -->
+<!-- <div class="app__col app__col--stats">
+<div class="app__row app__list-stack">
+  <app-list-cases class="app__list--dashboardItem" #dashboardItemList type="Indexes"></app-list-cases>
+  <app-list-cases class="app__list--recovered" #recoveredList type="Currencies"></app-list-cases>
+  <app-list-cases class="app__list--dashboardItem" #dashboardItemList type="Rates"></app-list-cases>
+  <app-list-cases class="app__list--recovered" #recoveredList type="ETFs"></app-list-cases>
+  <app-list-cases class="app__list--dashboardItem" #dashboardItemList type="Mutual Funds"></app-list-cases>
+</div>
+<app-timeline-chart class="app-timeline-chart" #charts></app-timeline-chart>
+</div> -->
 </main>

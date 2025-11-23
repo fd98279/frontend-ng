@@ -20,7 +20,8 @@ import { IQuote } from '../../../quotes/quotes.model';
 @Component({
     selector: 'grid-world-indices',
     styleUrls: ['./grid.component.scss'],
-    templateUrl: './grid.component.html'
+    templateUrl: './grid.component.html',
+    standalone: false
 })
 export class WorldIndicesGridComponent implements OnInit, OnDestroy {
 

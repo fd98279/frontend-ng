@@ -4,8 +4,9 @@ import { IAssetGroups } from '../assets/asset.model';
 import { IUserAsset } from '../assets/userasset.model';
 
 @Component({
-  selector: 'asset-selector-component',
-  templateUrl: 'asset.selector.component.html'
+    selector: 'asset-selector-component',
+    templateUrl: 'asset.selector.component.html',
+    standalone: false
 })
 
 export class AssetSelectorComponent implements OnInit {

@@ -7,8 +7,9 @@ import { IgxDialogModule } from '@infragistics/igniteui-angular';
 import { LoginDialogComponent } from './login-dialog.component';
 
 @Component({
-  selector: 'app-login, app-register',
-  template: ''
+    selector: 'app-login, app-register',
+    template: '',
+    standalone: false
 })
 class TestSignViewComponent {
   @Output() public viewChange = new EventEmitter();

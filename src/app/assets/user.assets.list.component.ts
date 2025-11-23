@@ -8,9 +8,10 @@ import { IgxDialogComponent } from '@infragistics/igniteui-angular';
 
 
 @Component({
-  selector: 'user-asset-list-component',
-  styleUrls: ['./user.assets.list.component.scss'],
-  templateUrl: './user.assets.list.component.html'
+    selector: 'user-asset-list-component',
+    styleUrls: ['./user.assets.list.component.scss'],
+    templateUrl: './user.assets.list.component.html',
+    standalone: false
 })
 
 

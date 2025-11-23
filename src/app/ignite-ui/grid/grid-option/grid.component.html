@@ -1,571 +1,591 @@
 <igx-tabs>
-    <igx-tab-item>
-        <igx-tab-header>
-            <span igxTabHeaderLabel>Details</span>
-        </igx-tab-header>
-        <igx-tab-content>
-            <div>
-                <h6>General Information</h6>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Header</th>
-                            <th scope="col">Details</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let key of option?.data | objectKeys">
-                            <td *ngIf="!isObject(option.data[key])">{{key}}</td>
-                            <td *ngIf="!isObject(option.data[key])">{{option.data[key]}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <br>
-                <h6>Select Option Expiry Date</h6>
-                <div style="width: 125px;">
-                    <igx-input-group #inputGroup [igxToggleAction]="dropDown">
-                        <input type="text" igxInput [igxDropDownItemNavigation]="dropDown" readonly="true"
-                            placeholder="Select Option Expiry Date" [value]="dropDownSelectedValue"
-                            (keydown.ArrowDown)="openDropDown()" />
+  <igx-tab-item>
+    <igx-tab-header>
+      <span igxTabHeaderLabel>Details</span>
+    </igx-tab-header>
+    <igx-tab-content>
+      <div>
+        <h6>General Information</h6>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Header</th>
+              <th scope="col">Details</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (key of option?.data | objectKeys; track key) {
+              <tr>
+                @if (!isObject(option.data[key])) {
+                  <td>{{key}}</td>
+                }
+                @if (!isObject(option.data[key])) {
+                  <td>{{option.data[key]}}</td>
+                }
+              </tr>
+            }
+          </tbody>
+        </table>
+        <br>
+          <h6>Select Option Expiry Date</h6>
+          <div style="width: 125px;">
+            <igx-input-group #inputGroup [igxToggleAction]="dropDown">
+              <input type="text" igxInput [igxDropDownItemNavigation]="dropDown" readonly="true"
+                placeholder="Select Option Expiry Date" [value]="dropDownSelectedValue"
+                (keydown.ArrowDown)="openDropDown()" />
 
-                        <igx-suffix igxIconButton="flat" igxRipple>
-                            <igx-icon>arrow_drop{{ dropDown.collapsed ? '_down' : '_up' }}</igx-icon>
-                        </igx-suffix>
-                    </igx-input-group>
+              <igx-suffix igxIconButton="flat" igxRipple>
+                <igx-icon>arrow_drop{{ dropDown.collapsed ? '_down' : '_up' }}</igx-icon>
+              </igx-suffix>
+            </igx-input-group>
 
-                    <igx-drop-down #dropDown (selectionChanging)="onDDLSelection($event)" [width]="'50px'">
-                        <igx-drop-down-item *ngFor="let item of items" [value]="item.field">
-                            {{ item.field }}
-                        </igx-drop-down-item>
-                    </igx-drop-down>
-                </div>
+            <igx-drop-down #dropDown (selectionChanging)="onDDLSelection($event)" [width]="'50px'">
+              @for (item of items; track item) {
+                <igx-drop-down-item [value]="item.field">
+                  {{ item.field }}
+                </igx-drop-down-item>
+              }
+            </igx-drop-down>
+          </div>
 
-                <h6>Options Information</h6>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Header</th>
-                            <th scope="col">Details</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let key of gridData | objectKeys">
-                            <td *ngIf="!isObject(gridData[key])">{{key}}</td>
-                            <td *ngIf="!isObject(gridData[key])">{{gridData[key]}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <br>
+          <h6>Options Information</h6>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Header</th>
+                <th scope="col">Details</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (key of gridData | objectKeys; track key) {
+                <tr>
+                  @if (!isObject(gridData[key])) {
+                    <td>{{key}}</td>
+                  }
+                  @if (!isObject(gridData[key])) {
+                    <td>{{gridData[key]}}</td>
+                  }
+                </tr>
+              }
+            </tbody>
+          </table>
+          <br>
 
-                <igx-tabs>
-                    <igx-tab-item>
-                        <igx-tab-header>
-                            <span igxTabHeaderLabel>Grid</span>
-                        </igx-tab-header>
-                        <igx-tab-content>
-                            <h6>PUT Information</h6>
-                            <igx-grid #grid1 [data]="gridData.options?.PUT" 
-                                height="600px" [allowFiltering]="true">
-                                <igx-paginator [perPage]="10">
-                                </igx-paginator>
-                                <igx-column field="strike" header="Strike" sortable="true">
-                                    <ng-template igxCell let-val>
-                                        <div class="cell__inner">
-                                            {{ val }}
-                                        </div>
-                                    </ng-template>
-                                </igx-column>
-                                <igx-column field="ask" header="Ask" sortable="true">
-                                    <ng-template igxCell let-val>
-                                        <div class="cell__inner">
-                                            {{ val }}
-                                        </div>
-                                    </ng-template>
-                                </igx-column>
-                                <igx-column field="bid" header="Bid" sortable="true">
-                                    <ng-template igxCell let-val>
-                                        <div class="cell__inner">
-                                            {{ val }}
-                                        </div>
-                                    </ng-template>
-                                </igx-column>
-                                <igx-column field="change" header="Change" sortable="true">
-                                    <ng-template igxCell let-val>
-                                        <div class="cell__inner">
-                                            {{ val }}
-                                        </div>
-                                    </ng-template>
-                                </igx-column>
-                                <igx-column field="changePercent" header="Change_%" sortable="true">
-                                    <ng-template igxCell let-val>
-                                        <div class="cell__inner">
-                                            {{ val }}
-                                        </div>
-                                    </ng-template>
-                                </igx-column>
-                                <igx-column field="contractName" header="Contract Name" sortable="true">
-                                    <ng-template igxCell let-val>
-                                        <div class="cell__inner">
-                                            {{ val }}
-                                        </div>
-                                    </ng-template>
-                                </igx-column>
-                                <igx-column field="contractPeriod" header="Contract Period" sortable="true">
-                                    <ng-template igxCell let-val>
-                                        <div class="cell__inner">
-                                            {{ val }}
-                                        </div>
-                                    </ng-template>
-                                </igx-column>
-                                <igx-column field="contractSize" header="Contract Size" sortable="true">
-                                    <ng-template igxCell let-val>
-                                        <div class="cell__inner">
-                                            {{ val }}
-                                        </div>
-                                    </ng-template>
-                                </igx-column>
-                                <igx-column field="currency" header="Currency" sortable="true">
-                                    <ng-template igxCell let-val>
-                                        <div class="cell__inner">
-                                            {{ val }}
-                                        </div>
-                                    </ng-template>
-                                </igx-column>
-                                <igx-column field="daysBeforeExpiration" header="Days Before Expiration"
-                                    sortable="true">
-                                    <ng-template igxCell let-val>
-                                        <div class="cell__inner">
-                                            {{ val }}
-                                        </div>
-                                    </ng-template>
-                                </igx-column>
-                                <igx-column field="delta" header="Delta" sortable="true">
-                                    <ng-template igxCell let-val>
-                                        <div class="cell__inner">
-                                            {{ val }}
-                                        </div>
-                                    </ng-template>
-                                </igx-column>
-                                <igx-column field="expirationDate" header="Expiration Date" sortable="true">
-                                    <ng-template igxCell let-val>
-                                        <div class="cell__inner">
-                                            {{ val }}
-                                        </div>
-                                    </ng-template>
-                                </igx-column>
-                                <igx-column field="gamma" header="Gamma" sortable="true">
-                                    <ng-template igxCell let-val>
-                                        <div class="cell__inner">
-                                            {{ val }}
-                                        </div>
-                                    </ng-template>
-                                </igx-column>
-                                <igx-column field="impliedVolatility" header="Implied Volatility" sortable="true">
-                                    <ng-template igxCell let-val>
-                                        <div class="cell__inner">
-                                            {{ val }}
-                                        </div>
-                                    </ng-template>
-                                </igx-column>
-                                <igx-column field="inTheMoney" header="In The Money" sortable="true">
-                                    <ng-template igxCell let-val>
-                                        <div class="cell__inner">
-                                            {{ val }}
-                                        </div>
-                                    </ng-template>
-                                </igx-column>
-                                <igx-column field="intrinsicValue" header="Intrinsic Value" sortable="true">
-                                    <ng-template igxCell let-val>
-                                        <div class="cell__inner">
-                                            {{ val }}
-                                        </div>
-                                    </ng-template>
-                                </igx-column>
-                                <igx-column field="lastPrice" header="Last Price" sortable="true">
-                                    <ng-template igxCell let-val>
-                                        <div class="cell__inner">
-                                            {{ val }}
-                                        </div>
-                                    </ng-template>
-                                </igx-column>
-                                <igx-column field="lastTradeDateTime" header="Last Trade DateTime" sortable="true">
-                                    <ng-template igxCell let-val>
-                                        <div class="cell__inner">
-                                            {{ val }}
-                                        </div>
-                                    </ng-template>
-                                </igx-column>
-                                <igx-column field="openInterest" header="Open Interest" sortable="true">
-                                    <ng-template igxCell let-val>
-                                        <div class="cell__inner">
-                                            {{ val }}
-                                        </div>
-                                    </ng-template>
-                                </igx-column>
-                                <igx-column field="rho" header="RHO" sortable="true">
-                                    <ng-template igxCell let-val>
-                                        <div class="cell__inner">
-                                            {{ val }}
-                                        </div>
-                                    </ng-template>
-                                </igx-column>
-                                <igx-column field="theoretical" header="Theoretical" sortable="true">
-                                    <ng-template igxCell let-val>
-                                        <div class="cell__inner">
-                                            {{ val }}
-                                        </div>
-                                    </ng-template>
-                                </igx-column>
-                                <igx-column field="theta" header="Theta" sortable="true">
-                                    <ng-template igxCell let-val>
-                                        <div class="cell__inner">
-                                            {{ val }}
-                                        </div>
-                                    </ng-template>
-                                </igx-column>
-                                <igx-column field="timeValue" header="Time Value" sortable="true">
-                                    <ng-template igxCell let-val>
-                                        <div class="cell__inner">
-                                            {{ val }}
-                                        </div>
-                                    </ng-template>
-                                </igx-column>
-                                <igx-column field="type" header="Type" sortable="true">
-                                    <ng-template igxCell let-val>
-                                        <div class="cell__inner">
-                                            {{ val }}
-                                        </div>
-                                    </ng-template>
-                                </igx-column>
-                                <igx-column field="updatedAt" header="Updated At" sortable="true">
-                                    <ng-template igxCell let-val>
-                                        <div class="cell__inner">
-                                            {{ val }}
-                                        </div>
-                                    </ng-template>
-                                </igx-column>
-                                <igx-column field="vega" header="Vega" sortable="true">
-                                    <ng-template igxCell let-val>
-                                        <div class="cell__inner">
-                                            {{ val }}
-                                        </div>
-                                    </ng-template>
-                                </igx-column>
-                                <igx-column field="volume" header="Volume" sortable="true">
-                                    <ng-template igxCell let-val>
-                                        <div class="cell__inner">
-                                            {{ val }}
-                                        </div>
-                                    </ng-template>
-                                </igx-column>
-                            </igx-grid>
-                            <br>
-                            <h6>CALL Information</h6>
-                            <igx-grid #grid1 [data]="gridData.options?.CALL" 
-                                height="600px" [allowFiltering]="true">
-                                <igx-paginator [perPage]="10">
-                                </igx-paginator>
-                                <igx-column field="strike" header="Strike" sortable="true">
-                                    <ng-template igxCell let-val>
-                                        <div class="cell__inner">
-                                            {{ val }}
-                                        </div>
-                                    </ng-template>
-                                </igx-column>
-                                <igx-column field="ask" header="Ask" sortable="true">
-                                    <ng-template igxCell let-val>
-                                        <div class="cell__inner">
-                                            {{ val }}
-                                        </div>
-                                    </ng-template>
-                                </igx-column>
-                                <igx-column field="bid" header="Bid" sortable="true">
-                                    <ng-template igxCell let-val>
-                                        <div class="cell__inner">
-                                            {{ val }}
-                                        </div>
-                                    </ng-template>
-                                </igx-column>
-                                <igx-column field="change" header="Change" sortable="true">
-                                    <ng-template igxCell let-val>
-                                        <div class="cell__inner">
-                                            {{ val }}
-                                        </div>
-                                    </ng-template>
-                                </igx-column>
-                                <igx-column field="changePercent" header="Change_%" sortable="true">
-                                    <ng-template igxCell let-val>
-                                        <div class="cell__inner">
-                                            {{ val }}
-                                        </div>
-                                    </ng-template>
-                                </igx-column>
-                                <igx-column field="contractName" header="Contract Name" sortable="true">
-                                    <ng-template igxCell let-val>
-                                        <div class="cell__inner">
-                                            {{ val }}
-                                        </div>
-                                    </ng-template>
-                                </igx-column>
-                                <igx-column field="contractPeriod" header="Contract Period" sortable="true">
-                                    <ng-template igxCell let-val>
-                                        <div class="cell__inner">
-                                            {{ val }}
-                                        </div>
-                                    </ng-template>
-                                </igx-column>
-                                <igx-column field="contractSize" header="Contract Size" sortable="true">
-                                    <ng-template igxCell let-val>
-                                        <div class="cell__inner">
-                                            {{ val }}
-                                        </div>
-                                    </ng-template>
-                                </igx-column>
-                                <igx-column field="currency" header="Currency" sortable="true">
-                                    <ng-template igxCell let-val>
-                                        <div class="cell__inner">
-                                            {{ val }}
-                                        </div>
-                                    </ng-template>
-                                </igx-column>
-                                <igx-column field="daysBeforeExpiration" header="Days Before Expiration"
-                                    sortable="true">
-                                    <ng-template igxCell let-val>
-                                        <div class="cell__inner">
-                                            {{ val }}
-                                        </div>
-                                    </ng-template>
-                                </igx-column>
-                                <igx-column field="delta" header="Delta" sortable="true">
-                                    <ng-template igxCell let-val>
-                                        <div class="cell__inner">
-                                            {{ val }}
-                                        </div>
-                                    </ng-template>
-                                </igx-column>
-                                <igx-column field="expirationDate" header="Expiration Date" sortable="true">
-                                    <ng-template igxCell let-val>
-                                        <div class="cell__inner">
-                                            {{ val }}
-                                        </div>
-                                    </ng-template>
-                                </igx-column>
-                                <igx-column field="gamma" header="Gamma" sortable="true">
-                                    <ng-template igxCell let-val>
-                                        <div class="cell__inner">
-                                            {{ val }}
-                                        </div>
-                                    </ng-template>
-                                </igx-column>
-                                <igx-column field="impliedVolatility" header="Implied Volatility" sortable="true">
-                                    <ng-template igxCell let-val>
-                                        <div class="cell__inner">
-                                            {{ val }}
-                                        </div>
-                                    </ng-template>
-                                </igx-column>
-                                <igx-column field="inTheMoney" header="In The Money" sortable="true">
-                                    <ng-template igxCell let-val>
-                                        <div class="cell__inner">
-                                            {{ val }}
-                                        </div>
-                                    </ng-template>
-                                </igx-column>
-                                <igx-column field="intrinsicValue" header="Intrinsic Value" sortable="true">
-                                    <ng-template igxCell let-val>
-                                        <div class="cell__inner">
-                                            {{ val }}
-                                        </div>
-                                    </ng-template>
-                                </igx-column>
-                                <igx-column field="lastPrice" header="Last Price" sortable="true">
-                                    <ng-template igxCell let-val>
-                                        <div class="cell__inner">
-                                            {{ val }}
-                                        </div>
-                                    </ng-template>
-                                </igx-column>
-                                <igx-column field="lastTradeDateTime" header="Last Trade DateTime" sortable="true">
-                                    <ng-template igxCell let-val>
-                                        <div class="cell__inner">
-                                            {{ val }}
-                                        </div>
-                                    </ng-template>
-                                </igx-column>
-                                <igx-column field="openInterest" header="Open Interest" sortable="true">
-                                    <ng-template igxCell let-val>
-                                        <div class="cell__inner">
-                                            {{ val }}
-                                        </div>
-                                    </ng-template>
-                                </igx-column>
-                                <igx-column field="rho" header="RHO" sortable="true">
-                                    <ng-template igxCell let-val>
-                                        <div class="cell__inner">
-                                            {{ val }}
-                                        </div>
-                                    </ng-template>
-                                </igx-column>
-                                <igx-column field="theoretical" header="Theoretical" sortable="true">
-                                    <ng-template igxCell let-val>
-                                        <div class="cell__inner">
-                                            {{ val }}
-                                        </div>
-                                    </ng-template>
-                                </igx-column>
-                                <igx-column field="theta" header="Theta" sortable="true">
-                                    <ng-template igxCell let-val>
-                                        <div class="cell__inner">
-                                            {{ val }}
-                                        </div>
-                                    </ng-template>
-                                </igx-column>
-                                <igx-column field="timeValue" header="Time Value" sortable="true">
-                                    <ng-template igxCell let-val>
-                                        <div class="cell__inner">
-                                            {{ val }}
-                                        </div>
-                                    </ng-template>
-                                </igx-column>
-                                <igx-column field="type" header="Type" sortable="true">
-                                    <ng-template igxCell let-val>
-                                        <div class="cell__inner">
-                                            {{ val }}
-                                        </div>
-                                    </ng-template>
-                                </igx-column>
-                                <igx-column field="updatedAt" header="Updated At" sortable="true">
-                                    <ng-template igxCell let-val>
-                                        <div class="cell__inner">
-                                            {{ val }}
-                                        </div>
-                                    </ng-template>
-                                </igx-column>
-                                <igx-column field="vega" header="Vega" sortable="true">
-                                    <ng-template igxCell let-val>
-                                        <div class="cell__inner">
-                                            {{ val }}
-                                        </div>
-                                    </ng-template>
-                                </igx-column>
-                                <igx-column field="volume" header="Volume" sortable="true">
-                                    <ng-template igxCell let-val>
-                                        <div class="cell__inner">
-                                            {{ val }}
-                                        </div>
-                                    </ng-template>
-                                </igx-column>
-                            </igx-grid>
-                            <br>
-                        </igx-tab-content>
-                    </igx-tab-item>
-                    <igx-tab-item>
-                        <igx-tab-header>
-                            <span igxTabHeaderLabel>Graph</span>
-                        </igx-tab-header>
-                        <igx-tab-content>
-                            <div class="select" style="width: 125px;">
-                                <span> Select Chart Type:
-                                    <igx-input-group #inputGraphGroup [igxToggleAction]="dropDown" class="input-group">
-                                        <input #input class="input" type="text" igxInput
-                                            [igxDropDownItemNavigation]="dropDown" readonly="true"
-                                            placeholder="Choose an option" [value]="type"
-                                            (keydown.ArrowDown)="openDropDown1()" />
-                                        <igx-suffix igxIconButton="flat" class="dropdownToggleButton" igxRipple>
-                                            <igx-icon>arrow_drop{{ dropDown.collapsed ? '_down' : '_up' }}</igx-icon>
-                                        </igx-suffix>
-                                    </igx-input-group>
+            <igx-tabs>
+              <igx-tab-item>
+                <igx-tab-header>
+                  <span igxTabHeaderLabel>Grid</span>
+                </igx-tab-header>
+                <igx-tab-content>
+                  <h6>PUT Information</h6>
+                  <igx-grid #grid1 [data]="gridData.options?.PUT"
+                    height="600px" [allowFiltering]="true">
+                    <igx-paginator [perPage]="10">
+                    </igx-paginator>
+                    <igx-column field="strike" header="Strike" sortable="true">
+                      <ng-template igxCell let-val>
+                        <div class="cell__inner">
+                          {{ val }}
+                        </div>
+                      </ng-template>
+                    </igx-column>
+                    <igx-column field="ask" header="Ask" sortable="true">
+                      <ng-template igxCell let-val>
+                        <div class="cell__inner">
+                          {{ val }}
+                        </div>
+                      </ng-template>
+                    </igx-column>
+                    <igx-column field="bid" header="Bid" sortable="true">
+                      <ng-template igxCell let-val>
+                        <div class="cell__inner">
+                          {{ val }}
+                        </div>
+                      </ng-template>
+                    </igx-column>
+                    <igx-column field="change" header="Change" sortable="true">
+                      <ng-template igxCell let-val>
+                        <div class="cell__inner">
+                          {{ val }}
+                        </div>
+                      </ng-template>
+                    </igx-column>
+                    <igx-column field="changePercent" header="Change_%" sortable="true">
+                      <ng-template igxCell let-val>
+                        <div class="cell__inner">
+                          {{ val }}
+                        </div>
+                      </ng-template>
+                    </igx-column>
+                    <igx-column field="contractName" header="Contract Name" sortable="true">
+                      <ng-template igxCell let-val>
+                        <div class="cell__inner">
+                          {{ val }}
+                        </div>
+                      </ng-template>
+                    </igx-column>
+                    <igx-column field="contractPeriod" header="Contract Period" sortable="true">
+                      <ng-template igxCell let-val>
+                        <div class="cell__inner">
+                          {{ val }}
+                        </div>
+                      </ng-template>
+                    </igx-column>
+                    <igx-column field="contractSize" header="Contract Size" sortable="true">
+                      <ng-template igxCell let-val>
+                        <div class="cell__inner">
+                          {{ val }}
+                        </div>
+                      </ng-template>
+                    </igx-column>
+                    <igx-column field="currency" header="Currency" sortable="true">
+                      <ng-template igxCell let-val>
+                        <div class="cell__inner">
+                          {{ val }}
+                        </div>
+                      </ng-template>
+                    </igx-column>
+                    <igx-column field="daysBeforeExpiration" header="Days Before Expiration"
+                      sortable="true">
+                      <ng-template igxCell let-val>
+                        <div class="cell__inner">
+                          {{ val }}
+                        </div>
+                      </ng-template>
+                    </igx-column>
+                    <igx-column field="delta" header="Delta" sortable="true">
+                      <ng-template igxCell let-val>
+                        <div class="cell__inner">
+                          {{ val }}
+                        </div>
+                      </ng-template>
+                    </igx-column>
+                    <igx-column field="expirationDate" header="Expiration Date" sortable="true">
+                      <ng-template igxCell let-val>
+                        <div class="cell__inner">
+                          {{ val }}
+                        </div>
+                      </ng-template>
+                    </igx-column>
+                    <igx-column field="gamma" header="Gamma" sortable="true">
+                      <ng-template igxCell let-val>
+                        <div class="cell__inner">
+                          {{ val }}
+                        </div>
+                      </ng-template>
+                    </igx-column>
+                    <igx-column field="impliedVolatility" header="Implied Volatility" sortable="true">
+                      <ng-template igxCell let-val>
+                        <div class="cell__inner">
+                          {{ val }}
+                        </div>
+                      </ng-template>
+                    </igx-column>
+                    <igx-column field="inTheMoney" header="In The Money" sortable="true">
+                      <ng-template igxCell let-val>
+                        <div class="cell__inner">
+                          {{ val }}
+                        </div>
+                      </ng-template>
+                    </igx-column>
+                    <igx-column field="intrinsicValue" header="Intrinsic Value" sortable="true">
+                      <ng-template igxCell let-val>
+                        <div class="cell__inner">
+                          {{ val }}
+                        </div>
+                      </ng-template>
+                    </igx-column>
+                    <igx-column field="lastPrice" header="Last Price" sortable="true">
+                      <ng-template igxCell let-val>
+                        <div class="cell__inner">
+                          {{ val }}
+                        </div>
+                      </ng-template>
+                    </igx-column>
+                    <igx-column field="lastTradeDateTime" header="Last Trade DateTime" sortable="true">
+                      <ng-template igxCell let-val>
+                        <div class="cell__inner">
+                          {{ val }}
+                        </div>
+                      </ng-template>
+                    </igx-column>
+                    <igx-column field="openInterest" header="Open Interest" sortable="true">
+                      <ng-template igxCell let-val>
+                        <div class="cell__inner">
+                          {{ val }}
+                        </div>
+                      </ng-template>
+                    </igx-column>
+                    <igx-column field="rho" header="RHO" sortable="true">
+                      <ng-template igxCell let-val>
+                        <div class="cell__inner">
+                          {{ val }}
+                        </div>
+                      </ng-template>
+                    </igx-column>
+                    <igx-column field="theoretical" header="Theoretical" sortable="true">
+                      <ng-template igxCell let-val>
+                        <div class="cell__inner">
+                          {{ val }}
+                        </div>
+                      </ng-template>
+                    </igx-column>
+                    <igx-column field="theta" header="Theta" sortable="true">
+                      <ng-template igxCell let-val>
+                        <div class="cell__inner">
+                          {{ val }}
+                        </div>
+                      </ng-template>
+                    </igx-column>
+                    <igx-column field="timeValue" header="Time Value" sortable="true">
+                      <ng-template igxCell let-val>
+                        <div class="cell__inner">
+                          {{ val }}
+                        </div>
+                      </ng-template>
+                    </igx-column>
+                    <igx-column field="type" header="Type" sortable="true">
+                      <ng-template igxCell let-val>
+                        <div class="cell__inner">
+                          {{ val }}
+                        </div>
+                      </ng-template>
+                    </igx-column>
+                    <igx-column field="updatedAt" header="Updated At" sortable="true">
+                      <ng-template igxCell let-val>
+                        <div class="cell__inner">
+                          {{ val }}
+                        </div>
+                      </ng-template>
+                    </igx-column>
+                    <igx-column field="vega" header="Vega" sortable="true">
+                      <ng-template igxCell let-val>
+                        <div class="cell__inner">
+                          {{ val }}
+                        </div>
+                      </ng-template>
+                    </igx-column>
+                    <igx-column field="volume" header="Volume" sortable="true">
+                      <ng-template igxCell let-val>
+                        <div class="cell__inner">
+                          {{ val }}
+                        </div>
+                      </ng-template>
+                    </igx-column>
+                  </igx-grid>
+                  <br>
+                    <h6>CALL Information</h6>
+                    <igx-grid #grid1 [data]="gridData.options?.CALL"
+                      height="600px" [allowFiltering]="true">
+                      <igx-paginator [perPage]="10">
+                      </igx-paginator>
+                      <igx-column field="strike" header="Strike" sortable="true">
+                        <ng-template igxCell let-val>
+                          <div class="cell__inner">
+                            {{ val }}
+                          </div>
+                        </ng-template>
+                      </igx-column>
+                      <igx-column field="ask" header="Ask" sortable="true">
+                        <ng-template igxCell let-val>
+                          <div class="cell__inner">
+                            {{ val }}
+                          </div>
+                        </ng-template>
+                      </igx-column>
+                      <igx-column field="bid" header="Bid" sortable="true">
+                        <ng-template igxCell let-val>
+                          <div class="cell__inner">
+                            {{ val }}
+                          </div>
+                        </ng-template>
+                      </igx-column>
+                      <igx-column field="change" header="Change" sortable="true">
+                        <ng-template igxCell let-val>
+                          <div class="cell__inner">
+                            {{ val }}
+                          </div>
+                        </ng-template>
+                      </igx-column>
+                      <igx-column field="changePercent" header="Change_%" sortable="true">
+                        <ng-template igxCell let-val>
+                          <div class="cell__inner">
+                            {{ val }}
+                          </div>
+                        </ng-template>
+                      </igx-column>
+                      <igx-column field="contractName" header="Contract Name" sortable="true">
+                        <ng-template igxCell let-val>
+                          <div class="cell__inner">
+                            {{ val }}
+                          </div>
+                        </ng-template>
+                      </igx-column>
+                      <igx-column field="contractPeriod" header="Contract Period" sortable="true">
+                        <ng-template igxCell let-val>
+                          <div class="cell__inner">
+                            {{ val }}
+                          </div>
+                        </ng-template>
+                      </igx-column>
+                      <igx-column field="contractSize" header="Contract Size" sortable="true">
+                        <ng-template igxCell let-val>
+                          <div class="cell__inner">
+                            {{ val }}
+                          </div>
+                        </ng-template>
+                      </igx-column>
+                      <igx-column field="currency" header="Currency" sortable="true">
+                        <ng-template igxCell let-val>
+                          <div class="cell__inner">
+                            {{ val }}
+                          </div>
+                        </ng-template>
+                      </igx-column>
+                      <igx-column field="daysBeforeExpiration" header="Days Before Expiration"
+                        sortable="true">
+                        <ng-template igxCell let-val>
+                          <div class="cell__inner">
+                            {{ val }}
+                          </div>
+                        </ng-template>
+                      </igx-column>
+                      <igx-column field="delta" header="Delta" sortable="true">
+                        <ng-template igxCell let-val>
+                          <div class="cell__inner">
+                            {{ val }}
+                          </div>
+                        </ng-template>
+                      </igx-column>
+                      <igx-column field="expirationDate" header="Expiration Date" sortable="true">
+                        <ng-template igxCell let-val>
+                          <div class="cell__inner">
+                            {{ val }}
+                          </div>
+                        </ng-template>
+                      </igx-column>
+                      <igx-column field="gamma" header="Gamma" sortable="true">
+                        <ng-template igxCell let-val>
+                          <div class="cell__inner">
+                            {{ val }}
+                          </div>
+                        </ng-template>
+                      </igx-column>
+                      <igx-column field="impliedVolatility" header="Implied Volatility" sortable="true">
+                        <ng-template igxCell let-val>
+                          <div class="cell__inner">
+                            {{ val }}
+                          </div>
+                        </ng-template>
+                      </igx-column>
+                      <igx-column field="inTheMoney" header="In The Money" sortable="true">
+                        <ng-template igxCell let-val>
+                          <div class="cell__inner">
+                            {{ val }}
+                          </div>
+                        </ng-template>
+                      </igx-column>
+                      <igx-column field="intrinsicValue" header="Intrinsic Value" sortable="true">
+                        <ng-template igxCell let-val>
+                          <div class="cell__inner">
+                            {{ val }}
+                          </div>
+                        </ng-template>
+                      </igx-column>
+                      <igx-column field="lastPrice" header="Last Price" sortable="true">
+                        <ng-template igxCell let-val>
+                          <div class="cell__inner">
+                            {{ val }}
+                          </div>
+                        </ng-template>
+                      </igx-column>
+                      <igx-column field="lastTradeDateTime" header="Last Trade DateTime" sortable="true">
+                        <ng-template igxCell let-val>
+                          <div class="cell__inner">
+                            {{ val }}
+                          </div>
+                        </ng-template>
+                      </igx-column>
+                      <igx-column field="openInterest" header="Open Interest" sortable="true">
+                        <ng-template igxCell let-val>
+                          <div class="cell__inner">
+                            {{ val }}
+                          </div>
+                        </ng-template>
+                      </igx-column>
+                      <igx-column field="rho" header="RHO" sortable="true">
+                        <ng-template igxCell let-val>
+                          <div class="cell__inner">
+                            {{ val }}
+                          </div>
+                        </ng-template>
+                      </igx-column>
+                      <igx-column field="theoretical" header="Theoretical" sortable="true">
+                        <ng-template igxCell let-val>
+                          <div class="cell__inner">
+                            {{ val }}
+                          </div>
+                        </ng-template>
+                      </igx-column>
+                      <igx-column field="theta" header="Theta" sortable="true">
+                        <ng-template igxCell let-val>
+                          <div class="cell__inner">
+                            {{ val }}
+                          </div>
+                        </ng-template>
+                      </igx-column>
+                      <igx-column field="timeValue" header="Time Value" sortable="true">
+                        <ng-template igxCell let-val>
+                          <div class="cell__inner">
+                            {{ val }}
+                          </div>
+                        </ng-template>
+                      </igx-column>
+                      <igx-column field="type" header="Type" sortable="true">
+                        <ng-template igxCell let-val>
+                          <div class="cell__inner">
+                            {{ val }}
+                          </div>
+                        </ng-template>
+                      </igx-column>
+                      <igx-column field="updatedAt" header="Updated At" sortable="true">
+                        <ng-template igxCell let-val>
+                          <div class="cell__inner">
+                            {{ val }}
+                          </div>
+                        </ng-template>
+                      </igx-column>
+                      <igx-column field="vega" header="Vega" sortable="true">
+                        <ng-template igxCell let-val>
+                          <div class="cell__inner">
+                            {{ val }}
+                          </div>
+                        </ng-template>
+                      </igx-column>
+                      <igx-column field="volume" header="Volume" sortable="true">
+                        <ng-template igxCell let-val>
+                          <div class="cell__inner">
+                            {{ val }}
+                          </div>
+                        </ng-template>
+                      </igx-column>
+                    </igx-grid>
+                    <br>
+                    </igx-tab-content>
+                  </igx-tab-item>
+                  <igx-tab-item>
+                    <igx-tab-header>
+                      <span igxTabHeaderLabel>Graph</span>
+                    </igx-tab-header>
+                    <igx-tab-content>
+                      <div class="select" style="width: 125px;">
+                        <span> Select Chart Type:
+                          <igx-input-group #inputGraphGroup [igxToggleAction]="dropDown" class="input-group">
+                            <input #input class="input" type="text" igxInput
+                              [igxDropDownItemNavigation]="dropDown" readonly="true"
+                              placeholder="Choose an option" [value]="type"
+                              (keydown.ArrowDown)="openDropDown1()" />
+                            <igx-suffix igxIconButton="flat" class="dropdownToggleButton" igxRipple>
+                              <igx-icon>arrow_drop{{ dropDown.collapsed ? '_down' : '_up' }}</igx-icon>
+                            </igx-suffix>
+                          </igx-input-group>
 
-                                    <igx-drop-down #dropDown1 (selectionChanging)="onDDLgraphSelection($event)"
-                                        [width]="'180px'">
-                                        <igx-drop-down-item *ngFor="let item of graphOptions" [value]="item.field">
-                                            {{ item.field }}
-                                        </igx-drop-down-item>
-                                    </igx-drop-down>
-                                </span>
-                            </div>
-                            <br>
-                            <div class="select" style="width: 150px;">
-                                <span> Select Y-axis:
-                                    <igx-input-group #inputinfoGraphGroup [igxToggleAction]="dropDown"
-                                        class="input-group">
-                                        <input #input class="input" type="text" igxInput
-                                            [igxDropDownItemNavigation]="dropDown" readonly="true"
-                                            placeholder="Choose an option" [value]="infoType"
-                                            (keydown.ArrowDown)="openDropDown3()" />
-                                        <igx-suffix igxIconButton="flat" class="dropdownToggleButton" igxRipple>
-                                            <igx-icon>arrow_drop{{ dropDown.collapsed ? '_down' : '_up' }}</igx-icon>
-                                        </igx-suffix>
-                                    </igx-input-group>
+                          <igx-drop-down #dropDown1 (selectionChanging)="onDDLgraphSelection($event)"
+                            [width]="'180px'">
+                            @for (item of graphOptions; track item) {
+                              <igx-drop-down-item [value]="item.field">
+                                {{ item.field }}
+                              </igx-drop-down-item>
+                            }
+                          </igx-drop-down>
+                        </span>
+                      </div>
+                      <br>
+                        <div class="select" style="width: 150px;">
+                          <span> Select Y-axis:
+                            <igx-input-group #inputinfoGraphGroup [igxToggleAction]="dropDown"
+                              class="input-group">
+                              <input #input class="input" type="text" igxInput
+                                [igxDropDownItemNavigation]="dropDown" readonly="true"
+                                placeholder="Choose an option" [value]="infoType"
+                                (keydown.ArrowDown)="openDropDown3()" />
+                              <igx-suffix igxIconButton="flat" class="dropdownToggleButton" igxRipple>
+                                <igx-icon>arrow_drop{{ dropDown.collapsed ? '_down' : '_up' }}</igx-icon>
+                              </igx-suffix>
+                            </igx-input-group>
 
-                                    <igx-drop-down #dropDown3 (selectionChanging)="onDDLinfoGraphSelection($event)"
-                                        [width]="'180px'">
-                                        <igx-drop-down-item *ngFor="let item of graphitems" [value]="item.field">
-                                            {{ item.field }}
-                                        </igx-drop-down-item>
-                                    </igx-drop-down>
-                                </span>
-                            </div>
-                            <br>
-                            <br>
+                            <igx-drop-down #dropDown3 (selectionChanging)="onDDLinfoGraphSelection($event)"
+                              [width]="'180px'">
+                              @for (item of graphitems; track item) {
+                                <igx-drop-down-item [value]="item.field">
+                                  {{ item.field }}
+                                </igx-drop-down-item>
+                              }
+                            </igx-drop-down>
+                          </span>
+                        </div>
+                        <br>
+                          <br>
                             <h6>Options Information Graph</h6>
                             <igx-category-chart style="padding-top: 5px;" [dataSource]="infoData" [chartType]="type"
-                                title="Options Information Graph" width="100%" height="400px"
-                                AlignsGridLinesToPixels="true" yAxisMinimumValue="0" xAxisGap="2"
-                                xAxisTitle="Expiration Date" [yAxisTitle]="infoType" xAxisTickLength="15"
-                                xAxisTitleAngle="0">
+                              title="Options Information Graph" width="100%" height="400px"
+                              AlignsGridLinesToPixels="true" yAxisMinimumValue="0" xAxisGap="2"
+                              xAxisTitle="Expiration Date" [yAxisTitle]="infoType" xAxisTickLength="15"
+                              xAxisTitleAngle="0">
                             </igx-category-chart>
                             <br>
-                            <div class="select" style="width: 125px;">
+                              <div class="select" style="width: 125px;">
                                 <span> Select Grid Column Header:
-                                    <igx-input-group #inputYaxisGroup [igxToggleAction]="dropDown" class="input-group">
-                                        <input #input class="input" type="text" igxInput
-                                            [igxDropDownItemNavigation]="dropDown" readonly="true"
-                                            placeholder="Choose an option" [value]="yAxisdropDownSelectedValue"
-                                            (keydown.ArrowDown)="openDropDown2()" />
-                                        <igx-suffix igxIconButton="flat" class="dropdownToggleButton" igxRipple>
-                                            <igx-icon>arrow_drop{{ dropDown.collapsed ? '_down' : '_up' }}</igx-icon>
-                                        </igx-suffix>
-                                    </igx-input-group>
+                                  <igx-input-group #inputYaxisGroup [igxToggleAction]="dropDown" class="input-group">
+                                    <input #input class="input" type="text" igxInput
+                                      [igxDropDownItemNavigation]="dropDown" readonly="true"
+                                      placeholder="Choose an option" [value]="yAxisdropDownSelectedValue"
+                                      (keydown.ArrowDown)="openDropDown2()" />
+                                    <igx-suffix igxIconButton="flat" class="dropdownToggleButton" igxRipple>
+                                      <igx-icon>arrow_drop{{ dropDown.collapsed ? '_down' : '_up' }}</igx-icon>
+                                    </igx-suffix>
+                                  </igx-input-group>
 
-                                    <igx-drop-down #dropDown2 (selectionChanging)="onDDLyAxisSelection($event)"
-                                        [width]="'180px'" [height]="'150px'">
-                                        <igx-drop-down-item *ngFor="let item of yAxisitems" [value]="item.field">
-                                            {{ item.field }}
-                                        </igx-drop-down-item>
-                                    </igx-drop-down>
+                                  <igx-drop-down #dropDown2 (selectionChanging)="onDDLyAxisSelection($event)"
+                                    [width]="'180px'" [height]="'150px'">
+                                    @for (item of yAxisitems; track item) {
+                                      <igx-drop-down-item [value]="item.field">
+                                        {{ item.field }}
+                                      </igx-drop-down-item>
+                                    }
+                                  </igx-drop-down>
                                 </span>
+                              </div>
+                              <br>
+                                <h6>PUT Information</h6>
+                                <igx-category-chart style="padding-top: 5px;" [dataSource]="putData" [chartType]="type"
+                                  title="PUT Information Graph" width="100%" height="400px" AlignsGridLinesToPixels="true"
+                                  yAxisMinimumValue="0" xAxisGap="2" xAxisTitle="Strike Price"
+                                  [yAxisTitle]="yAxisdropDownSelectedValue" xAxisTickLength="15" xAxisTitleAngle="0">
+                                </igx-category-chart>
+                                <br>
+                                  <h6>CALL Information</h6>
+                                  <igx-category-chart style="padding-top: 5px;" [dataSource]="callData" [chartType]="type"
+                                    title="CALL Information Graph" width="100%" height="400px"
+                                    AlignsGridLinesToPixels="true" yAxisMinimumValue="0" xAxisGap="2"
+                                    xAxisTitle="Strike Price" [yAxisTitle]="yAxisdropDownSelectedValue" xAxisTickLength="15"
+                                    xAxisTitleAngle="0">
+                                  </igx-category-chart>
+                                  <br>
+                                  </igx-tab-content>
+                                </igx-tab-item>
+                              </igx-tabs>
+
+
                             </div>
-                            <br>
-                            <h6>PUT Information</h6>
-                            <igx-category-chart style="padding-top: 5px;" [dataSource]="putData" [chartType]="type"
-                                title="PUT Information Graph" width="100%" height="400px" AlignsGridLinesToPixels="true"
-                                yAxisMinimumValue="0" xAxisGap="2" xAxisTitle="Strike Price"
-                                [yAxisTitle]="yAxisdropDownSelectedValue" xAxisTickLength="15" xAxisTitleAngle="0">
-                            </igx-category-chart>
-                            <br>
-                            <h6>CALL Information</h6>
-                            <igx-category-chart style="padding-top: 5px;" [dataSource]="callData" [chartType]="type"
-                                title="CALL Information Graph" width="100%" height="400px"
-                                AlignsGridLinesToPixels="true" yAxisMinimumValue="0" xAxisGap="2"
-                                xAxisTitle="Strike Price" [yAxisTitle]="yAxisdropDownSelectedValue" xAxisTickLength="15"
-                                xAxisTitleAngle="0">
-                            </igx-category-chart>
-                            <br>
+                          </igx-tab-content>
+                        </igx-tab-item>
+                        <!-- <igx-tab-item>
+                        <igx-tab-header>
+                          <span igxTabHeaderLabel>Raw Data</span>
+                        </igx-tab-header>
+                        <igx-tab-content>
+                          <pre>{{option | json}}</pre>
                         </igx-tab-content>
-                    </igx-tab-item>
-                </igx-tabs>
-
-
-            </div>
-        </igx-tab-content>
-    </igx-tab-item>
-    <!-- <igx-tab-item>
-        <igx-tab-header>
-            <span igxTabHeaderLabel>Raw Data</span>
-        </igx-tab-header>
-        <igx-tab-content>
-            <pre>{{option | json}}</pre>
-        </igx-tab-content>
-    </igx-tab-item> -->
-</igx-tabs>
+                      </igx-tab-item> -->
+                    </igx-tabs>

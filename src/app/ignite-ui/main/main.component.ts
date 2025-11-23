@@ -4,11 +4,12 @@ import { ListCasesComponent } from '../list-cases/list-cases.component';
 import { IDashboard, IDashboardAssetType, IDashboardAPI } from './dashboard.model';
 
 @Component({
-  providers: [RemoteDataService],
-  selector: 'app-main',
-  templateUrl: './main.component.html',
-  styleUrls: ['./main.component.scss'],
-  host: { class: 'app__main' }
+    providers: [RemoteDataService],
+    selector: 'app-main',
+    templateUrl: './main.component.html',
+    styleUrls: ['./main.component.scss'],
+    host: { class: 'app__main' },
+    standalone: false
 })
 export class MainComponent implements AfterViewInit {
 

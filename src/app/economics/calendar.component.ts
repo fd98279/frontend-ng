@@ -6,7 +6,8 @@ import { IgxTabsComponent } from '@infragistics/igniteui-angular';
 import { PersistanceService } from '../common/persistance.service';
 
 @Component({
-  templateUrl: './calendar.component.html'
+    templateUrl: './calendar.component.html',
+    standalone: false
 })
 
 

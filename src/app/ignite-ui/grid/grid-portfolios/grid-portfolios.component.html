@@ -1,104 +1,108 @@
 <div>
 
-    <igx-grid #grid1 [data]="portfoliosEvents"  height="600px" [allowFiltering]="true">
-        <igx-paginator [perPage]="10">
-        </igx-paginator>
-        <igx-column [filterable]="false" width="130px">
-            <ng-template igxCell let-cell="cell">
-                <div class="buttonsArea">
-                    <button igxIconButton="flat" *ngIf="isDetailIcon == true" (click)="rowDetailParent(cell.row.data)"
-                        class="emplBtn">
-                        <igx-icon>list</igx-icon>
-                    </button>
-                    <button igxIconButton="flat" *ngIf="isDeleteIcon == true" (click)="deleteParent(cell.row.data)"
-                        class="emplBtn">
-                        <igx-icon>delete</igx-icon>
-                    </button>
-                </div>
-            </ng-template>
-        </igx-column>
+  <igx-grid #grid1 [data]="portfoliosEvents"  height="600px" [allowFiltering]="true">
+    <igx-paginator [perPage]="10">
+    </igx-paginator>
+    <igx-column [filterable]="false" width="130px">
+      <ng-template igxCell let-cell="cell">
+        <div class="buttonsArea">
+          @if (isDetailIcon == true) {
+            <button igxIconButton="flat" (click)="rowDetailParent(cell.row.data)"
+              class="emplBtn">
+              <igx-icon>list</igx-icon>
+            </button>
+          }
+          @if (isDeleteIcon == true) {
+            <button igxIconButton="flat" (click)="deleteParent(cell.row.data)"
+              class="emplBtn">
+              <igx-icon>delete</igx-icon>
+            </button>
+          }
+        </div>
+      </ng-template>
+    </igx-column>
 
-        <igx-column field="name" header="Name" [cellClasses]="backgroundCell">
-            <ng-template igxCell let-val>
-                <div class="cell__inner">
-                    {{ val }}
-                </div>
-            </ng-template>
-        </igx-column>
+    <igx-column field="name" header="Name" [cellClasses]="backgroundCell">
+      <ng-template igxCell let-val>
+        <div class="cell__inner">
+          {{ val }}
+        </div>
+      </ng-template>
+    </igx-column>
 
-        <igx-column field="description" header="Description" [cellClasses]="backgroundCell">
-            <ng-template igxCell let-val>
-                <div class="cell__inner">
-                    {{ val }}
-                </div>
-            </ng-template>
-        </igx-column>
+    <igx-column field="description" header="Description" [cellClasses]="backgroundCell">
+      <ng-template igxCell let-val>
+        <div class="cell__inner">
+          {{ val }}
+        </div>
+      </ng-template>
+    </igx-column>
 
-        <igx-column field="cost" dataType="number" header="Cost" [cellClasses]="backgroundCell">
-            <ng-template igxCell let-val>
-                <div class="cell__inner">
-                    {{ val | number}}
-                </div>
-            </ng-template>
-        </igx-column>
+    <igx-column field="cost" dataType="number" header="Cost" [cellClasses]="backgroundCell">
+      <ng-template igxCell let-val>
+        <div class="cell__inner">
+          {{ val | number}}
+        </div>
+      </ng-template>
+    </igx-column>
 
-        <igx-column field="value" dataType="number"  header="Value" [cellClasses]="backgroundCell">
-            <ng-template igxCell let-val>
-                <div class="cell__inner">
-                    {{ val | number}}
-                </div>
-            </ng-template>
-        </igx-column>
-
-
-        <igx-column field="pnl" dataType="percent"  header="Pnl" [cellClasses]="backgroundCell">
-            <ng-template igxCell let-val>
-                <div class="cell__inner">
-                    {{ val | number}}
-                </div>
-            </ng-template>
-        </igx-column>
-
-        <igx-column field="pnlpercent" dataType="percent" header="Pnl%" [cellClasses]="backgroundCell">
-            <ng-template igxCell let-val>
-                <div class="cell__inner">
-                    {{ val | number}}
-                </div>
-            </ng-template>
-        </igx-column>
-
-        <igx-column field="pnlcalculationdt" header="Pnl Cal Date" [cellClasses]="backgroundCell">
-            <ng-template igxCell let-val>
-                <div class="cell__inner">
-                    {{ val | date:'long' }}
-                </div>
-            </ng-template>
-        </igx-column>
-
-        <igx-column field="created" header="Created" [cellClasses]="backgroundCell">
-            <ng-template igxCell let-val>
-                <div class="cell__inner">
-                    {{ val | date:'long'}}
-                </div>
-            </ng-template>
-        </igx-column>
-
-        <igx-column field="user.fullName" header="UserName" [cellClasses]="backgroundCell">
-            <ng-template igxCell let-val>
-                <div class="cell__inner">
-                    {{ val }}
-                </div>
-            </ng-template>
-        </igx-column>
-
-        <igx-column field="ispublic" header="Public" [cellClasses]="backgroundCell">
-            <ng-template igxCell let-val>
-                <div class="cell__inner">
-                    {{ val }}
-                </div>
-            </ng-template>
-        </igx-column>
+    <igx-column field="value" dataType="number"  header="Value" [cellClasses]="backgroundCell">
+      <ng-template igxCell let-val>
+        <div class="cell__inner">
+          {{ val | number}}
+        </div>
+      </ng-template>
+    </igx-column>
 
 
-    </igx-grid>
+    <igx-column field="pnl" dataType="percent"  header="Pnl" [cellClasses]="backgroundCell">
+      <ng-template igxCell let-val>
+        <div class="cell__inner">
+          {{ val | number}}
+        </div>
+      </ng-template>
+    </igx-column>
+
+    <igx-column field="pnlpercent" dataType="percent" header="Pnl%" [cellClasses]="backgroundCell">
+      <ng-template igxCell let-val>
+        <div class="cell__inner">
+          {{ val | number}}
+        </div>
+      </ng-template>
+    </igx-column>
+
+    <igx-column field="pnlcalculationdt" header="Pnl Cal Date" [cellClasses]="backgroundCell">
+      <ng-template igxCell let-val>
+        <div class="cell__inner">
+          {{ val | date:'long' }}
+        </div>
+      </ng-template>
+    </igx-column>
+
+    <igx-column field="created" header="Created" [cellClasses]="backgroundCell">
+      <ng-template igxCell let-val>
+        <div class="cell__inner">
+          {{ val | date:'long'}}
+        </div>
+      </ng-template>
+    </igx-column>
+
+    <igx-column field="user.fullName" header="UserName" [cellClasses]="backgroundCell">
+      <ng-template igxCell let-val>
+        <div class="cell__inner">
+          {{ val }}
+        </div>
+      </ng-template>
+    </igx-column>
+
+    <igx-column field="ispublic" header="Public" [cellClasses]="backgroundCell">
+      <ng-template igxCell let-val>
+        <div class="cell__inner">
+          {{ val }}
+        </div>
+      </ng-template>
+    </igx-column>
+
+
+  </igx-grid>
 </div>

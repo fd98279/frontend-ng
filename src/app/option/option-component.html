@@ -10,6 +10,8 @@
   </grid-stock-tickers>
 </div>
 
-<div class="layout-sample" *ngIf="optionAsset">
+@if (optionAsset) {
+  <div class="layout-sample">
     <grid-option [option]="optionAsset"></grid-option>
-</div>
+  </div>
+}

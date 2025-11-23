@@ -1,10 +1,11 @@
-import { Component, OnInit, Inject, ViewChild } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild, DOCUMENT } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { DOCUMENT } from '@angular/common';
+
 import { UntypedFormGroup, UntypedFormControl } from '@angular/forms';
 
 @Component({
-  templateUrl: './assets.upload.component.html'
+    templateUrl: './assets.upload.component.html',
+    standalone: false
 })
 
 

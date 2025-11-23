@@ -24,8 +24,6 @@ import { ETFService } from '../etfs/etf.service';
     RouterModule.forChild(YTDRoutes),
     IgxDemoModule,
     FormsModule,
-    FormsModule,
-    IgxTabsModule,
   ],
   providers: [
     FundamentalsService,

@@ -4,7 +4,8 @@ import { IgniteUIService } from '../ignite-ui/services/ignite-ui-service';
 // import { IIgniteUIMessage } from '../ignite-ui/services/ignite-ui-message-model';
 
 @Component({
-  templateUrl: './ibkr.component.html'
+    templateUrl: './ibkr.component.html',
+    standalone: false
 })
 
 export class IBKRComponent implements OnInit, AfterViewInit {

@@ -10,7 +10,8 @@ import { PersistanceService } from '../common/persistance.service';
 declare var TradingView;
 
 @Component({
-  templateUrl: './quotes.list.component.html'
+    templateUrl: './quotes.list.component.html',
+    standalone: false
 })
 
 

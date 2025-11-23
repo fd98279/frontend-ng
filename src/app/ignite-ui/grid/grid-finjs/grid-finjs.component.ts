@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
-import { ElementRef, Inject, Component, EventEmitter, OnInit, OnDestroy, Output, ViewChild, AfterViewInit, ChangeDetectorRef } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
+import { ElementRef, Inject, Component, EventEmitter, OnInit, OnDestroy, Output, ViewChild, AfterViewInit, ChangeDetectorRef, DOCUMENT } from '@angular/core';
+
 import {
     IgxGridComponent,
     SortingDirection,
@@ -17,7 +17,8 @@ import { IRealtimeQuote } from '../../../analytics.model';
 @Component({
     selector: 'app-finjs-grid',
     templateUrl: './grid-finjs.component.html',
-    styleUrls: ['./grid-finjs.component.scss']
+    styleUrls: ['./grid-finjs.component.scss'],
+    standalone: false
 })
 export class GridFinJSComponent implements AfterViewInit, OnDestroy {
 

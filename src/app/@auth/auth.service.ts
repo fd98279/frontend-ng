@@ -1,9 +1,9 @@
-import { Injectable, Inject, OnInit } from '@angular/core';
+import { Injectable, Inject, OnInit, DOCUMENT } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { tap, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { Router } from '@angular/router';
-import { DOCUMENT } from '@angular/common';
+
 import { RxjsHelperService } from '../common/rxjs.helper.service';
 import { environment } from '../../environments/environment';
 

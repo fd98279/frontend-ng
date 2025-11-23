@@ -24,10 +24,11 @@ import { parseUser } from '../../../authentication/services/jwt-util';
 
 
 @Component({
-  selector: 'ngx-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'ngx-login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 
 export class NgxLoginGuestComponent implements OnInit {

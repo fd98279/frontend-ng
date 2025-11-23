@@ -4,8 +4,9 @@ import { AnalyticsService } from '../analytics.service';
 
 
 @Component({
-  selector: 'portfolio-tearsheet',
-  templateUrl: './portfolio.tearsheet.component.html'
+    selector: 'portfolio-tearsheet',
+    templateUrl: './portfolio.tearsheet.component.html',
+    standalone: false
 })
 export class PortfolioTearsheetComponent {
   public PCATearSheetUrl: string;

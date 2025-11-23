@@ -1,4 +1,4 @@
-import { NgModule, NO_ERRORS_SCHEMA, Injectable } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA, Injectable, ApplicationRef } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
@@ -73,22 +73,22 @@ import {ClipboardModule} from '@angular/cdk/clipboard';
 @Injectable()
 export class SocketPortfolio extends Socket {
 
-  constructor(settingsService: SettingsService) {
+  constructor(settingsService: SettingsService, appRef: ApplicationRef) {
     super({ url: settingsService.getAppConstants().dataServiceBaseUri, options: {
       'timeout' : 10000,
       'transports' : ['websocket', 'polling', 'flashsocket']
-    }});
+    }}, appRef);
   }
 }
 
 @Injectable()
 export class SocketData extends Socket {
 
-  constructor(settingsService: SettingsService) {
+  constructor(settingsService: SettingsService, appRef: ApplicationRef) {
     super({ url: settingsService.getAppConstants().dataServiceBaseUri, options: {
       'timeout' : 10000,
       'transports' : ['websocket', 'polling', 'flashsocket']
-    }});
+    }}, appRef);
   }
 }
 

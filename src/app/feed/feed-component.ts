@@ -9,7 +9,8 @@ import { environment } from '../../environments/environment';
 import { PersistanceService } from '../common/persistance.service';
 
 @Component({
-    templateUrl: './feed-component.html'
+    templateUrl: './feed-component.html',
+    standalone: false
 })
 
 export class FeedComponent implements OnInit, AfterViewInit {

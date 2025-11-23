@@ -11,10 +11,11 @@ import { getDeepFromObject } from '../../helpers';
 import { EMAIL_PATTERN } from '../constants';
 
 @Component({
-  selector: 'ngx-request-password-page',
-  styleUrls: ['./request-password.component.scss'],
-  templateUrl: './request-password.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'ngx-request-password-page',
+    styleUrls: ['./request-password.component.scss'],
+    templateUrl: './request-password.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class NgxRequestPasswordComponent implements OnInit {
   redirectDelay: number = this.getConfigValue('forms.requestPassword.redirectDelay');

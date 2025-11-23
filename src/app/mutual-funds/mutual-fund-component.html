@@ -5,17 +5,21 @@
 </h5>
 
 <div class="layout-sample">
-  <div *ngIf="selectedMFTickers?.length > 0" class="mb-3">
-    <h6>Selected Mutual Fund Tickers:</h6>
-    <ul>
-      <li *ngFor="let ticker of selectedMFTickers">
-        {{ ticker.SravzId }}
-        <button type="button" class="btn btn-link btn-sm text-danger" (click)="removeTicker(ticker)" title="Remove">
-          <i class="fa fa-times"></i>
-        </button>
-      </li>
-    </ul>
-  </div>
+  @if (selectedMFTickers?.length > 0) {
+    <div class="mb-3">
+      <h6>Selected Mutual Fund Tickers:</h6>
+      <ul>
+        @for (ticker of selectedMFTickers; track ticker) {
+          <li>
+            {{ ticker.SravzId }}
+            <button type="button" class="btn btn-link btn-sm text-danger" (click)="removeTicker(ticker)" title="Remove">
+              <i class="fa fa-times"></i>
+            </button>
+          </li>
+        }
+      </ul>
+    </div>
+  }
   <h5 class="sample-title">Select an asset</h5>
   <div class="layout-box" igxLayout igxLayoutDir="column" style="margin-bottom:5px">
     <grid-mutualfund-tickers #gridMutualFundTickers [mfTickers]="mfTickers" [activeTabIndex]="activeTabIndex"
@@ -25,13 +29,19 @@
 </div>
 
 
-<div class="layout-sample" *ngIf="fundamental">
-  <div class="layout-box" igxLayout igxLayoutDir="column">
-    <grid-mutual-fund [fundamentals]="fundamental" (tabIndexChanged)="onTabIndexChanged($event)"
+@if (fundamental) {
+  <div class="layout-sample">
+    <div class="layout-box" igxLayout igxLayoutDir="column">
+      <grid-mutual-fund [fundamentals]="fundamental" (tabIndexChanged)="onTabIndexChanged($event)"
       (analysisRequested)="handleAnalysis($event)"></grid-mutual-fund>
-    <h5 *ngIf="llmQueryResultUrl"  class="sravztext_center">LLM Analysis</h5>
-    <iframe *ngIf="llmQueryResultUrl" [srcdoc]="llmQueryResultHtml" frameBorder="0" width="100%"
-      style="min-height: 400px;" sandbox="allow-same-origin">
-    </iframe>
+      @if (llmQueryResultUrl) {
+        <h5  class="sravztext_center">LLM Analysis</h5>
+      }
+      @if (llmQueryResultUrl) {
+        <iframe [srcdoc]="llmQueryResultHtml" frameBorder="0" width="100%"
+          style="min-height: 400px;" sandbox="allow-same-origin">
+        </iframe>
+      }
+    </div>
   </div>
-</div>
+}

@@ -15,7 +15,8 @@ import {Component} from '@angular/core';
         `.btn {
             line-height: 0.5
         }`
-    ]
+    ],
+    standalone: false
 })
 export class CrudButtonsComponent  {
     public params: any;

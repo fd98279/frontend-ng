@@ -22,9 +22,11 @@
         <igx-date-range-picker name="datesRange" #dateRangePicker="ngModel" required [(ngModel)]="range"
           [minValue]="fromDate" [maxValue]="toDate" [placeholder]="'From - To'">
           <label igxLabel>RSS Feed Dates</label>
-          <igx-hint *ngIf="dateRangePicker.invalid && (dateRangePicker.dirty || dateRangePicker.touched)">
-            Please choose start and end date!
-          </igx-hint>
+          @if (dateRangePicker.invalid && (dateRangePicker.dirty || dateRangePicker.touched)) {
+            <igx-hint>
+              Please choose start and end date!
+            </igx-hint>
+          }
         </igx-date-range-picker>
       </form>
       <div class="layout-sample">

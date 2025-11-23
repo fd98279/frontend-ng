@@ -12,6 +12,7 @@ import { IIgniteUIMessage } from '../ignite-ui/services/ignite-ui-message-model'
 @Component({
     templateUrl: './ytd-component.html',
     styleUrls: ['ytd-component.scss'],
+    standalone: false
 })
 
 export class YTDComponent implements OnInit {

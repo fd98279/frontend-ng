@@ -21,7 +21,8 @@ import { IQuote } from '../../../quotes/quotes.model';
 @Component({
     selector: 'grid-quotes',
     styleUrls: ['./grid.quotes.component.scss'],
-    templateUrl: './grid.quotes.component.html'
+    templateUrl: './grid.quotes.component.html',
+    standalone: false
 })
 export class GridQuotesComponent implements OnInit, OnDestroy {
 

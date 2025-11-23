@@ -7,7 +7,8 @@ import { EarningsService } from './earnings.service';
 import { Location } from '@angular/common';
 
 @Component({
-    templateUrl: './earnings-details-component.html'
+    templateUrl: './earnings-details-component.html',
+    standalone: false
 })
 
 export class EarningsDetailsComponent implements OnInit {

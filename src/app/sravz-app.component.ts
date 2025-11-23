@@ -9,9 +9,10 @@ import { IgxNavigationDrawerComponent } from '@infragistics/igniteui-angular';
 import { appRoutes } from './routes';
 
 @Component({
-  selector: 'sravz-app',
-  templateUrl: './sravz-app.component.html',
-  styleUrls: ['./sravz-app.component.scss']
+    selector: 'sravz-app',
+    templateUrl: './sravz-app.component.html',
+    styleUrls: ['./sravz-app.component.scss'],
+    standalone: false
 })
 export class SravzAppComponent implements OnInit, OnDestroy {
   public topNavLinks: Array<{

@@ -7,7 +7,8 @@ import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms
 @Component({
     selector: 'grid-portfolio-bulk-create',
     styleUrls: ['./portfolio.bulk.create.component.scss'],
-    templateUrl: './portfolio.bulk.create.component.html'
+    templateUrl: './portfolio.bulk.create.component.html',
+    standalone: false
 })
 export class PortfolioBulkCreateGridComponent {
     public portfolioCreateForm: UntypedFormGroup;

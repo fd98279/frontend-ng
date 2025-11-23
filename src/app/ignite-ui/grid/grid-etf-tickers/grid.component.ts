@@ -23,7 +23,8 @@ import { IETFTicker } from '../../../etfs/etf';
 @Component({
     selector: 'grid-etf-tickers',
     styleUrls: ['./grid.component.scss'],
-    templateUrl: './grid.component.html'
+    templateUrl: './grid.component.html',
+    standalone: false
 })
 export class ETFTickersGridComponent implements OnInit, OnDestroy, AfterViewInit {
 

@@ -9,6 +9,8 @@
   <grid-etf-tickers [etfTickers]="etfTickers" (etfTickerSelected)="onETFTickerSelected($event)"></grid-etf-tickers>
 </div>
 
-<div class="layout-sample" *ngIf="fundamental">
+@if (fundamental) {
+  <div class="layout-sample">
     <grid-etf [fundamentals]="fundamental"></grid-etf>
-</div>
+  </div>
+}

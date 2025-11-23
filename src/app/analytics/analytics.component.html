@@ -1,37 +1,51 @@
 <h5>{{analyticsType}}
-    <a href="https://youtube.com/playlist?list=PLNSAT5rzHjRyGrnA7MExn-cRpOQCTY1Y5" target="_blank" class="pull-right"
-        style="margin-left:5px">
-        <span class="fa fa-youtube"></span>
-    </a>
-    <a href="{{analyticsDocUrl}}" target="_blank" class="pull-right" style="margin-left:5px">
-        <span class="fa fa-book"></span>
-    </a>
-    <a href="{{analyticsGitUrl}}" target="_blank" class="pull-right">
-        <span class="fa fa-github"></span>
-    </a>
+  <a href="https://youtube.com/playlist?list=PLNSAT5rzHjRyGrnA7MExn-cRpOQCTY1Y5" target="_blank" class="pull-right"
+    style="margin-left:5px">
+    <span class="fa fa-youtube"></span>
+  </a>
+  <a href="{{analyticsDocUrl}}" target="_blank" class="pull-right" style="margin-left:5px">
+    <span class="fa fa-book"></span>
+  </a>
+  <a href="{{analyticsGitUrl}}" target="_blank" class="pull-right">
+    <span class="fa fa-github"></span>
+  </a>
 </h5>
 
-<div class="layout-sample" *ngIf="assetType === 'asset' || assetType === 'any'" style="padding-top: 10px;">
+@if (assetType === 'asset' || assetType === 'any') {
+  <div class="layout-sample" style="padding-top: 10px;">
     <grid-assets [assets]="assets" [isDetailIcon]="true" (assetsSelected)="onAssetSelected($event)"></grid-assets>
-</div>
+  </div>
+}
 
-<div class="layout-sample" *ngIf="assetType === 'asset' || assetType === 'any'" style="padding-top: 10px;">
-    <grid-users-assets *ngIf="userassets?.length > 0" (rowDetailEvent)="onUserAssetSelected($event)"
-        [isDetailIcon]="true" [userassetsEvents]="userassets"></grid-users-assets>
-</div>
+@if (assetType === 'asset' || assetType === 'any') {
+  <div class="layout-sample" style="padding-top: 10px;">
+    @if (userassets?.length > 0) {
+      <grid-users-assets (rowDetailEvent)="onUserAssetSelected($event)"
+      [isDetailIcon]="true" [userassetsEvents]="userassets"></grid-users-assets>
+    }
+  </div>
+}
 
-<h4 style="text-align: center;" *ngIf="assetType === 'any'">or</h4>
+@if (assetType === 'any') {
+  <h4 style="text-align: center;">or</h4>
+}
 
-<div class="layout-sample" *ngIf="assetType === 'portfolio' || assetType === 'any'" style="padding-top: 10px;">
+@if (assetType === 'portfolio' || assetType === 'any') {
+  <div class="layout-sample" style="padding-top: 10px;">
     <grid-portfolios (rowDetailEvent)="onPortfolioSelected($event)" [isDetailIcon]="true" [isDeleteIcon]="false"
-        [portfoliosEvents]="portfolios"></grid-portfolios>
+    [portfoliosEvents]="portfolios"></grid-portfolios>
+  </div>
+}
+
+<div class="layout-sample" style="padding-top: 10px;">
+  @if (assetType === 'asset' || assetType === 'any') {
+    <asset-tearsheet [assetName]="assetName"></asset-tearsheet>
+  }
 </div>
 
 <div class="layout-sample" style="padding-top: 10px;">
-    <asset-tearsheet [assetName]="assetName" *ngIf="assetType === 'asset' || assetType === 'any'"></asset-tearsheet>
-</div>
-
-<div class="layout-sample" style="padding-top: 10px;">
-    <portfolio-tearsheet [portfolioName]="portfolioName" *ngIf="assetType === 'portfolio' || assetType === 'any'">
+  @if (assetType === 'portfolio' || assetType === 'any') {
+    <portfolio-tearsheet [portfolioName]="portfolioName">
     </portfolio-tearsheet>
+  }
 </div>

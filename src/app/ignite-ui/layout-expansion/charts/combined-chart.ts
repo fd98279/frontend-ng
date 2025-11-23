@@ -6,7 +6,8 @@ import { IgniteUIService } from '../../services/ignite-ui-service';
     // tslint:disable-next-line:component-selector
     selector: 'layout-expansion-combined-chart',
     styleUrls: ['./combined-chart.scss'],
-    templateUrl: './combined-chart.html'
+    templateUrl: './combined-chart.html',
+    standalone: false
 })
 
 export class ExpansionPanelCombinedChartsComponent {

@@ -11,10 +11,11 @@ import { getDeepFromObject } from '../../helpers';
 import { EMAIL_PATTERN } from '../constants';
 
 @Component({
-  selector: 'ngx-register',
-  styleUrls: ['./register.component.scss'],
-  templateUrl: './register.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'ngx-register',
+    styleUrls: ['./register.component.scss'],
+    templateUrl: './register.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class NgxRegisterComponent implements OnInit {
   minLoginLength: number = this.getConfigValue(('forms.validation.fullName.minLength'));

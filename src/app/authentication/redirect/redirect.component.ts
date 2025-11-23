@@ -13,7 +13,8 @@ import { NbAuthResult, NbAuthService } from '@nebular/auth';
 const routeData = 'value';
 
 @Component({
-  template: '<p>Signing in...</p>'
+    template: '<p>Signing in...</p>',
+    standalone: false
 })
 export class RedirectComponent implements OnInit {
   private provider: ExternalAuthProvider;

@@ -11,7 +11,8 @@ import { Bond } from '../../../bond/bond';
 @Component({
     selector: 'grid-bond',
     styleUrls: ['./grid.component.scss'],
-    templateUrl: './grid.component.html'
+    templateUrl: './grid.component.html',
+    standalone: false
 })
 export class BondGridComponent implements OnInit, OnDestroy {
 

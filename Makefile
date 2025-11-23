@@ -2,7 +2,7 @@
 SHELL := /bin/bash
 
 export IMAGE_VERSION=''
-export ANGULAR_VERSION=18
+export ANGULAR_VERSION=19
 
 cd-frontend-ng-dir:
 	cd ${FRONTEND-NG-DIR}
@@ -15,9 +15,8 @@ install:  ## install npm pacakges
 	npm cache verify	
 	npm install --force
 	
-install-update: install  ## install npm pacakges
+install-update: install  ## install npm packages and update Angular
 	export NODE_OPTIONS=--max_old_space_size=8048
-	rm -rf /workspace/node_modules || true
 	# Upgrade to 1 higher version at a time
 	# Shows what needs to update
 	ng update
@@ -27,9 +26,13 @@ install-update: install  ## install npm pacakges
 	ng update @angular/core@$(ANGULAR_VERSION) --force
 	# Upgrades angular cli
 	ng update @angular/cli@$(ANGULAR_VERSION) --force
+	# Material
+	ng update @angular/material@$(ANGULAR_VERSION) --force
+	ng update @igniteui/material-icons-extended@$(ANGULAR_VERSION) --force
+	ng update @igniteui/angular-schematics@$(ANGULAR_VERSION) --force
 	# Upgrade charts
 	ng update igniteui-angular-charts@$(ANGULAR_VERSION) --force
-	ng update igniteui-angular-guages@$(ANGULAR_VERSION) --force
+	ng update igniteui-angular-gauges@$(ANGULAR_VERSION) --force
 	ng update igniteui-angular-maps@$(ANGULAR_VERSION) --force
 
 run:  install ## Called from within docker container. If need to perform npm update change install target to install-update

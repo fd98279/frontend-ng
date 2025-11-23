@@ -1,89 +1,91 @@
 <h5 class="sample-title">Settings</h5>
 <div class="layout-sample">
-    <table class="table table-striped">
-        <tbody>
-            <tr>
-                <td>Delete Cache</td>
-                <td>
-                    <button igxButton="outlined" (click)="deleteCache()" igxRipple>Delete Cache</button>
-                </td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>Change Theme</td>
-                <td>
-                    <button #target="tooltipTarget" (click)="toggleTheme()" [igxTooltipTarget]="tooltipRef"
-                        igxIconButton="flat">
-                        <igx-icon class="app__theme-icon">palette</igx-icon>
-                    </button>
-                </td>
-                <td>
-                    <span>Current Theme: {{currentTheme}}</span>
-                </td>
-            </tr>
-            <tr>
-                <td>Notification</td>
-                <td>
-                    <igx-checkbox [checked]="checkBoxEnabled" (click)="toggleCheckBox()"></igx-checkbox>
-                </td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>System Status</td>
-                <td>
-                    <igx-linear-bar *ngIf="nsqStatus && nsqStatus.channels"
-                        [value]="nsqStatus.channels[0].client_count/maxClients * 100" type="success" [striped]="true">
-                    </igx-linear-bar>
-                </td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>API Status - 1</td>
-                <td>
-                    <span>API Query Time: {{eodAPIStatus?.datetime}}</span>
-                    <br />
-                    <span>API Status Date: {{eodAPIStatus?.data?.apiRequestsDate}}</span>
-                    <br />
-                    <span>API Requests/Max Requests:
-                        {{eodAPIStatus?.data?.apiRequests}}/{{eodAPIStatus?.data?.dailyRateLimit}} </span>
-                    <br />
-                    <div>
-                        <igx-radial-gauge #radialGauge backingShape="Fitted" backingBrush="#fcfcfc"
-                            backingOutline="DodgerBlue" backingOversweep=5 backingCornerRadius=10
-                            backingStrokeThickness=5 backingOuterExtent=0.8 backingInnerExtent=0.15 scaleStartAngle=135
-                            scaleEndAngle=45 scaleBrush="#dddddd" height="300px" width="300px" minimumValue=0
-                            [value]="eodAPIStatus?.data?.apiRequests"
-                            [maximumValue]="eodAPIStatus?.data?.dailyRateLimit" interval=10000>
-                        </igx-radial-gauge>
-                    </div>
-                </td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>API Status - 2</td>
-                <td>
-                    <span>API Query Time: {{eodAPIStatus2?.datetime}}</span>
-                    <br />
-                    <span>API Status Date: {{eodAPIStatus2?.data?.apiRequestsDate}}</span>
-                    <br />
-                    <span>API Requests/Max Requests:
-                        {{eodAPIStatus2?.data?.apiRequests}}/{{eodAPIStatus2?.data?.dailyRateLimit}} </span>
-                    <br />
-                    <div>
-                        <igx-radial-gauge #radialGauge backingShape="Fitted" backingBrush="#fcfcfc"
-                            backingOutline="DodgerBlue" backingOversweep=5 backingCornerRadius=10
-                            backingStrokeThickness=5 backingOuterExtent=0.8 backingInnerExtent=0.15 scaleStartAngle=135
-                            scaleEndAngle=45 scaleBrush="#dddddd" height="300px" width="300px" minimumValue=0
-                            [value]="eodAPIStatus2?.data?.apiRequests"
-                            [maximumValue]="eodAPIStatus2?.data?.dailyRateLimit" interval=10000>
-                        </igx-radial-gauge>
-                    </div>
-                </td>
-                <td></td>
-            </tr>
-        </tbody>
-    </table>
+  <table class="table table-striped">
+    <tbody>
+      <tr>
+        <td>Delete Cache</td>
+        <td>
+          <button igxButton="outlined" (click)="deleteCache()" igxRipple>Delete Cache</button>
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Change Theme</td>
+        <td>
+          <button #target="tooltipTarget" (click)="toggleTheme()" [igxTooltipTarget]="tooltipRef"
+            igxIconButton="flat">
+            <igx-icon class="app__theme-icon">palette</igx-icon>
+          </button>
+        </td>
+        <td>
+          <span>Current Theme: {{currentTheme}}</span>
+        </td>
+      </tr>
+      <tr>
+        <td>Notification</td>
+        <td>
+          <igx-checkbox [checked]="checkBoxEnabled" (click)="toggleCheckBox()"></igx-checkbox>
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>System Status</td>
+        <td>
+          @if (nsqStatus && nsqStatus.channels) {
+            <igx-linear-bar
+              [value]="nsqStatus.channels[0].client_count/maxClients * 100" type="success" [striped]="true">
+            </igx-linear-bar>
+          }
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>API Status - 1</td>
+        <td>
+          <span>API Query Time: {{eodAPIStatus?.datetime}}</span>
+          <br />
+          <span>API Status Date: {{eodAPIStatus?.data?.apiRequestsDate}}</span>
+          <br />
+          <span>API Requests/Max Requests:
+          {{eodAPIStatus?.data?.apiRequests}}/{{eodAPIStatus?.data?.dailyRateLimit}} </span>
+          <br />
+          <div>
+            <igx-radial-gauge #radialGauge backingShape="Fitted" backingBrush="#fcfcfc"
+              backingOutline="DodgerBlue" backingOversweep=5 backingCornerRadius=10
+              backingStrokeThickness=5 backingOuterExtent=0.8 backingInnerExtent=0.15 scaleStartAngle=135
+              scaleEndAngle=45 scaleBrush="#dddddd" height="300px" width="300px" minimumValue=0
+              [value]="eodAPIStatus?.data?.apiRequests"
+              [maximumValue]="eodAPIStatus?.data?.dailyRateLimit" interval=10000>
+            </igx-radial-gauge>
+          </div>
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>API Status - 2</td>
+        <td>
+          <span>API Query Time: {{eodAPIStatus2?.datetime}}</span>
+          <br />
+          <span>API Status Date: {{eodAPIStatus2?.data?.apiRequestsDate}}</span>
+          <br />
+          <span>API Requests/Max Requests:
+          {{eodAPIStatus2?.data?.apiRequests}}/{{eodAPIStatus2?.data?.dailyRateLimit}} </span>
+          <br />
+          <div>
+            <igx-radial-gauge #radialGauge backingShape="Fitted" backingBrush="#fcfcfc"
+              backingOutline="DodgerBlue" backingOversweep=5 backingCornerRadius=10
+              backingStrokeThickness=5 backingOuterExtent=0.8 backingInnerExtent=0.15 scaleStartAngle=135
+              scaleEndAngle=45 scaleBrush="#dddddd" height="300px" width="300px" minimumValue=0
+              [value]="eodAPIStatus2?.data?.apiRequests"
+              [maximumValue]="eodAPIStatus2?.data?.dailyRateLimit" interval=10000>
+            </igx-radial-gauge>
+          </div>
+        </td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 <div #tooltipRef="tooltip" igxTooltip>
-    Change theme
+  Change theme
 </div>

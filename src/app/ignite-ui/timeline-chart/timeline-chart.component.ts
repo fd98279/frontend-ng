@@ -4,9 +4,10 @@ import { IgxDataChartComponent, IgxCategoryXAxisComponent, IgxNumericYAxisCompon
   CategoryTooltipLayerPosition} from 'igniteui-angular-charts';
 
 @Component({
-  selector: 'app-timeline-chart',
-  templateUrl: './timeline-chart.component.html',
-  styleUrls: ['./timeline-chart.component.scss']
+    selector: 'app-timeline-chart',
+    templateUrl: './timeline-chart.component.html',
+    styleUrls: ['./timeline-chart.component.scss'],
+    standalone: false
 })
 export class TimelineChartComponent implements OnInit, AfterViewInit {
   @ViewChild('chart', { static: true }) public chart: IgxDataChartComponent;

@@ -12,22 +12,24 @@
 
 <div class="layout-sample">
   <div class="layout-box" igxLayout igxLayoutDir="column">
-    <div class="layout-box__el" *ngIf="insiderTrades" igxFlex igxFlexGrow="0">
-      <grid-insider-trades [insiderTrades]="insiderTrades"
+    @if (insiderTrades) {
+      <div class="layout-box__el" igxFlex igxFlexGrow="0">
+        <grid-insider-trades [insiderTrades]="insiderTrades"
         (insiderTradesEntrySelected)="onInsiderTradeSelected($event)"></grid-insider-trades>
-      <div class="container sample">
-        <div class="options vertical">
-          <span id="legendTitle">Insider trades acquired vs disposed</span>
-          <igx-item-legend #legend></igx-item-legend>
-        </div>
-        <igx-pie-chart height="250px" width="100%" [dataSource]="chartData" [legend]="legend" valueMemberPath="value"
+        <div class="container sample">
+          <div class="options vertical">
+            <span id="legendTitle">Insider trades acquired vs disposed</span>
+            <igx-item-legend #legend></igx-item-legend>
+          </div>
+          <igx-pie-chart height="250px" width="100%" [dataSource]="chartData" [legend]="legend" valueMemberPath="value"
           labelMemberPath="name" labelsPosition="bestFit" style="padding-top: 5px;"> </igx-pie-chart>
+        </div>
       </div>
-    </div>
+    }
   </div>
 </div>
 
 <!-- Create a gird similar to grid-rss: name grid-insider-trading -->
 <!-- <div *ngIf="insiderTrades" igxFlex igxFlexGrow="0">
-  <grid-insider-trades [insiderTrades]="insiderTrades"></grid-insider-trades>
+<grid-insider-trades [insiderTrades]="insiderTrades"></grid-insider-trades>
 </div> -->

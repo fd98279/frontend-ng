@@ -26,7 +26,8 @@ import { IInsiderTrade } from '../../../insider-trading/insider-trading';
 @Component({
     selector: 'grid-insider-trades',
     styleUrls: ['./grid.component.scss'],
-    templateUrl: './grid.component.html'
+    templateUrl: './grid.component.html',
+    standalone: false
 })
 export class InsiderTradesGridComponent implements OnInit, OnDestroy, AfterViewInit {
 
@@ -119,7 +120,10 @@ export class InsiderTradesGridComponent implements OnInit, OnDestroy, AfterViewI
     };
 }
 
-@Pipe({ name: 'withoutTownFrom' })
+@Pipe({
+    name: 'withoutTownFrom',
+    standalone: false
+})
 export class PipeWithoutTownFrom implements PipeTransform {
     public transform(collection: any[], townFrom: string) {
         return collection.filter((item) => item !== townFrom);

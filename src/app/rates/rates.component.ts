@@ -3,7 +3,8 @@ import { IAsset } from '../assets/asset.model';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  templateUrl: './rates.component.html'
+    templateUrl: './rates.component.html',
+    standalone: false
 })
 export class RatesComponent {
 

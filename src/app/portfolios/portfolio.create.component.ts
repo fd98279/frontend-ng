@@ -27,9 +27,10 @@ interface AssetTypeOption {
 @Injectable()
 
 @Component({
-  templateUrl: './portfolio.create.component.html',
-  selector: 'portfolio-create',
-  styleUrls: ['./portfolio.create.component.scss']
+    templateUrl: './portfolio.create.component.html',
+    selector: 'portfolio-create',
+    styleUrls: ['./portfolio.create.component.scss'],
+    standalone: false
 })
 
 export class PortfolioCreateComponent implements OnInit {

@@ -1,11 +1,12 @@
-import { Component, OnInit, Inject, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Inject, Output, EventEmitter, DOCUMENT } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { DOCUMENT } from '@angular/common';
+
 import { WindowRef } from '../common/window.service';
 
 @Component({
-  selector: 'alphabet-selector',
-  templateUrl: './alphabet.selector.component.html'
+    selector: 'alphabet-selector',
+    templateUrl: './alphabet.selector.component.html',
+    standalone: false
 })
 
 

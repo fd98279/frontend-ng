@@ -7,7 +7,8 @@ import { IRegionData, IWorldData } from '../services/data.service';
     selector: 'app-list-cases',
     templateUrl: './list-cases.component.html',
     styleUrls: ['./list-cases.component.scss'],
-    host: { class: 'app__list' }
+    host: { class: 'app__list' },
+    standalone: false
 })
 export class ListCasesComponent {
 

@@ -1,11 +1,15 @@
-<button *ngIf="!userService.currentUser" igxRipple="white" igxButton="flat" style.--foreground="white" (click)="openDialog()">Log In</button>
+@if (!userService.currentUser) {
+  <button igxRipple="white" igxButton="flat" style.--foreground="white" (click)="openDialog()">Log In</button>
+}
 
-<button class="login-button" *ngIf="userService.currentUser" igxRipple="white" igxButton="flat"
+@if (userService.currentUser) {
+  <button class="login-button" igxRipple="white" igxButton="flat"
     style.--background="c" style.--foreground="white" [igxToggleAction]="options">
-  <igx-avatar [initials]="userService.username" [src]="userService.currentUser.picture" shape="circle" size="small" bgColor="white">
-  </igx-avatar>
-  <igx-icon>keyboard_arrow_down</igx-icon>
-</button>
+    <igx-avatar [initials]="userService.username" [src]="userService.currentUser.picture" shape="circle" size="small" bgColor="white">
+    </igx-avatar>
+    <igx-icon>keyboard_arrow_down</igx-icon>
+  </button>
+}
 
 <igx-drop-down #options (selectionChanging)="menuSelect($event)">
   <igx-drop-down-item igxRipple>Profile</igx-drop-down-item>

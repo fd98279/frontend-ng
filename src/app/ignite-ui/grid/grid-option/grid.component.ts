@@ -24,7 +24,8 @@ import { OptionAsset } from '../../../option/option';
 @Component({
     selector: 'grid-option',
     styleUrls: ['./grid.component.scss'],
-    templateUrl: './grid.component.html'
+    templateUrl: './grid.component.html',
+    standalone: false
 })
 export class OptionGridComponent implements OnInit, OnDestroy, AfterViewInit {
 

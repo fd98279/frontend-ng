@@ -15,7 +15,7 @@
       },
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
             "stylePreprocessorOptions": {
               "includePaths": [
@@ -23,7 +23,9 @@
                 "node_modules"
               ]
             },
-            "outputPath": "../../training/Vagrant/dist",
+            "outputPath": {
+              "base": "../../training/Vagrant/dist"
+            },
             "allowedCommonJsDependencies": [
               "socket.io-client",
               "debug",
@@ -31,8 +33,9 @@
               "core-js-pure"
             ],
             "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
+            "polyfills": [
+              "src/polyfills.ts"
+            ],
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
@@ -52,13 +55,12 @@
               "./node_modules/jquery/dist/jquery.min.js",
               "./node_modules/bootstrap/dist/js/bootstrap.min.js"
             ],
-            "vendorChunk": true,
             "extractLicenses": false,
-            "buildOptimizer": true,
             "sourceMap": true,
             "optimization": false,
             "namedChunks": true,
-            "aot": true
+            "aot": true,
+            "browser": "src/main.ts"
           },
           "configurations": {
             "local": {
@@ -80,8 +82,6 @@
               "sourceMap": false,
               "namedChunks": false,
               "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
               "aot": true
             },
             "development": {
@@ -93,7 +93,6 @@
               ],
               "outputHashing": "all",
               "namedChunks": false,
-              "buildOptimizer": true,
               "aot": true
             },
             "staging": {
@@ -107,8 +106,6 @@
               "sourceMap": false,
               "namedChunks": false,
               "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
               "aot": true
             }
           }
@@ -116,21 +113,21 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "sravz:build"
+            "buildTarget": "sravz:build"
           },
           "configurations": {
             "local": {
-              "browserTarget": "sravz:build:local"
+              "buildTarget": "sravz:build:local"
             },
             "production": {
-              "browserTarget": "sravz:build:production"
+              "buildTarget": "sravz:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "sravz:build"
+            "buildTarget": "sravz:build"
           }
         },
         "test": {
@@ -182,5 +179,31 @@
   },
   "cli": {
     "analytics": "45548ccf-6392-4820-80c9-36c895a7ed31"
+  },
+  "schematics": {
+    "@schematics/angular:component": {
+      "type": "component"
+    },
+    "@schematics/angular:directive": {
+      "type": "directive"
+    },
+    "@schematics/angular:service": {
+      "type": "service"
+    },
+    "@schematics/angular:guard": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:interceptor": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:module": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:pipe": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:resolver": {
+      "typeSeparator": "."
+    }
   }
 }

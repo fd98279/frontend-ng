@@ -11,7 +11,8 @@ import { Rect } from 'igniteui-angular-core';
     selector: 'app-map-cases',
     templateUrl: './map-cases.component.html',
     styleUrls: ['./map-cases.component.scss'],
-    host: {class: 'app__map-wrapper'}
+    host: { class: 'app__map-wrapper' },
+    standalone: false
 })
 export class MapCasesComponent implements OnInit {
 

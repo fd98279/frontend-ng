@@ -4,7 +4,8 @@ import { ConnectedPositioningStrategy, IgxDropDownComponent, IgxInputGroupCompon
 import { IFutureStat } from './futures.model';
 
 @Component({
-  templateUrl: './futures.component.html'
+    templateUrl: './futures.component.html',
+    standalone: false
 })
 export class FuturesComponent {
   @ViewChild(IgxDropDownComponent, { static: true }) public igxDropDown: IgxDropDownComponent;

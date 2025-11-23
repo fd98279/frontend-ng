@@ -9,8 +9,9 @@ import { environment } from '../../environments/environment';
 import { IgxRadialGaugeComponent } from 'igniteui-angular-gauges';
 
 @Component({
-  templateUrl: './settings.component.html',
-  styleUrls: ['./settings.component.scss'],
+    templateUrl: './settings.component.html',
+    styleUrls: ['./settings.component.scss'],
+    standalone: false
 })
 
 

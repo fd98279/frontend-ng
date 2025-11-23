@@ -7,7 +7,8 @@ import { IgxTabsComponent } from '@infragistics/igniteui-angular';
 
 @Component({
     selector: 'asset-tearsheet',
-    templateUrl: './asset.tearsheet.component.html'
+    templateUrl: './asset.tearsheet.component.html',
+    standalone: false
 })
 
 export class AssetTearsheetComponent implements AfterViewInit {

@@ -3,11 +3,10 @@ import { socialMedia, logos } from '@igniteui/material-icons-extended';
 import { IgxIconService } from '@infragistics/igniteui-angular';
 
 @Component({
-  templateUrl: './about.component.html',
-  styleUrls: ['./about.component.scss'],
-  providers: [
-
-  ]
+    templateUrl: './about.component.html',
+    styleUrls: ['./about.component.scss'],
+    providers: [],
+    standalone: false
 })
 
 

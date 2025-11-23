@@ -4,9 +4,10 @@ import { IgxGeographicMapComponent } from 'igniteui-angular-maps';
 import { IgxGeographicSymbolSeriesComponent } from 'igniteui-angular-maps';
 
 @Component({
-  selector: 'app-map-binding-data-json-points',
-  styleUrls: ['./map-binding-data-json-points.component.scss'],
-  templateUrl: './map-binding-data-json-points.component.html'
+    selector: 'app-map-binding-data-json-points',
+    styleUrls: ['./map-binding-data-json-points.component.scss'],
+    templateUrl: './map-binding-data-json-points.component.html',
+    standalone: false
 })
 
 export class MapBindingDataJsonPointsComponent implements AfterViewInit {

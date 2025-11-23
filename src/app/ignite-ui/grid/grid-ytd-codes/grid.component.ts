@@ -21,7 +21,8 @@ import { YTDCodes } from '../../../ytd/ytd';
 @Component({
     selector: 'grid-ytd-codes',
     styleUrls: ['./grid.component.scss'],
-    templateUrl: './grid.component.html'
+    templateUrl: './grid.component.html',
+    standalone: false
 })
 export class YtdCodesGridComponent implements OnInit, OnDestroy, AfterViewInit {
 

@@ -7,10 +7,11 @@ import { IgniteUIService } from '../services/ignite-ui-service';
 
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './markets.dashboard.component.html',
-  styleUrls: ['./markets.dashboard.component.scss'],
-  host: {class: 'app'}
+    selector: 'app-root',
+    templateUrl: './markets.dashboard.component.html',
+    styleUrls: ['./markets.dashboard.component.scss'],
+    host: { class: 'app' },
+    standalone: false
 })
 
 export class MarketsDashboardComponent implements AfterViewInit, OnInit {

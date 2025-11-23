@@ -1,106 +1,108 @@
 <div>
-    <div>
-        <div class="switch-sample">
-            <h5 class="switch-sample__title">Index Quotes
-                <a href="https://docs.sravz.com/docs/home/home/" target="_blank" class="pull-right"
-                    style="margin-left: 5px;">
-                    <span class="fa fa-book"></span>
-                </a>
-                <a class="pull-right">
-                    <span (click)="isCollapsed = !isCollapsed" class="fa fa-youtube"></span>
-                </a>
-            </h5>
-        </div>
-        <igx-expansion-panel [(collapsed)]="isCollapsed">
-            <igx-expansion-panel-header [iconPosition]="'right'">
-                <igx-expansion-panel-icon>
-                    <span class="example-icon" *ngIf="!panel.collapsed">Hide</span>
-                </igx-expansion-panel-icon>
-            </igx-expansion-panel-header>
-            <igx-expansion-panel-body class="my-expansion-panel">
-                <iframe class="wp-block-embed-youtube" width="450" height="450"
-                    src="https://www.youtube.com/embed/ZYxYKesM55Y" frameborder="0" allowfullscreen>
-                </iframe>
-            </igx-expansion-panel-body>
-        </igx-expansion-panel>
-
-        <div class="grid-search-filters">
-            <igx-input-group>
-                <input class="gridSample__filter" igxInput type="text" placeholder="Filter by name"
-                    (input)="filter($event.target.value, 'name')">
-            </igx-input-group>
-            <igx-input-group>
-                <input class="gridSample__filter" igxInput type="text" placeholder="Filter by country"
-                    (input)="filter($event.target.value, 'country')">
-            </igx-input-group>
-            <div class="float-right">
-                <a>
-                    <span (click)="exportButtonHandler()" title="export to excel" class="fa fa-download"></span>
-                </a>
-            </div>
-        </div>
+  <div>
+    <div class="switch-sample">
+      <h5 class="switch-sample__title">Index Quotes
+        <a href="https://docs.sravz.com/docs/home/home/" target="_blank" class="pull-right"
+          style="margin-left: 5px;">
+          <span class="fa fa-book"></span>
+        </a>
+        <a class="pull-right">
+          <span (click)="isCollapsed = !isCollapsed" class="fa fa-youtube"></span>
+        </a>
+      </h5>
     </div>
+    <igx-expansion-panel [(collapsed)]="isCollapsed">
+      <igx-expansion-panel-header [iconPosition]="'right'">
+        <igx-expansion-panel-icon>
+          @if (!panel.collapsed) {
+            <span class="example-icon">Hide</span>
+          }
+        </igx-expansion-panel-icon>
+      </igx-expansion-panel-header>
+      <igx-expansion-panel-body class="my-expansion-panel">
+        <iframe class="wp-block-embed-youtube" width="450" height="450"
+          src="https://www.youtube.com/embed/ZYxYKesM55Y" frameborder="0" allowfullscreen>
+        </iframe>
+      </igx-expansion-panel-body>
+    </igx-expansion-panel>
 
-    <igx-grid #grid1 [data]="indexQuotes"  height="600px" [allowFiltering]="true">
-        <igx-paginator [perPage]="10">
-        </igx-paginator>
-        <igx-column field="SravzId" header="Sravz ID" sortable="true" [cellClasses]="backgroundCell">
-            <ng-template igxCell let-val>
-                <div class="cell__inner">
-                    {{ val }}
-                </div>
-            </ng-template>
-        </igx-column>
+    <div class="grid-search-filters">
+      <igx-input-group>
+        <input class="gridSample__filter" igxInput type="text" placeholder="Filter by name"
+          (input)="filter($event.target.value, 'name')">
+      </igx-input-group>
+      <igx-input-group>
+        <input class="gridSample__filter" igxInput type="text" placeholder="Filter by country"
+          (input)="filter($event.target.value, 'country')">
+      </igx-input-group>
+      <div class="float-right">
+        <a>
+          <span (click)="exportButtonHandler()" title="export to excel" class="fa fa-download"></span>
+        </a>
+      </div>
+    </div>
+  </div>
 
-        <igx-column field="Name" header="Name" sortable="true" [cellClasses]="backgroundCell">
-            <ng-template igxCell let-val>
-                <div class="cell__inner">
-                    {{ val }}
-                </div>
-            </ng-template>
-        </igx-column>
+  <igx-grid #grid1 [data]="indexQuotes"  height="600px" [allowFiltering]="true">
+    <igx-paginator [perPage]="10">
+    </igx-paginator>
+    <igx-column field="SravzId" header="Sravz ID" sortable="true" [cellClasses]="backgroundCell">
+      <ng-template igxCell let-val>
+        <div class="cell__inner">
+          {{ val }}
+        </div>
+      </ng-template>
+    </igx-column>
 
-        <igx-column field="Country" header="Country" sortable="true" [cellClasses]="backgroundCell">
-            <ng-template igxCell let-val>
-                <div class="cell__inner">
-                    {{ val }}
-                </div>
-            </ng-template>
-        </igx-column>
+    <igx-column field="Name" header="Name" sortable="true" [cellClasses]="backgroundCell">
+      <ng-template igxCell let-val>
+        <div class="cell__inner">
+          {{ val }}
+        </div>
+      </ng-template>
+    </igx-column>
 
-        <igx-column field="Last" header="Last" dataType="number" sortable="true" [cellClasses]="backgroundCell">
-            <ng-template igxCell let-val>
-                <div class="cell__inner">
-                    {{ val }}
-                </div>
-            </ng-template>
-        </igx-column>
+    <igx-column field="Country" header="Country" sortable="true" [cellClasses]="backgroundCell">
+      <ng-template igxCell let-val>
+        <div class="cell__inner">
+          {{ val }}
+        </div>
+      </ng-template>
+    </igx-column>
+
+    <igx-column field="Last" header="Last" dataType="number" sortable="true" [cellClasses]="backgroundCell">
+      <ng-template igxCell let-val>
+        <div class="cell__inner">
+          {{ val }}
+        </div>
+      </ng-template>
+    </igx-column>
 
 
-        <igx-column field="Time" header="Time" dataType="number" sortable="true" [cellClasses]="backgroundCell">
-            <ng-template igxCell let-val>
-                <div class="cell__inner">
-                    {{ val }}
-                </div>
-            </ng-template>
-        </igx-column>
+    <igx-column field="Time" header="Time" dataType="number" sortable="true" [cellClasses]="backgroundCell">
+      <ng-template igxCell let-val>
+        <div class="cell__inner">
+          {{ val }}
+        </div>
+      </ng-template>
+    </igx-column>
 
 
-        <igx-column field="Change" header="Change" dataType="number" sortable="true" [cellClasses]="backgroundCell">
-            <ng-template igxCell let-val>
-                <div class="cell__inner">
-                    {{ val }}
-                </div>
-            </ng-template>
-        </igx-column>
+    <igx-column field="Change" header="Change" dataType="number" sortable="true" [cellClasses]="backgroundCell">
+      <ng-template igxCell let-val>
+        <div class="cell__inner">
+          {{ val }}
+        </div>
+      </ng-template>
+    </igx-column>
 
-        <igx-column field="PercentChange" header="Percent Change" dataType="number" sortable="true"
-            [cellClasses]="backgroundCell">
-            <ng-template igxCell let-val>
-                <div class="cell__inner">
-                    {{ val }}
-                </div>
-            </ng-template>
-        </igx-column>
-    </igx-grid>
+    <igx-column field="PercentChange" header="Percent Change" dataType="number" sortable="true"
+      [cellClasses]="backgroundCell">
+      <ng-template igxCell let-val>
+        <div class="cell__inner">
+          {{ val }}
+        </div>
+      </ng-template>
+    </igx-column>
+  </igx-grid>
 </div>

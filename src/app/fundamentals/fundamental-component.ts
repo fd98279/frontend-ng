@@ -9,6 +9,7 @@ import { Location } from '@angular/common';
 @Component({
     templateUrl: './fundamental-component.html',
     styleUrls: ['fundamental-component.scss'],
+    standalone: false
 })
 
 export class FundamentalsComponent implements OnInit {

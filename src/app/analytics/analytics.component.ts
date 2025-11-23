@@ -9,7 +9,8 @@ import { IPortfolio } from '../portfolios/portfolio.model';
 import { PortfolioTearsheetComponent } from '../tearsheet/portfolio.tearsheet.component';
 
 @Component({
-  templateUrl: './analytics.component.html'
+    templateUrl: './analytics.component.html',
+    standalone: false
 })
 export class AnalyticsComponent implements OnInit {
 

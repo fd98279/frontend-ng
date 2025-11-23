@@ -7,9 +7,10 @@ import { AuthenticationService } from '../services/authentication.service';
 import { Register } from '../models/register';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+    selector: 'app-register',
+    templateUrl: './register.component.html',
+    styleUrls: ['./register.component.scss'],
+    standalone: false
 })
 export class RegisterComponent {
   name: string;

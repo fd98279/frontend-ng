@@ -2,7 +2,8 @@ import {AfterViewInit, Component, ViewChild, ViewContainerRef} from '@angular/co
 
 @Component({
     selector: 'numeric-cell',
-    template: `<input #input (keydown)="onKeyDown($event)" [(ngModel)]="value" style="width: 100%">`
+    template: `<input #input (keydown)="onKeyDown($event)" [(ngModel)]="value" style="width: 100%">`,
+    standalone: false
 })
 export class NumericEditorComponent implements AfterViewInit {
     private params: any;

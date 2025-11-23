@@ -22,10 +22,11 @@ import { PersistanceService } from '../../../common/persistance.service';
 import { ButtonGroupAlignment } from '@infragistics/igniteui-angular';
 
 @Component({
-  selector: 'ngx-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'ngx-login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 
 export class NgxLoginComponent implements OnInit, AfterViewInit {

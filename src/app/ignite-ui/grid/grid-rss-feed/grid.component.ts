@@ -26,7 +26,8 @@ import { IRSSFeedEntry } from '../../../feed/feed';
 @Component({
     selector: 'grid-rss-feed',
     styleUrls: ['./grid.component.scss'],
-    templateUrl: './grid.component.html'
+    templateUrl: './grid.component.html',
+    standalone: false
 })
 export class RSSFeedGridComponent implements OnInit, OnDestroy, AfterViewInit {
 
@@ -105,7 +106,10 @@ export class RSSFeedGridComponent implements OnInit, OnDestroy, AfterViewInit {
       }
 }
 
-@Pipe({ name: 'withoutTownFrom' })
+@Pipe({
+    name: 'withoutTownFrom',
+    standalone: false
+})
 export class PipeWithoutTownFrom implements PipeTransform {
     public transform(collection: any[], townFrom: string) {
         return collection.filter((item) => item !== townFrom);

@@ -9,33 +9,57 @@
   <igx-divider></igx-divider>
   <igx-card-content class="app__card-content">
     <igx-list class="app__list-inner" [style.--ig-size]="'var(--ig-size-medium)'">
-      <igx-list-item #item *ngFor="let item of listSortedData" (click)="onListItemClicked(item)">
-        <span *ngIf="item.SravzId" igxListLineTitle>{{item.SravzId}}</span>
-        <span *ngIf="item.Name" igxListLineTitle>{{item.Name}}</span>
-        <span *ngIf="item.name" igxListLineTitle>{{item.name}}</span>
-        <span *ngIf="item.text" igxListLineTitle>{{item.text}}</span>
-        <span *ngIf="item.title" igxListLineTitle>{{item.title}}</span>
-        <!-- <ng-template #country>
+      @for (item of listSortedData; track item) {
+        <igx-list-item #item (click)="onListItemClicked(item)">
+          @if (item.SravzId) {
+            <span igxListLineTitle>{{item.SravzId}}</span>
+          }
+          @if (item.Name) {
+            <span igxListLineTitle>{{item.Name}}</span>
+          }
+          @if (item.name) {
+            <span igxListLineTitle>{{item.name}}</span>
+          }
+          @if (item.text) {
+            <span igxListLineTitle>{{item.text}}</span>
+          }
+          @if (item.title) {
+            <span igxListLineTitle>{{item.title}}</span>
+          }
+          <!-- <ng-template #country>
           <span igxListLineTitle>{{ item.sravz_id }}</span>
         </ng-template> -->
-        <span *ngIf="item.Last" igxListAction>{{ item.Last | number }}</span>
-        <span *ngIf="item.value" igxListAction>{{ item.value | number }}</span>
-        <span *ngIf="item.Change" igxListAction [style.color]="getFontColor(item.Change)">{{ item.change}}</span>
-        <span *ngIf="item.pnlpercent" igxListAction [style.color]="getFontColor(item.pnlpercent)">{{ item.pnlpercent}}</span>
-        <span *ngIf="item.PercentChange" igxListAction [style.color]="getFontColor(item.PercentChange)">{{ item.PercentChange
+        @if (item.Last) {
+          <span igxListAction>{{ item.Last | number }}</span>
+        }
+        @if (item.value) {
+          <span igxListAction>{{ item.value | number }}</span>
+        }
+        @if (item.Change) {
+          <span igxListAction [style.color]="getFontColor(item.Change)">{{ item.change}}</span>
+        }
+        @if (item.pnlpercent) {
+          <span igxListAction [style.color]="getFontColor(item.pnlpercent)">{{ item.pnlpercent}}</span>
+        }
+        @if (item.PercentChange) {
+          <span igxListAction [style.color]="getFontColor(item.PercentChange)">{{ item.PercentChange
           }}%</span>
-        <span *ngIf="item.linkText" igxListLineTitle>{{ item.linkText }}</span>
+        }
+        @if (item.linkText) {
+          <span igxListLineTitle>{{ item.linkText }}</span>
+        }
         <!-- <span *ngIf="item.link" igxListAction>
-          <button igxButton="icon" (click)="onListItemClickedNavigateToUrl(item)">
-            <igx-icon>link</igx-icon>
-          </button>
-        </span> -->
-      </igx-list-item>
-      <ng-template igxEmptyList>
-        <div class="app__loader">
-          <igx-circular-bar [indeterminate]="true"></igx-circular-bar>
-        </div>
-      </ng-template>
-    </igx-list>
-  </igx-card-content>
+        <button igxButton="icon" (click)="onListItemClickedNavigateToUrl(item)">
+          <igx-icon>link</igx-icon>
+        </button>
+      </span> -->
+    </igx-list-item>
+  }
+  <ng-template igxEmptyList>
+    <div class="app__loader">
+      <igx-circular-bar [indeterminate]="true"></igx-circular-bar>
+    </div>
+  </ng-template>
+</igx-list>
+</igx-card-content>
 </igx-card>

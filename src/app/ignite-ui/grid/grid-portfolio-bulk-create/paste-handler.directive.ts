@@ -1,6 +1,9 @@
 import { Directive, EventEmitter, HostListener, Output, OnInit} from '@angular/core';
 
-@Directive({ selector: '[paste-handler]' })
+@Directive({
+    selector: '[paste-handler]',
+    standalone: false
+})
 export class PasteHandlerDirective implements OnInit {
     public textArea;
 

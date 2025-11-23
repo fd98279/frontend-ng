@@ -20,7 +20,8 @@ import { Fundamental } from '../../../etfs/etf';
 @Component({
     selector: 'grid-etf',
     styleUrls: ['./grid.component.scss'],
-    templateUrl: './grid.component.html'
+    templateUrl: './grid.component.html',
+    standalone: false
 })
 export class ETFGridComponent implements OnInit, OnDestroy, AfterViewInit {
 

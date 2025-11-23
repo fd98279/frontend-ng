@@ -8,10 +8,9 @@ import { AuthService } from '../@auth/auth.service';
 import { PersistanceService } from '../common/persistance.service';
 
 @Component({
-  templateUrl: './contactus.component.html',
-  providers: [
-
-  ]
+    templateUrl: './contactus.component.html',
+    providers: [],
+    standalone: false
 })
 
 

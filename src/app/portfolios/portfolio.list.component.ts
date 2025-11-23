@@ -10,8 +10,9 @@ import { IPortfolioAsset } from '../quotes/quotes.model';
 import { IgxDialogComponent } from '@infragistics/igniteui-angular';
 
 @Component({
-  templateUrl: './portfolio.list.component.html',
-  styleUrls: ['./portfolio.list.component.scss']
+    templateUrl: './portfolio.list.component.html',
+    styleUrls: ['./portfolio.list.component.scss'],
+    standalone: false
 })
 
 

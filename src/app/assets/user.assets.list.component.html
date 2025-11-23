@@ -4,11 +4,14 @@
       <div class="dialog-title">{{modalHeader}}</div>
     </div>
   </igx-dialog-title>
-  <span *ngIf="assetToDelete != undefined">{{assetToDelete.USERNAME.S}} - {{assetToDelete.USER_ASSET_NAME.S}} -
+  @if (assetToDelete != undefined) {
+    <span>{{assetToDelete.USERNAME.S}} - {{assetToDelete.USER_ASSET_NAME.S}} -
     {{assetToDelete.USER_ASSET_TYPE.S}}</span>
-  <div *ngIf="assetToUpdate != undefined">
-    <form class="signInForm">
-      <!-- <igx-input-group>
+  }
+  @if (assetToUpdate != undefined) {
+    <div>
+      <form class="signInForm">
+        <!-- <igx-input-group>
         <label igxLabel for="username">User Name</label>
         <input igxInput type="text" id="username" value="{{assetToUpdate.USERNAME.S}}" readonly>
       </igx-input-group> -->
@@ -16,14 +19,15 @@
         <label igxLabel for="userassetname">User Asset Name</label>
         <input igxInput type="text" id="userassetname" value="{{assetToUpdate.USER_ASSET_NAME.S}}" readonly>
       </igx-input-group>
-        <label igxLabel for="userassettype">User Asset Type</label>
-        <asset-type-selector style=" width: 100%;" id="UserAssetType" (messageEvent)="assetTypeChanged($event)"></asset-type-selector>
+      <label igxLabel for="userassettype">User Asset Type</label>
+      <asset-type-selector style=" width: 100%;" id="UserAssetType" (messageEvent)="assetTypeChanged($event)"></asset-type-selector>
     </form>
   </div>
-    <div igxDialogActions>
-      <button igxButton (click)="dialog.close()">Close</button>
-      <button igxButton (click)="DeleteOrUpdateAsset()" [disabled]="!enableSubmitButton">{{modalSubmitButtonText}}</button>
-    </div>
+}
+<div igxDialogActions>
+  <button igxButton (click)="dialog.close()">Close</button>
+  <button igxButton (click)="DeleteOrUpdateAsset()" [disabled]="!enableSubmitButton">{{modalSubmitButtonText}}</button>
+</div>
 
 </igx-dialog>
 
@@ -31,7 +35,9 @@
   <h5>User Assets
     <button style="margin: 5px;" class="pull-right" igxButton="contained" routerLink="/upload/asset" igxRipple><i class="fa fa-upload"></i></button>
   </h5>
-  <grid-users-assets *ngIf="userassets?.length > 0" [isUpdateIcon]="true" [isDetailIcon]="true" [isDeleteIcon]="true" (deleteEvent)="DeleteRow($event)" (updateEvent)="UpdateRow($event)"
+  @if (userassets?.length > 0) {
+    <grid-users-assets [isUpdateIcon]="true" [isDetailIcon]="true" [isDeleteIcon]="true" (deleteEvent)="DeleteRow($event)" (updateEvent)="UpdateRow($event)"
     (rowDetailEvent)="RowDetails($event)" [userassetsEvents]="userassets"></grid-users-assets>
+  }
 </div>
 

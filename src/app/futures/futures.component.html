@@ -4,32 +4,37 @@
   </a>
 </h5>
 
-<grid-futurestats-calender *ngIf="futureStats?.length > 0" [calenderEvents]="futureStats"></grid-futurestats-calender>
-<div *ngIf="futureStats?.length > 0">
-  <div class="select" style="padding-top: 5px;">
-    <span> Select Chart Type:
-      <igx-input-group #inputGroup [igxToggleAction]="dropDown" class="input-group">
-        <input #input class="input" type="text" igxInput [igxDropDownItemNavigation]="dropDown" readonly="true"
-          placeholder="Choose an option" [value]="type" (keydown.ArrowDown)="openDropDown()" />
-        <igx-suffix igxIconButton="flat" class="dropdownToggleButton" igxRipple>
-          <igx-icon>arrow_drop{{ dropDown.collapsed ? '_down' : '_up' }}</igx-icon>
-        </igx-suffix>
-      </igx-input-group>
-
-      <igx-drop-down #dropDown (selectionChanging)="onDDLSelection($event)" [width]="'180px'">
-        <igx-drop-down-item *ngFor="let item of items" [value]="item.field">
-          {{ item.field }}
-        </igx-drop-down-item>
-      </igx-drop-down>
-    </span>
+@if (futureStats?.length > 0) {
+  <grid-futurestats-calender [calenderEvents]="futureStats"></grid-futurestats-calender>
+}
+@if (futureStats?.length > 0) {
+  <div>
+    <div class="select" style="padding-top: 5px;">
+      <span> Select Chart Type:
+        <igx-input-group #inputGroup [igxToggleAction]="dropDown" class="input-group">
+          <input #input class="input" type="text" igxInput [igxDropDownItemNavigation]="dropDown" readonly="true"
+            placeholder="Choose an option" [value]="type" (keydown.ArrowDown)="openDropDown()" />
+          <igx-suffix igxIconButton="flat" class="dropdownToggleButton" igxRipple>
+            <igx-icon>arrow_drop{{ dropDown.collapsed ? '_down' : '_up' }}</igx-icon>
+          </igx-suffix>
+        </igx-input-group>
+        <igx-drop-down #dropDown (selectionChanging)="onDDLSelection($event)" [width]="'180px'">
+          @for (item of items; track item) {
+            <igx-drop-down-item [value]="item.field">
+              {{ item.field }}
+            </igx-drop-down-item>
+          }
+        </igx-drop-down>
+      </span>
+    </div>
+    <div class="options vertical">
+      <igx-legend #legend orientation="horizontal"></igx-legend>
+    </div>
+    <div class="container">
+      <igx-category-chart style="padding-top: 5px;" [dataSource]="chartData" [chartType]="type"
+        width="100%" height="400px" [legend]="legend" AlignsGridLinesToPixels="true" yAxisMinimumValue="-100" yAxisMaximumValue="100" xAxisGap="2"
+        [xAxisTitle]="Name" yAxisTitle="Percent" xAxisTickLength="5" xAxisTitleAngle="0" Brushes="red, orange, green" [brushes]="brushes">
+      </igx-category-chart>
+    </div>
   </div>
-  <div class="options vertical">
-    <igx-legend #legend orientation="horizontal"></igx-legend>
-  </div>
-  <div class="container">
-    <igx-category-chart style="padding-top: 5px;" [dataSource]="chartData" [chartType]="type"
-      width="100%" height="400px" [legend]="legend" AlignsGridLinesToPixels="true" yAxisMinimumValue="-100" yAxisMaximumValue="100" xAxisGap="2"
-      [xAxisTitle]="Name" yAxisTitle="Percent" xAxisTickLength="5" xAxisTitleAngle="0" Brushes="red, orange, green" [brushes]="brushes">
-    </igx-category-chart>
-  </div>
-</div>
+}

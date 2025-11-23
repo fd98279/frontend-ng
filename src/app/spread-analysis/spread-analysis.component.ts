@@ -7,7 +7,8 @@ import { IIgniteUIMessage } from '../ignite-ui/services/ignite-ui-message-model'
 import { IgniteUIService } from '../ignite-ui/services/ignite-ui-service';
 
 @Component({
-  templateUrl: './spread-analysis.component.html'
+    templateUrl: './spread-analysis.component.html',
+    standalone: false
 })
 
 

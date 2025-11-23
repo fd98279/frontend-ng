@@ -7,6 +7,7 @@ import { ETFService } from './etf.service';
 @Component({
     templateUrl: './etf-component.html',
     styleUrls: ['etf-component.scss'],
+    standalone: false
 })
 
 export class ETFComponent implements OnInit {

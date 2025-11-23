@@ -20,7 +20,8 @@ import { IMortgageQuote } from '../../../../app/rates/mortgage-quotes.model';
 @Component({
     selector: 'grid-mortgage-rate',
     styleUrls: ['./grid-mortgage-rate.component.scss'],
-    templateUrl: './grid-mortgage-rate.component.html'
+    templateUrl: './grid-mortgage-rate.component.html',
+    standalone: false
 })
 export class GridMortgageRateComponent implements OnInit, OnDestroy {
 

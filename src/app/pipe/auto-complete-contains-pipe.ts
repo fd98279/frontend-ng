@@ -1,6 +1,9 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-@Pipe({ name: 'contains' })
+@Pipe({
+    name: 'contains',
+    standalone: false
+})
 export class AutocompletePipeContains implements PipeTransform {
 
   public transform = (movies: string[], term = '') => this.filterMovies(movies, term);

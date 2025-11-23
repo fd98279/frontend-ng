@@ -17,9 +17,11 @@
         <igx-date-range-picker name="datesRange" #dateRangePicker="ngModel" required [(ngModel)]="range"
           [minValue]="fromDate" [maxValue]="toDate" [placeholder]="'From - To'">
           <label igxLabel>Earnings Dates</label>
-          <igx-hint *ngIf="dateRangePicker.invalid && (dateRangePicker.dirty || dateRangePicker.touched)">
-            Please choose start and end date!
-          </igx-hint>
+          @if (dateRangePicker.invalid && (dateRangePicker.dirty || dateRangePicker.touched)) {
+            <igx-hint>
+              Please choose start and end date!
+            </igx-hint>
+          }
           <button (click)="refreshEarnings()" igxButton="fab" class="pull-right">
             <igx-icon fontSet="material">refresh</igx-icon>
           </button>
@@ -40,10 +42,12 @@
     </igx-tab-header>
     <igx-tab-content>
       <grid-assets [rowSelectionMode]="'single'" [assets]="assets"
-        (assetsSelected)="onAssetsSelected($event)"></grid-assets>
+      (assetsSelected)="onAssetsSelected($event)"></grid-assets>
 
       <h5 class="sravztext_center">Earnings Analysis</h5>
-      <img *ngIf="earningsAnalysisUrl" [src]="earningsAnalysisUrl" class="sravzimg">
+      @if (earningsAnalysisUrl) {
+        <img [src]="earningsAnalysisUrl" class="sravzimg">
+      }
     </igx-tab-content>
   </igx-tab-item>
 </igx-tabs>

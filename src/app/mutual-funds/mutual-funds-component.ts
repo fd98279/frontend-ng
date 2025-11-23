@@ -10,6 +10,7 @@ import { AnalyticsService } from '../analytics.service';
 @Component({
     templateUrl: './mutual-fund-component.html',
     styleUrls: ['mutual-fund-component.scss'],
+    standalone: false
 })
 
 export class MutualFundsComponent implements OnInit {

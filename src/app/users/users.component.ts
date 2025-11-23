@@ -8,10 +8,11 @@ import { Component } from '@angular/core';
 
 
 @Component({
-  selector: 'ngx-users',
-  template: `
+    selector: 'ngx-users',
+    template: `
     <router-outlet></router-outlet>
   `,
+    standalone: false
 })
 export class UsersComponent {
 

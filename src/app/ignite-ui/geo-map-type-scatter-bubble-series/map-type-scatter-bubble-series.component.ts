@@ -9,9 +9,10 @@ import { IgniteUIService } from '../services/ignite-ui-service';
 import { IQuote } from '../../quotes/quotes.model';
 
 @Component({
-  selector: 'app-map-type-scatter-bubble-series',
-  styleUrls: ['./map-type-scatter-bubble-series.component.scss'],
-  templateUrl: './map-type-scatter-bubble-series.component.html'
+    selector: 'app-map-type-scatter-bubble-series',
+    styleUrls: ['./map-type-scatter-bubble-series.component.scss'],
+    templateUrl: './map-type-scatter-bubble-series.component.html',
+    standalone: false
 })
 export class MapTypeScatterBubbleSeriesComponent implements AfterViewInit {
 

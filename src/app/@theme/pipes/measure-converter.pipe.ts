@@ -1,6 +1,9 @@
 import {Pipe, PipeTransform} from '@angular/core';
 
-@Pipe({ name: 'ngxMeasureConverter' })
+@Pipe({
+    name: 'ngxMeasureConverter',
+    standalone: false
+})
 export class MeasureConverterPipe implements PipeTransform {
 
   transform(input: number | string): string {

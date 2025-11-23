@@ -11,9 +11,11 @@
       </igx-suffix>
     </igx-input-group>
     <igx-drop-down #dropDown (selectionChanging)="onDDLSelection($event)" [width]="'180px'">
-      <igx-drop-down-item *ngFor="let item of items" [value]="item.field">
-        {{ item.field }}
-      </igx-drop-down-item>
+      @for (item of items; track item) {
+        <igx-drop-down-item [value]="item.field">
+          {{ item.field }}
+        </igx-drop-down-item>
+      }
     </igx-drop-down>
   </span>
 </div>
@@ -26,86 +28,92 @@
           <h5 class="sample-title">Asset Type - {{type}}</h5>
         </div>
       </div>
-      <div *ngIf="type==='Stocks'" class="row">
-        <div class="col-md-10">
-          <alphabet-selector (messageEvent)="typeChanged($event)"></alphabet-selector>
+      @if (type==='Stocks') {
+        <div class="row">
+          <div class="col-md-10">
+            <alphabet-selector (messageEvent)="typeChanged($event)"></alphabet-selector>
+          </div>
+          <div class="col-md-2">
+            <button class="btn btn-primary pull-right btn-sm" (click)="fetchStockQuotes()" [disabled]="!selectedStartCharater?.length">
+              <i class="fa fa-search"></i>
+            </button>
+          </div>
         </div>
-        <div class="col-md-2">
-          <button class="btn btn-primary pull-right btn-sm" (click)="fetchStockQuotes()" [disabled]="!selectedStartCharater?.length">
-            <i class="fa fa-search"></i>
-          </button>
-        </div>
-      </div>
+      }
       <div style="width: 100%;">
-          <igx-grid #assetsGrid [data]="data" [allowFiltering]="true" primaryKey="SravzId" [rowSelection]="selectionMode"
-            [hideRowSelectors]="hideRowSelectors" (rowSelectionChanging)="handleRowSelection($event)" width="auto" height="600px">
-            <igx-paginator [perPage]="10">
-            </igx-paginator>            
-            <igx-column header="SravzId" [dataType]="'string'" width="200" field="SravzId" sortable="true" [filterable]="true" [cellClasses]="backgroundCell"></igx-column>
-            <igx-column field="Name" header="Name" [dataType]="'string'" width="200" sortable="true" [cellClasses]="backgroundCell"></igx-column>
-            <igx-column field="Country" header="Country" [dataType]="'string'" sortable="true" [cellClasses]="backgroundCell"></igx-column>
-            <igx-column field="Last" header="Last" dataType="number" sortable="true" [cellClasses]="backgroundCell"></igx-column>
-            <igx-column field="High" header="High" dataType="number" sortable="true" [cellClasses]="backgroundCell"></igx-column>
-            <igx-column field="Low" header="Low" dataType="number" sortable="true" [cellClasses]="backgroundCell"></igx-column>
-            <igx-column field="Change" header="Change" dataType="number" sortable="true" [cellClasses]="backgroundCell"></igx-column>
-            <igx-column field="PercentChange" header="Chg%" dataType="number" sortable="true" [cellClasses]="backgroundCell"></igx-column>
-            <igx-column field="Time" header="Time" [dataType]="'date'" sortable="true" [cellClasses]="backgroundCell">
-              <ng-template igxCell let-value>
-                {{ value | date : 'MM/dd/yyyy h:mm:ss a' }}
-              </ng-template>
-            </igx-column>
-          </igx-grid>
+        <igx-grid #assetsGrid [data]="data" [allowFiltering]="true" primaryKey="SravzId" [rowSelection]="selectionMode"
+          [hideRowSelectors]="hideRowSelectors" (rowSelectionChanging)="handleRowSelection($event)" width="auto" height="600px">
+          <igx-paginator [perPage]="10">
+          </igx-paginator>
+          <igx-column header="SravzId" [dataType]="'string'" width="200" field="SravzId" sortable="true" [filterable]="true" [cellClasses]="backgroundCell"></igx-column>
+          <igx-column field="Name" header="Name" [dataType]="'string'" width="200" sortable="true" [cellClasses]="backgroundCell"></igx-column>
+          <igx-column field="Country" header="Country" [dataType]="'string'" sortable="true" [cellClasses]="backgroundCell"></igx-column>
+          <igx-column field="Last" header="Last" dataType="number" sortable="true" [cellClasses]="backgroundCell"></igx-column>
+          <igx-column field="High" header="High" dataType="number" sortable="true" [cellClasses]="backgroundCell"></igx-column>
+          <igx-column field="Low" header="Low" dataType="number" sortable="true" [cellClasses]="backgroundCell"></igx-column>
+          <igx-column field="Change" header="Change" dataType="number" sortable="true" [cellClasses]="backgroundCell"></igx-column>
+          <igx-column field="PercentChange" header="Chg%" dataType="number" sortable="true" [cellClasses]="backgroundCell"></igx-column>
+          <igx-column field="Time" header="Time" [dataType]="'date'" sortable="true" [cellClasses]="backgroundCell">
+            <ng-template igxCell let-value>
+              {{ value | date : 'MM/dd/yyyy h:mm:ss a' }}
+            </ng-template>
+          </igx-column>
+        </igx-grid>
       </div>
     </div>
   </div>
   <div>
-    <div class="grid__wrapper1" style="width: 100%;" *ngIf="selectedItemsNewGrid.length>0">
-      <div>
-        <div class="layout-sample">
-          <div class="title">Selected Portfolio Assets</div>
+    @if (selectedItemsNewGrid.length>0) {
+      <div class="grid__wrapper1" style="width: 100%;">
+        <div>
+          <div class="layout-sample">
+            <div class="title">Selected Portfolio Assets</div>
+          </div>
         </div>
-      </div>
-      <igx-grid #portfolioGrid [allowFiltering]="true" (cellEditDone)="cellEditDone($event)" [data]="selectedItemsNewGrid" primaryKey="SravzId" width="auto" height="600px">
-        <igx-paginator [perPage]="10">
-        </igx-paginator>
-        <igx-column field="SravzId" header="SravzId" width="200" sortable="true" [filterable]="false"></igx-column>
-        <igx-column field="Name" header="Name" [dataType]="'string'" width="200" sortable="true"></igx-column>
-        <igx-column field="Last" header="Last" dataType="number" sortable="true"></igx-column>
-        <igx-column field="Weight_Price" dataType="number" [hasSummary]="true" [summaryFormatter]="totalFormatter" [summaries]="mySummary" dataType="number" header="Weight_Price"
+        <igx-grid #portfolioGrid [allowFiltering]="true" (cellEditDone)="cellEditDone($event)" [data]="selectedItemsNewGrid" primaryKey="SravzId" width="auto" height="600px">
+          <igx-paginator [perPage]="10">
+          </igx-paginator>
+          <igx-column field="SravzId" header="SravzId" width="200" sortable="true" [filterable]="false"></igx-column>
+          <igx-column field="Name" header="Name" [dataType]="'string'" width="200" sortable="true"></igx-column>
+          <igx-column field="Last" header="Last" dataType="number" sortable="true"></igx-column>
+          <igx-column field="Weight_Price" dataType="number" [hasSummary]="true" [summaryFormatter]="totalFormatter" [summaries]="mySummary" dataType="number" header="Weight_Price"
           sortable="true"></igx-column>
-        <igx-column field="Weight_Pct" dataType="percent" [hasSummary]="true" [summaryFormatter]="totalFormatter" [summaries]="mySummary" dataType="number" [editable]="true"
+          <igx-column field="Weight_Pct" dataType="percent" [hasSummary]="true" [summaryFormatter]="totalFormatter" [summaries]="mySummary" dataType="number" [editable]="true"
           header="Weight_Pct" sortable="true"></igx-column>
-      </igx-grid>
-    </div>
+        </igx-grid>
+      </div>
+    }
   </div>
 </div>
 
 <div>
   <div>
-    <form [formGroup]="portfolioForm" *ngIf="selectedItemsNewGrid.length>0">
-      <div class="form-sec d-flex p-align-end p-justify-center">
-        <div class="col-md-3">
-          <igx-input-group>
-            <input igxInput name="name" formControlName="name" type="text" />
-            <label igxLabel for="fname">Name</label>
-          </igx-input-group>
+    @if (selectedItemsNewGrid.length>0) {
+      <form [formGroup]="portfolioForm">
+        <div class="form-sec d-flex p-align-end p-justify-center">
+          <div class="col-md-3">
+            <igx-input-group>
+              <input igxInput name="name" formControlName="name" type="text" />
+              <label igxLabel for="fname">Name</label>
+            </igx-input-group>
+          </div>
+          <div class="col-md-3">
+            <igx-input-group>
+              <input igxInput formControlName="description" name="description" type="text" />
+              <label igxLabel for="description">Description</label>
+            </igx-input-group>
+          </div>
+          <div class="col-md-3">
+            <igx-checkbox formControlName="ispublic" checked="false">
+              Is public
+            </igx-checkbox>
+          </div>
+          <div class="col-md-3">
+            <button igxButton="contained" (click)="submitPortfolio()" igxRipple>Create</button>
+            <button igxButton="contained" (click)="resetPortfolio()" igxRipple>Reset</button>
+          </div>
         </div>
-        <div class="col-md-3">
-          <igx-input-group>
-            <input igxInput formControlName="description" name="description" type="text" />
-            <label igxLabel for="description">Description</label>
-          </igx-input-group>
-        </div>
-        <div class="col-md-3">
-          <igx-checkbox formControlName="ispublic" checked="false">
-            Is public
-          </igx-checkbox>
-        </div>
-        <div class="col-md-3">
-          <button igxButton="contained" (click)="submitPortfolio()" igxRipple>Create</button>
-          <button igxButton="contained" (click)="resetPortfolio()" igxRipple>Reset</button>
-        </div>
-      </div>
-    </form>
+      </form>
+    }
   </div>
 </div>

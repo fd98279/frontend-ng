@@ -1,16 +1,17 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, DOCUMENT } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { environment } from '../../environments/environment';
 import { PersistanceService } from '../common/persistance.service';
 
-import { DOCUMENT } from '@angular/common';
+
 
 
 import { WindowRef } from '../common/window.service';
 
 @Component({
-  selector: 'index-selector',
-  templateUrl: './index.selector.component.html'
+    selector: 'index-selector',
+    templateUrl: './index.selector.component.html',
+    standalone: false
 })
 
 

@@ -8,7 +8,8 @@ import { IAsset } from '../assets/asset.model';
 import { AnalyticsService } from '../analytics.service';
 
 @Component({
-    templateUrl: './earnings-component.html'
+    templateUrl: './earnings-component.html',
+    standalone: false
 })
 
 export class EarningsComponent implements OnInit {

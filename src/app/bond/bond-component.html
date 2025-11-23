@@ -9,6 +9,8 @@
   <grid-bond-tickers [bondTickers]="bondTickers" (bondTickerSelected)="onBondTickerSelected($event)"></grid-bond-tickers>
 </div>
 
-<div class="layout-sample" *ngIf="bond">
+@if (bond) {
+  <div class="layout-sample">
     <grid-bond [bond]="bond"></grid-bond>
-</div>
+  </div>
+}

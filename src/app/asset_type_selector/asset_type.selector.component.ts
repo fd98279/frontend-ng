@@ -1,14 +1,15 @@
-import { Component, OnInit, Inject, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, Inject, Output, EventEmitter, Input, DOCUMENT } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { DOCUMENT } from '@angular/common';
+
 
 
 import { WindowRef } from '../common/window.service';
 
 @Component({
-  selector: 'asset-type-selector',
-  templateUrl: './asset_type.selector.component.html'
+    selector: 'asset-type-selector',
+    templateUrl: './asset_type.selector.component.html',
+    standalone: false
 })
 
 

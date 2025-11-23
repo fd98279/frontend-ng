@@ -4,7 +4,8 @@ import { IgxTabsComponent } from '@infragistics/igniteui-angular';
 import { IMortgageQuote } from './mortgage-quotes.model';
 
 @Component({
-  templateUrl: './mortgage-rates.component.html'
+    templateUrl: './mortgage-rates.component.html',
+    standalone: false
 })
 export class MortgageRatesComponent implements OnInit, AfterViewInit {
   @ViewChild('tabs') tabs: IgxTabsComponent;

@@ -4,21 +4,27 @@
     "baseUrl": "./",
     "importHelpers": true,
     "outDir": "./dist/out-tsc",
+    "esModuleInterop": true,
     "sourceMap": true,
     "declaration": false,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "experimentalDecorators": true,
     "module": "esnext",
     "target": "esnext",
-    "downlevelIteration": true,
     "skipLibCheck": true,
     "typeRoots": [
       "node_modules/@types"
     ],
     "paths": {
-      "igniteui-angular": ["./node_modules/@infragistics/igniteui-angular"],
-      "igniteui-dockmanager": ["./node_modules/@infragistics/igniteui-dockmanager"],
-      "igniteui-dockmanager/*": ["./node_modules/@infragistics/igniteui-dockmanager/*"],
+      "igniteui-angular": [
+        "./node_modules/@infragistics/igniteui-angular"
+      ],
+      "igniteui-dockmanager": [
+        "./node_modules/@infragistics/igniteui-dockmanager"
+      ],
+      "igniteui-dockmanager/*": [
+        "./node_modules/@infragistics/igniteui-dockmanager/*"
+      ]
     },
     "lib": [
       "es2017",

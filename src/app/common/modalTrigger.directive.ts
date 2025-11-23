@@ -2,7 +2,8 @@ import { Directive, OnInit, Inject, ElementRef, Input } from "@angular/core";
 import { JQ_TOKEN } from "./index";
 
 @Directive({
-  selector: '[modal-trigger]'
+    selector: '[modal-trigger]',
+    standalone: false
 })
 export class ModalTriggerDirective implements OnInit {
   private el: HTMLElement;

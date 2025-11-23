@@ -18,7 +18,8 @@ import { IPortfolioAsset } from '../../../../app/quotes/quotes.model';
 @Component({
     selector: 'grid-portfolios-assests',
     styleUrls: ['./grid-portfolios-assests.component.scss'],
-    templateUrl: './grid-portfolios-assests.component.html'
+    templateUrl: './grid-portfolios-assests.component.html',
+    standalone: false
 })
 export class GridPortfoliosAssestsComponent implements OnInit, OnDestroy {
 

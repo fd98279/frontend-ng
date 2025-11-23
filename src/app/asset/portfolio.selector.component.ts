@@ -4,8 +4,9 @@ import { IPortfolio } from '../portfolios/portfolio.model';
 
 
 @Component({
-  selector: 'portfolio-selector-component',
-  templateUrl: 'portfolio.selector.component.html'
+    selector: 'portfolio-selector-component',
+    templateUrl: 'portfolio.selector.component.html',
+    standalone: false
 })
 
 export class PortfolioSelectorComponent implements OnInit {

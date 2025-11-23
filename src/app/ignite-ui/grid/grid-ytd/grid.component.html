@@ -1,524 +1,515 @@
-<div *ngIf="ytds?.length > 0 || stats?.length > 0">
+@if (ytds?.length > 0 || stats?.length > 0) {
+  <div>
     <div>
-        <button style="margin: 5px;" class="pull-right" igxButton="contained" (click)="reset()" igxRipple>Reset</button>
+      <button style="margin: 5px;" class="pull-right" igxButton="contained" (click)="reset()" igxRipple>Reset</button>
     </div>
     <igx-tabs>
-        <igx-tab-item>
-            <igx-tab-header>
-                <span igxTabHeaderLabel>YTD</span>
-            </igx-tab-header>
-            <igx-tab-content>
-                <div>
-                    <h6>Grid</h6>
-                    <igx-grid #grid1 [data]="ytds" height="600px" [allowFiltering]="true">
-                        <igx-paginator [perPage]="10">
-                        </igx-paginator>
-                        <igx-column field="Code" header="Code" sortable="true">
-                            <ng-template igxCell let-val>
-                                <div class="cell__inner">
-                                    {{ val }}
-                                </div>
-                            </ng-template>
-                        </igx-column>
-
-                        <igx-column field="Date_today" header="Date" sortable="true">
-                            <ng-template igxCell let-val>
-                                <div class="cell__inner">
-                                    {{ val }}
-                                </div>
-                            </ng-template>
-                        </igx-column>
-
-                        <igx-column field="Adjusted_close_week_ago_return_percent" header="3WksRet%" sortable="true"
-                            [cellStyles]="sentimentCellStyle">
-                            <ng-template igxCell let-val>
-                                <div class="cell__inner">
-                                    {{ val }}
-                                </div>
-                            </ng-template>
-                        </igx-column>
-
-                        <igx-column field="Adjusted_close_three_months_ago_return_percent" header="3MonsRet%"
-                            sortable="true" [cellStyles]="sentimentCellStyle">
-                            <ng-template igxCell let-val>
-                                <div class="cell__inner">
-                                    {{ val }}
-                                </div>
-                            </ng-template>
-                        </igx-column>
-
-                        <igx-column field="Adjusted_close_six_months_ago_return_percent" header="6MonsRet%"
-                            sortable="true" [cellStyles]="sentimentCellStyle">
-                            <ng-template igxCell let-val>
-                                <div class="cell__inner">
-                                    {{ val }}
-                                </div>
-                            </ng-template>
-                        </igx-column>
-
-                        <igx-column field="Adjusted_close_year_start_date_return_percent" header="YTDRet%"
-                            sortable="true" [cellStyles]="sentimentCellStyle">
-                            <ng-template igxCell let-val>
-                                <div class="cell__inner">
-                                    {{ val }}
-                                </div>
-                            </ng-template>
-                        </igx-column>
-
-                        <igx-column field="Adjusted_close_one_year_ago_return_percent" header="1YrRet%" sortable="true"
-                            [cellStyles]="sentimentCellStyle">
-                            <ng-template igxCell let-val>
-                                <div class="cell__inner">
-                                    {{ val }}
-                                </div>
-                            </ng-template>
-                        </igx-column>
-
-                        <igx-column field="Adjusted_close_three_years_ago_return_percent" header="3YrRet%"
-                            sortable="true" [cellStyles]="sentimentCellStyle">
-                            <ng-template igxCell let-val>
-                                <div class="cell__inner">
-                                    {{ val }}
-                                </div>
-                            </ng-template>
-                        </igx-column>
-
-                        <igx-column field="Adjusted_close_five_years_ago_return_percent" header="5YrRet%"
-                            sortable="true" [cellStyles]="sentimentCellStyle">
-                            <ng-template igxCell let-val>
-                                <div class="cell__inner">
-                                    {{ val }}
-                                </div>
-                            </ng-template>
-                        </igx-column>
-
-                        <igx-column field="Adjusted_close_ten_years_ago_return_percent" header="10YrRet%"
-                            sortable="true" [cellStyles]="sentimentCellStyle">
-                            <ng-template igxCell let-val>
-                                <div class="cell__inner">
-                                    {{ val }}
-                                </div>
-                            </ng-template>
-                        </igx-column>
-
-
-                    </igx-grid>
-                </div>
-            </igx-tab-content>
-        </igx-tab-item>
-        <igx-tab-item>
-            <igx-tab-header>
-                <span igxTabHeaderLabel>Stats</span>
-            </igx-tab-header>
-            <igx-tab-content>
-                <div>
-                    <h6>Grid</h6>
-                    <!-- annual_return: string
-                    cumulative_returns: string
-                    annual_volatility: string
-                    sharpe_ratio: number
-                    calmar_ratio: number
-                    stability: number
-                    max_drawdown: string
-                    omega_ratio: number
-                    sortino_ratio: number
-                    skew: number
-                    kurtosis: number
-                    tail_ratio: number
-                    daily_value_at_risk: string
-                    alpha: number
-                    beta: number
-                    count: number
-                    mean: number
-                    std: number
-                    min: number
-                    "25_pct": number
-                    "50_pct": number
-                    "75_pct": number
-                    max: number
-                    start_date: string
-                    end_date: string
-                    sravz_id: string -->
-                    <igx-grid #grid2 [data]="stats" height="600px" [allowFiltering]="true">
-                        <igx-paginator [perPage]="10">
-                        </igx-paginator>
-                        <igx-column field="sravz_id" header="Sravz ID" sortable="true">
-                            <ng-template igxCell let-val>
-                                <div class="cell__inner">
-                                    {{ val }}
-                                </div>
-                            </ng-template>
-                        </igx-column>
-                        <igx-column field="start_date" header="Start Date" sortable="true">
-                            <ng-template igxCell let-val>
-                                <div class="cell__inner">
-                                    {{ val }}
-                                </div>
-                            </ng-template>
-                        </igx-column>
-                        <igx-column field="end_date" header="End Date" sortable="true">
-                            <ng-template igxCell let-val>
-                                <div class="cell__inner">
-                                    {{ val }}
-                                </div>
-                            </ng-template>
-                        </igx-column>
-                        <igx-column field="annual_return" header="Annual Return" sortable="true" [dataType]="'percent'"
-                            [cellStyles]="sentimentCellStyle">
-                            <ng-template igxCell let-val>
-                                <div class="cell__inner">
-                                    {{ val }}
-                                </div>
-                            </ng-template>
-                        </igx-column>
-                        <igx-column field="annual_volatility" header="Annual Volatility" sortable="true"
-                            [dataType]="'number'">
-                            <ng-template igxCell let-val>
-                                <div class="cell__inner">
-                                    {{ val }}
-                                </div>
-                            </ng-template>
-                        </igx-column>
-                        <igx-column field="sharpe_ratio" header="Sharp Ratio" sortable="true" [pipeArgs]="formatOptions"
-                            [dataType]="'number'">
-                            <ng-template igxCell let-val>
-                                <div class="cell__inner">
-                                    {{ val }}
-                                </div>
-                            </ng-template>
-                        </igx-column>
-                        <igx-column field="calmar_ratio" header="Calmar Ratio" sortable="true"
-                            [pipeArgs]="formatOptions" [dataType]="'number'">
-                            <ng-template igxCell let-val>
-                                <div class="cell__inner">
-                                    {{ val }}
-                                </div>
-                            </ng-template>
-                        </igx-column>
-                        <igx-column field="stability" header="Stability" sortable="true" [pipeArgs]="formatOptions"
-                            [dataType]="'number'">
-                            <ng-template igxCell let-val>
-                                <div class="cell__inner">
-                                    {{ val }}
-                                </div>
-                            </ng-template>
-                        </igx-column>
-                        <igx-column field="max_drawdown" header="Max Drawdown" sortable="true" [dataType]="'percent'"
-                            [cellStyles]="sentimentCellStyle">
-                            <ng-template igxCell let-val>
-                                <div class="cell__inner">
-                                    {{ val }}
-                                </div>
-                            </ng-template>
-                        </igx-column>
-                        <igx-column field="omega_ratio" header="Omega Ratio" sortable="true" [pipeArgs]="formatOptions"
-                            [dataType]="'number'">
-                            <ng-template igxCell let-val>
-                                <div class="cell__inner">
-                                    {{ val }}
-                                </div>
-                            </ng-template>
-                        </igx-column>
-                        <igx-column field="skew" header="Skew" sortable="true" [pipeArgs]="formatOptions"
-                            [dataType]="'number'">
-                            <ng-template igxCell let-val>
-                                <div class="cell__inner">
-                                    {{ val }}
-                                </div>
-                            </ng-template>
-                        </igx-column>
-                        <igx-column field="kurtosis" header="Kurtosis" sortable="true" [pipeArgs]="formatOptions"
-                            [dataType]="'number'">
-                            <ng-template igxCell let-val>
-                                <div class="cell__inner">
-                                    {{ val }}
-                                </div>
-                            </ng-template>
-                        </igx-column>
-                        <igx-column field="tail_ratio" header="Tail Ratio" sortable="true" [pipeArgs]="formatOptions"
-                            [dataType]="'number'">
-                            <ng-template igxCell let-val>
-                                <div class="cell__inner">
-                                    {{ val }}
-                                </div>
-                            </ng-template>
-                        </igx-column>
-                        <igx-column field="daily_value_at_risk" header="Daily Value At Risk" sortable="true"
-                            [dataType]="'percent'" [cellStyles]="sentimentCellStyle">
-                            <ng-template igxCell let-val>
-                                <div class="cell__inner">
-                                    {{ val }}
-                                </div>
-                            </ng-template>
-                        </igx-column>
-                        <igx-column field="alpha" header="Alpha" sortable="true" [pipeArgs]="formatOptions"
-                            [dataType]="'number'">
-                            <ng-template igxCell let-val>
-                                <div class="cell__inner">
-                                    {{ val }}
-                                </div>
-                            </ng-template>
-                        </igx-column>
-                        <igx-column field="beta" header="Beta" sortable="true" [pipeArgs]="formatOptions"
-                            [dataType]="'number'">
-                            <ng-template igxCell let-val>
-                                <div class="cell__inner">
-                                    {{ val }}
-                                </div>
-                            </ng-template>
-                        </igx-column>
-                        <igx-column field="count" header="Count" sortable="true" [pipeArgs]="formatOptions"
-                            [dataType]="'number'">
-                            <ng-template igxCell let-val>
-                                <div class="cell__inner">
-                                    {{ val }}
-                                </div>
-                            </ng-template>
-                        </igx-column>
-                        <igx-column field="mean" header="Mean" sortable="true" [dataType]="'percent'"
-                            [cellStyles]="sentimentCellStyle">
-                            <ng-template igxCell let-val>
-                                <div class="cell__inner">
-                                    {{ val }}
-                                </div>
-                            </ng-template>
-                        </igx-column>
-                        <igx-column field="std" header="Std" sortable="true" [dataType]="'percent'"
-                            [cellStyles]="sentimentCellStyle">
-                            <ng-template igxCell let-val>
-                                <div class="cell__inner">
-                                    {{ val }}
-                                </div>
-                            </ng-template>
-                        </igx-column>
-                        <igx-column field="min" header="Min" sortable="true" [dataType]="'percent'"
-                            [cellStyles]="sentimentCellStyle">
-                            <ng-template igxCell let-val>
-                                <div class="cell__inner">
-                                    {{ val }}
-                                </div>
-                            </ng-template>
-                        </igx-column>
-                        <igx-column field="25_pct" header="25% Daily Returns" sortable="true" [dataType]="'percent'"
-                            [cellStyles]="sentimentCellStyle">
-                            <ng-template igxCell let-val>
-                                <div class="cell__inner">
-                                    {{ val }}
-                                </div>
-                            </ng-template>
-                        </igx-column>
-                        <igx-column field="50_pct" header="50% Daily Returns" sortable="true" [dataType]="'percent'"
-                            [cellStyles]="sentimentCellStyle">
-                            <ng-template igxCell let-val>
-                                <div class="cell__inner">
-                                    {{ val }}
-                                </div>
-                            </ng-template>
-                        </igx-column>
-                        <igx-column field="75_pct" header="75% Daily Returns" sortable="true" [dataType]="'percent'"
-                            [cellStyles]="sentimentCellStyle">
-                            <ng-template igxCell let-val>
-                                <div class="cell__inner">
-                                    {{ val }}
-                                </div>
-                            </ng-template>
-                        </igx-column>
-                        <igx-column field="max" header="Max Daily Returns" sortable="true" [dataType]="'percent'"
-                            [cellStyles]="sentimentCellStyle">
-                            <ng-template igxCell let-val>
-                                <div class="cell__inner">
-                                    {{ val }}
-                                </div>
-                            </ng-template>
-                        </igx-column>
-                    </igx-grid>
-                </div>
-            </igx-tab-content>
-        </igx-tab-item>
-        <igx-tab-item>
-            <igx-tab-header>
-                <span igxTabHeaderLabel>Peak Vs Current</span>
-            </igx-tab-header>
-            <igx-tab-content>
-                <div>
-                    <h6>Grid</h6>
-                    <!-- annual_return: string
-                    cumulative_returns: string
-                    annual_volatility: string
-                    sharpe_ratio: number
-                    calmar_ratio: number
-                    stability: number
-                    max_drawdown: string
-                    omega_ratio: number
-                    sortino_ratio: number
-                    skew: number
-                    kurtosis: number
-                    tail_ratio: number
-                    daily_value_at_risk: string
-                    alpha: number
-                    beta: number
-                    count: number
-                    mean: number
-                    std: number
-                    min: number
-                    "25_pct": number
-                    "50_pct": number
-                    "75_pct": number
-                    max: number
-                    start_date: string
-                    end_date: string
-                    sravz_id: string -->
-                    <igx-grid #grid2 [data]="quotes_stats_latest" height="600px" [allowFiltering]="true">
-                        <igx-paginator [perPage]="10">
-                        </igx-paginator>
-                        <igx-column field="sravz_id" header="Sravz ID" sortable="true">
-                            <ng-template igxCell let-val>
-                                <div class="cell__inner">
-                                    {{ val }}
-                                </div>
-                            </ng-template>
-                        </igx-column>
-                        <igx-column field="earliest_timestamp" header="Start Date" sortable="true">
-                            <ng-template igxCell let-val>
-                                <div class="cell__inner">
-                                    {{ val }}
-                                </div>
-                            </ng-template>
-                        </igx-column>
-                        <igx-column field="latest_timestamp" header="End Date" sortable="true">
-                            <ng-template igxCell let-val>
-                                <div class="cell__inner">
-                                    {{ val }}
-                                </div>
-                            </ng-template>
-                        </igx-column>
-                        <igx-column field="earliest_price" header="Earliest Price" sortable="true">
-                            <ng-template igxCell let-val>
-                                <div class="cell__inner">
-                                    {{ val }}
-                                </div>
-                            </ng-template>
-                        </igx-column>
-                        <igx-column field="latest_price" header="Latest Price" sortable="true">
-                            <ng-template igxCell let-val>
-                                <div class="cell__inner">
-                                    {{ val }}
-                                </div>
-                            </ng-template>
-                        </igx-column>
-                        <igx-column field="percentage_over_max" header="% Over Max" sortable="true"
-                            [pipeArgs]="formatOptions" [dataType]="'percent'" [cellStyles]="sentimentCellStyle">
-                            <ng-template igxCell let-val>
-                                <div class="cell__inner">
-                                    {{ val }}
-                                </div>
-                            </ng-template>
-                        </igx-column>
-                        <igx-column field="percentage_over_min" header="% Over Min" sortable="true"
-                            [pipeArgs]="formatOptions" [dataType]="'percent'" [cellStyles]="sentimentCellStyle">
-                            <ng-template igxCell let-val>
-                                <div class="cell__inner">
-                                    {{ val }}
-                                </div>
-                            </ng-template>
-                        </igx-column>
-                        <igx-column field="percentage_over_mean" header="% Over Mean" sortable="true"
-                            [pipeArgs]="formatOptions" [dataType]="'percent'" [cellStyles]="sentimentCellStyle">
-                            <ng-template igxCell let-val>
-                                <div class="cell__inner">
-                                    {{ val }}
-                                </div>
-                            </ng-template>
-                        </igx-column>
-                        <igx-column field="25_pct" header="25%" sortable="true" [dataType]="'number'">
-                            <ng-template igxCell let-val>
-                                <div class="cell__inner">
-                                    {{ val }}
-                                </div>
-                            </ng-template>
-                        </igx-column>
-                        <igx-column field="50_pct" header="50%" sortable="true" [pipeArgs]="formatOptions"
-                            [dataType]="'number'">
-                            <ng-template igxCell let-val>
-                                <div class="cell__inner">
-                                    {{ val }}
-                                </div>
-                            </ng-template>
-                        </igx-column>
-                        <igx-column field="75_pct" header="75%" sortable="true" [pipeArgs]="formatOptions"
-                            [dataType]="'number'">
-                            <ng-template igxCell let-val>
-                                <div class="cell__inner">
-                                    {{ val }}
-                                </div>
-                            </ng-template>
-                        </igx-column>
-                        <igx-column field="count" header="Count" sortable="true" [pipeArgs]="formatOptions"
-                            [dataType]="'number'">
-                            <ng-template igxCell let-val>
-                                <div class="cell__inner">
-                                    {{ val }}
-                                </div>
-                            </ng-template>
-                        </igx-column>
-                        <igx-column field="mean" header="Mean" sortable="true" [pipeArgs]="formatOptions"
-                            [dataType]="'number'">
-                            <ng-template igxCell let-val>
-                                <div class="cell__inner">
-                                    {{ val }}
-                                </div>
-                            </ng-template>
-                        </igx-column>
-                        <igx-column field="std" header="Std" sortable="true" [dataType]="'number'">
-                            <ng-template igxCell let-val>
-                                <div class="cell__inner">
-                                    {{ val }}
-                                </div>
-                            </ng-template>
-                        </igx-column>
-                        <igx-column field="min" header="Min" sortable="true" [pipeArgs]="formatOptions"
-                            [dataType]="'number'">
-                            <ng-template igxCell let-val>
-                                <div class="cell__inner">
-                                    {{ val }}
-                                </div>
-                            </ng-template>
-                        </igx-column>
-                        <igx-column field="max" header="Max" sortable="true" [pipeArgs]="formatOptions"
-                            [dataType]="'number'">
-                            <ng-template igxCell let-val>
-                                <div class="cell__inner">
-                                    {{ val }}
-                                </div>
-                            </ng-template>
-                        </igx-column>
-                    </igx-grid>
-                </div>
-            </igx-tab-content>
-        </igx-tab-item>
-        <igx-tab-item>
-            <igx-tab-header>
-                <span igxTabHeaderLabel>YTD Raw Data</span>
-            </igx-tab-header>
-            <igx-tab-content>
-                <pre>{{ytds | json}}</pre>
-            </igx-tab-content>
-        </igx-tab-item>
-        <igx-tab-item>
-            <igx-tab-header>
-                <span igxTabHeaderLabel>Stats Raw Data</span>
-            </igx-tab-header>
-            <igx-tab-content>
-                <pre>{{stats | json}}</pre>
-            </igx-tab-content>
-        </igx-tab-item>
-        <igx-tab-item>
-            <igx-tab-header>
-                <span igxTabHeaderLabel>Peak Vs Current Raw Data</span>
-            </igx-tab-header>
-            <igx-tab-content>
-                <pre>{{quotes_stats_latest | json}}</pre>
-            </igx-tab-content>
-        </igx-tab-item>
+      <igx-tab-item>
+        <igx-tab-header>
+          <span igxTabHeaderLabel>YTD</span>
+        </igx-tab-header>
+        <igx-tab-content>
+          <div>
+            <h6>Grid</h6>
+            <igx-grid #grid1 [data]="ytds" height="600px" [allowFiltering]="true">
+              <igx-paginator [perPage]="10">
+              </igx-paginator>
+              <igx-column field="Code" header="Code" sortable="true">
+                <ng-template igxCell let-val>
+                  <div class="cell__inner">
+                    {{ val }}
+                  </div>
+                </ng-template>
+              </igx-column>
+              <igx-column field="Date_today" header="Date" sortable="true">
+                <ng-template igxCell let-val>
+                  <div class="cell__inner">
+                    {{ val }}
+                  </div>
+                </ng-template>
+              </igx-column>
+              <igx-column field="Adjusted_close_week_ago_return_percent" header="3WksRet%" sortable="true"
+                [cellStyles]="sentimentCellStyle">
+                <ng-template igxCell let-val>
+                  <div class="cell__inner">
+                    {{ val }}
+                  </div>
+                </ng-template>
+              </igx-column>
+              <igx-column field="Adjusted_close_three_months_ago_return_percent" header="3MonsRet%"
+                sortable="true" [cellStyles]="sentimentCellStyle">
+                <ng-template igxCell let-val>
+                  <div class="cell__inner">
+                    {{ val }}
+                  </div>
+                </ng-template>
+              </igx-column>
+              <igx-column field="Adjusted_close_six_months_ago_return_percent" header="6MonsRet%"
+                sortable="true" [cellStyles]="sentimentCellStyle">
+                <ng-template igxCell let-val>
+                  <div class="cell__inner">
+                    {{ val }}
+                  </div>
+                </ng-template>
+              </igx-column>
+              <igx-column field="Adjusted_close_year_start_date_return_percent" header="YTDRet%"
+                sortable="true" [cellStyles]="sentimentCellStyle">
+                <ng-template igxCell let-val>
+                  <div class="cell__inner">
+                    {{ val }}
+                  </div>
+                </ng-template>
+              </igx-column>
+              <igx-column field="Adjusted_close_one_year_ago_return_percent" header="1YrRet%" sortable="true"
+                [cellStyles]="sentimentCellStyle">
+                <ng-template igxCell let-val>
+                  <div class="cell__inner">
+                    {{ val }}
+                  </div>
+                </ng-template>
+              </igx-column>
+              <igx-column field="Adjusted_close_three_years_ago_return_percent" header="3YrRet%"
+                sortable="true" [cellStyles]="sentimentCellStyle">
+                <ng-template igxCell let-val>
+                  <div class="cell__inner">
+                    {{ val }}
+                  </div>
+                </ng-template>
+              </igx-column>
+              <igx-column field="Adjusted_close_five_years_ago_return_percent" header="5YrRet%"
+                sortable="true" [cellStyles]="sentimentCellStyle">
+                <ng-template igxCell let-val>
+                  <div class="cell__inner">
+                    {{ val }}
+                  </div>
+                </ng-template>
+              </igx-column>
+              <igx-column field="Adjusted_close_ten_years_ago_return_percent" header="10YrRet%"
+                sortable="true" [cellStyles]="sentimentCellStyle">
+                <ng-template igxCell let-val>
+                  <div class="cell__inner">
+                    {{ val }}
+                  </div>
+                </ng-template>
+              </igx-column>
+            </igx-grid>
+          </div>
+        </igx-tab-content>
+      </igx-tab-item>
+      <igx-tab-item>
+        <igx-tab-header>
+          <span igxTabHeaderLabel>Stats</span>
+        </igx-tab-header>
+        <igx-tab-content>
+          <div>
+            <h6>Grid</h6>
+            <!-- annual_return: string
+            cumulative_returns: string
+            annual_volatility: string
+            sharpe_ratio: number
+            calmar_ratio: number
+            stability: number
+            max_drawdown: string
+            omega_ratio: number
+            sortino_ratio: number
+            skew: number
+            kurtosis: number
+            tail_ratio: number
+            daily_value_at_risk: string
+            alpha: number
+            beta: number
+            count: number
+            mean: number
+            std: number
+            min: number
+            "25_pct": number
+            "50_pct": number
+            "75_pct": number
+            max: number
+            start_date: string
+            end_date: string
+            sravz_id: string -->
+            <igx-grid #grid2 [data]="stats" height="600px" [allowFiltering]="true">
+              <igx-paginator [perPage]="10">
+              </igx-paginator>
+              <igx-column field="sravz_id" header="Sravz ID" sortable="true">
+                <ng-template igxCell let-val>
+                  <div class="cell__inner">
+                    {{ val }}
+                  </div>
+                </ng-template>
+              </igx-column>
+              <igx-column field="start_date" header="Start Date" sortable="true">
+                <ng-template igxCell let-val>
+                  <div class="cell__inner">
+                    {{ val }}
+                  </div>
+                </ng-template>
+              </igx-column>
+              <igx-column field="end_date" header="End Date" sortable="true">
+                <ng-template igxCell let-val>
+                  <div class="cell__inner">
+                    {{ val }}
+                  </div>
+                </ng-template>
+              </igx-column>
+              <igx-column field="annual_return" header="Annual Return" sortable="true" [dataType]="'percent'"
+                [cellStyles]="sentimentCellStyle">
+                <ng-template igxCell let-val>
+                  <div class="cell__inner">
+                    {{ val }}
+                  </div>
+                </ng-template>
+              </igx-column>
+              <igx-column field="annual_volatility" header="Annual Volatility" sortable="true"
+                [dataType]="'number'">
+                <ng-template igxCell let-val>
+                  <div class="cell__inner">
+                    {{ val }}
+                  </div>
+                </ng-template>
+              </igx-column>
+              <igx-column field="sharpe_ratio" header="Sharp Ratio" sortable="true" [pipeArgs]="formatOptions"
+                [dataType]="'number'">
+                <ng-template igxCell let-val>
+                  <div class="cell__inner">
+                    {{ val }}
+                  </div>
+                </ng-template>
+              </igx-column>
+              <igx-column field="calmar_ratio" header="Calmar Ratio" sortable="true"
+                [pipeArgs]="formatOptions" [dataType]="'number'">
+                <ng-template igxCell let-val>
+                  <div class="cell__inner">
+                    {{ val }}
+                  </div>
+                </ng-template>
+              </igx-column>
+              <igx-column field="stability" header="Stability" sortable="true" [pipeArgs]="formatOptions"
+                [dataType]="'number'">
+                <ng-template igxCell let-val>
+                  <div class="cell__inner">
+                    {{ val }}
+                  </div>
+                </ng-template>
+              </igx-column>
+              <igx-column field="max_drawdown" header="Max Drawdown" sortable="true" [dataType]="'percent'"
+                [cellStyles]="sentimentCellStyle">
+                <ng-template igxCell let-val>
+                  <div class="cell__inner">
+                    {{ val }}
+                  </div>
+                </ng-template>
+              </igx-column>
+              <igx-column field="omega_ratio" header="Omega Ratio" sortable="true" [pipeArgs]="formatOptions"
+                [dataType]="'number'">
+                <ng-template igxCell let-val>
+                  <div class="cell__inner">
+                    {{ val }}
+                  </div>
+                </ng-template>
+              </igx-column>
+              <igx-column field="skew" header="Skew" sortable="true" [pipeArgs]="formatOptions"
+                [dataType]="'number'">
+                <ng-template igxCell let-val>
+                  <div class="cell__inner">
+                    {{ val }}
+                  </div>
+                </ng-template>
+              </igx-column>
+              <igx-column field="kurtosis" header="Kurtosis" sortable="true" [pipeArgs]="formatOptions"
+                [dataType]="'number'">
+                <ng-template igxCell let-val>
+                  <div class="cell__inner">
+                    {{ val }}
+                  </div>
+                </ng-template>
+              </igx-column>
+              <igx-column field="tail_ratio" header="Tail Ratio" sortable="true" [pipeArgs]="formatOptions"
+                [dataType]="'number'">
+                <ng-template igxCell let-val>
+                  <div class="cell__inner">
+                    {{ val }}
+                  </div>
+                </ng-template>
+              </igx-column>
+              <igx-column field="daily_value_at_risk" header="Daily Value At Risk" sortable="true"
+                [dataType]="'percent'" [cellStyles]="sentimentCellStyle">
+                <ng-template igxCell let-val>
+                  <div class="cell__inner">
+                    {{ val }}
+                  </div>
+                </ng-template>
+              </igx-column>
+              <igx-column field="alpha" header="Alpha" sortable="true" [pipeArgs]="formatOptions"
+                [dataType]="'number'">
+                <ng-template igxCell let-val>
+                  <div class="cell__inner">
+                    {{ val }}
+                  </div>
+                </ng-template>
+              </igx-column>
+              <igx-column field="beta" header="Beta" sortable="true" [pipeArgs]="formatOptions"
+                [dataType]="'number'">
+                <ng-template igxCell let-val>
+                  <div class="cell__inner">
+                    {{ val }}
+                  </div>
+                </ng-template>
+              </igx-column>
+              <igx-column field="count" header="Count" sortable="true" [pipeArgs]="formatOptions"
+                [dataType]="'number'">
+                <ng-template igxCell let-val>
+                  <div class="cell__inner">
+                    {{ val }}
+                  </div>
+                </ng-template>
+              </igx-column>
+              <igx-column field="mean" header="Mean" sortable="true" [dataType]="'percent'"
+                [cellStyles]="sentimentCellStyle">
+                <ng-template igxCell let-val>
+                  <div class="cell__inner">
+                    {{ val }}
+                  </div>
+                </ng-template>
+              </igx-column>
+              <igx-column field="std" header="Std" sortable="true" [dataType]="'percent'"
+                [cellStyles]="sentimentCellStyle">
+                <ng-template igxCell let-val>
+                  <div class="cell__inner">
+                    {{ val }}
+                  </div>
+                </ng-template>
+              </igx-column>
+              <igx-column field="min" header="Min" sortable="true" [dataType]="'percent'"
+                [cellStyles]="sentimentCellStyle">
+                <ng-template igxCell let-val>
+                  <div class="cell__inner">
+                    {{ val }}
+                  </div>
+                </ng-template>
+              </igx-column>
+              <igx-column field="25_pct" header="25% Daily Returns" sortable="true" [dataType]="'percent'"
+                [cellStyles]="sentimentCellStyle">
+                <ng-template igxCell let-val>
+                  <div class="cell__inner">
+                    {{ val }}
+                  </div>
+                </ng-template>
+              </igx-column>
+              <igx-column field="50_pct" header="50% Daily Returns" sortable="true" [dataType]="'percent'"
+                [cellStyles]="sentimentCellStyle">
+                <ng-template igxCell let-val>
+                  <div class="cell__inner">
+                    {{ val }}
+                  </div>
+                </ng-template>
+              </igx-column>
+              <igx-column field="75_pct" header="75% Daily Returns" sortable="true" [dataType]="'percent'"
+                [cellStyles]="sentimentCellStyle">
+                <ng-template igxCell let-val>
+                  <div class="cell__inner">
+                    {{ val }}
+                  </div>
+                </ng-template>
+              </igx-column>
+              <igx-column field="max" header="Max Daily Returns" sortable="true" [dataType]="'percent'"
+                [cellStyles]="sentimentCellStyle">
+                <ng-template igxCell let-val>
+                  <div class="cell__inner">
+                    {{ val }}
+                  </div>
+                </ng-template>
+              </igx-column>
+            </igx-grid>
+          </div>
+        </igx-tab-content>
+      </igx-tab-item>
+      <igx-tab-item>
+        <igx-tab-header>
+          <span igxTabHeaderLabel>Peak Vs Current</span>
+        </igx-tab-header>
+        <igx-tab-content>
+          <div>
+            <h6>Grid</h6>
+            <!-- annual_return: string
+            cumulative_returns: string
+            annual_volatility: string
+            sharpe_ratio: number
+            calmar_ratio: number
+            stability: number
+            max_drawdown: string
+            omega_ratio: number
+            sortino_ratio: number
+            skew: number
+            kurtosis: number
+            tail_ratio: number
+            daily_value_at_risk: string
+            alpha: number
+            beta: number
+            count: number
+            mean: number
+            std: number
+            min: number
+            "25_pct": number
+            "50_pct": number
+            "75_pct": number
+            max: number
+            start_date: string
+            end_date: string
+            sravz_id: string -->
+            <igx-grid #grid2 [data]="quotes_stats_latest" height="600px" [allowFiltering]="true">
+              <igx-paginator [perPage]="10">
+              </igx-paginator>
+              <igx-column field="sravz_id" header="Sravz ID" sortable="true">
+                <ng-template igxCell let-val>
+                  <div class="cell__inner">
+                    {{ val }}
+                  </div>
+                </ng-template>
+              </igx-column>
+              <igx-column field="earliest_timestamp" header="Start Date" sortable="true">
+                <ng-template igxCell let-val>
+                  <div class="cell__inner">
+                    {{ val }}
+                  </div>
+                </ng-template>
+              </igx-column>
+              <igx-column field="latest_timestamp" header="End Date" sortable="true">
+                <ng-template igxCell let-val>
+                  <div class="cell__inner">
+                    {{ val }}
+                  </div>
+                </ng-template>
+              </igx-column>
+              <igx-column field="earliest_price" header="Earliest Price" sortable="true">
+                <ng-template igxCell let-val>
+                  <div class="cell__inner">
+                    {{ val }}
+                  </div>
+                </ng-template>
+              </igx-column>
+              <igx-column field="latest_price" header="Latest Price" sortable="true">
+                <ng-template igxCell let-val>
+                  <div class="cell__inner">
+                    {{ val }}
+                  </div>
+                </ng-template>
+              </igx-column>
+              <igx-column field="percentage_over_max" header="% Over Max" sortable="true"
+                [pipeArgs]="formatOptions" [dataType]="'percent'" [cellStyles]="sentimentCellStyle">
+                <ng-template igxCell let-val>
+                  <div class="cell__inner">
+                    {{ val }}
+                  </div>
+                </ng-template>
+              </igx-column>
+              <igx-column field="percentage_over_min" header="% Over Min" sortable="true"
+                [pipeArgs]="formatOptions" [dataType]="'percent'" [cellStyles]="sentimentCellStyle">
+                <ng-template igxCell let-val>
+                  <div class="cell__inner">
+                    {{ val }}
+                  </div>
+                </ng-template>
+              </igx-column>
+              <igx-column field="percentage_over_mean" header="% Over Mean" sortable="true"
+                [pipeArgs]="formatOptions" [dataType]="'percent'" [cellStyles]="sentimentCellStyle">
+                <ng-template igxCell let-val>
+                  <div class="cell__inner">
+                    {{ val }}
+                  </div>
+                </ng-template>
+              </igx-column>
+              <igx-column field="25_pct" header="25%" sortable="true" [dataType]="'number'">
+                <ng-template igxCell let-val>
+                  <div class="cell__inner">
+                    {{ val }}
+                  </div>
+                </ng-template>
+              </igx-column>
+              <igx-column field="50_pct" header="50%" sortable="true" [pipeArgs]="formatOptions"
+                [dataType]="'number'">
+                <ng-template igxCell let-val>
+                  <div class="cell__inner">
+                    {{ val }}
+                  </div>
+                </ng-template>
+              </igx-column>
+              <igx-column field="75_pct" header="75%" sortable="true" [pipeArgs]="formatOptions"
+                [dataType]="'number'">
+                <ng-template igxCell let-val>
+                  <div class="cell__inner">
+                    {{ val }}
+                  </div>
+                </ng-template>
+              </igx-column>
+              <igx-column field="count" header="Count" sortable="true" [pipeArgs]="formatOptions"
+                [dataType]="'number'">
+                <ng-template igxCell let-val>
+                  <div class="cell__inner">
+                    {{ val }}
+                  </div>
+                </ng-template>
+              </igx-column>
+              <igx-column field="mean" header="Mean" sortable="true" [pipeArgs]="formatOptions"
+                [dataType]="'number'">
+                <ng-template igxCell let-val>
+                  <div class="cell__inner">
+                    {{ val }}
+                  </div>
+                </ng-template>
+              </igx-column>
+              <igx-column field="std" header="Std" sortable="true" [dataType]="'number'">
+                <ng-template igxCell let-val>
+                  <div class="cell__inner">
+                    {{ val }}
+                  </div>
+                </ng-template>
+              </igx-column>
+              <igx-column field="min" header="Min" sortable="true" [pipeArgs]="formatOptions"
+                [dataType]="'number'">
+                <ng-template igxCell let-val>
+                  <div class="cell__inner">
+                    {{ val }}
+                  </div>
+                </ng-template>
+              </igx-column>
+              <igx-column field="max" header="Max" sortable="true" [pipeArgs]="formatOptions"
+                [dataType]="'number'">
+                <ng-template igxCell let-val>
+                  <div class="cell__inner">
+                    {{ val }}
+                  </div>
+                </ng-template>
+              </igx-column>
+            </igx-grid>
+          </div>
+        </igx-tab-content>
+      </igx-tab-item>
+      <igx-tab-item>
+        <igx-tab-header>
+          <span igxTabHeaderLabel>YTD Raw Data</span>
+        </igx-tab-header>
+        <igx-tab-content>
+          <pre>{{ytds | json}}</pre>
+        </igx-tab-content>
+      </igx-tab-item>
+      <igx-tab-item>
+        <igx-tab-header>
+          <span igxTabHeaderLabel>Stats Raw Data</span>
+        </igx-tab-header>
+        <igx-tab-content>
+          <pre>{{stats | json}}</pre>
+        </igx-tab-content>
+      </igx-tab-item>
+      <igx-tab-item>
+        <igx-tab-header>
+          <span igxTabHeaderLabel>Peak Vs Current Raw Data</span>
+        </igx-tab-header>
+        <igx-tab-content>
+          <pre>{{quotes_stats_latest | json}}</pre>
+        </igx-tab-content>
+      </igx-tab-item>
     </igx-tabs>
-</div>
+  </div>
+}

@@ -7,6 +7,7 @@ import { BondService } from './bond.service';
 @Component({
     templateUrl: './bond-component.html',
     styleUrls: ['bond-component.scss'],
+    standalone: false
 })
 
 export class BondComponent implements OnInit {

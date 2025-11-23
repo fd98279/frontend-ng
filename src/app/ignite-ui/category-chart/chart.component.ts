@@ -4,9 +4,10 @@ import { IndexComponent } from '../../fundamentals/fundamental';
 
 
 @Component({
-  selector: 'index-components-category-chart',
-  templateUrl: './chart.component.html',
-  styleUrls: ['./chart.component.scss']
+    selector: 'index-components-category-chart',
+    templateUrl: './chart.component.html',
+    styleUrls: ['./chart.component.scss'],
+    standalone: false
 })
 export class IndexComponentsCategoryChartComponent implements OnInit {
   @ViewChild(IgxDropDownComponent, { static: true }) public igxDropDown: IgxDropDownComponent;

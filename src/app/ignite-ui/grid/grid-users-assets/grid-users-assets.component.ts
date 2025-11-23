@@ -20,7 +20,8 @@ import { IUserAsset } from '../../../../app/assets/userasset.model';
 @Component({
     selector: 'grid-users-assets',
     styleUrls: ['./grid-users-assets.component.scss'],
-    templateUrl: './grid-users-assets.component.html'
+    templateUrl: './grid-users-assets.component.html',
+    standalone: false
 })
 export class GridUsersAssetsComponent implements OnInit, OnDestroy {
 

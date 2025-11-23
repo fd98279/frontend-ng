@@ -1,79 +1,81 @@
 <div>
-    <article class="sample-column">
-        <igx-buttongroup [values]="displayTimes" (selected)="selectEconomicEvents($event)">
-        </igx-buttongroup>
-    </article>
+  <article class="sample-column">
+    <igx-buttongroup [values]="displayTimes" (selected)="selectEconomicEvents($event)">
+    </igx-buttongroup>
+  </article>
 </div>
 <div>
-    <igx-input-group #inputGroup class="autocomplete">
-        <label igxLabel for="item">Filter by country</label>
-        <input #autoCompleteInput igxInput name="item" type="text" [igxAutocomplete]="dropDown"
-            [(ngModel)]="itemSelected" (selectionChanging)="filter(null, 'country', $event)" />
-    </igx-input-group>
-    <igx-drop-down #dropDown maxHeight="300px">
-        <igx-drop-down-item *ngFor="let item of items | startsWith:itemSelected" [value]="item">
-            {{item}}
-        </igx-drop-down-item>
-    </igx-drop-down>
-    <igx-grid #grid1 [data]="earnings"  height="600px" [rowSelection]="'single'"
-        (rowSelectionChanging)="handleRowSelectionChange($event)" (onSelection)="cellSelection($event)" [allowFiltering]="true">
-        <igx-paginator [perPage]="10">
-        </igx-paginator>
-        <igx-column field="code" header="Code" sortable="true" [cellClasses]="backgroundCell">
-            <ng-template igxCell let-val>
-                <div class="cell__inner">
-                    {{ val }}
-                </div>
-            </ng-template>
-        </igx-column>
+  <igx-input-group #inputGroup class="autocomplete">
+    <label igxLabel for="item">Filter by country</label>
+    <input #autoCompleteInput igxInput name="item" type="text" [igxAutocomplete]="dropDown"
+      [(ngModel)]="itemSelected" (selectionChanging)="filter(null, 'country', $event)" />
+  </igx-input-group>
+  <igx-drop-down #dropDown maxHeight="300px">
+    @for (item of items | startsWith:itemSelected; track item) {
+      <igx-drop-down-item [value]="item">
+        {{item}}
+      </igx-drop-down-item>
+    }
+  </igx-drop-down>
+  <igx-grid #grid1 [data]="earnings"  height="600px" [rowSelection]="'single'"
+    (rowSelectionChanging)="handleRowSelectionChange($event)" (onSelection)="cellSelection($event)" [allowFiltering]="true">
+    <igx-paginator [perPage]="10">
+    </igx-paginator>
+    <igx-column field="code" header="Code" sortable="true" [cellClasses]="backgroundCell">
+      <ng-template igxCell let-val>
+        <div class="cell__inner">
+          {{ val }}
+        </div>
+      </ng-template>
+    </igx-column>
 
-        <igx-column field="date" header="Date" sortable="true" [cellClasses]="backgroundCell">
-            <ng-template igxCell let-val>
-                <div class="cell__inner">
-                    {{ val }}
-                </div>
-            </ng-template>
-        </igx-column>
+    <igx-column field="date" header="Date" sortable="true" [cellClasses]="backgroundCell">
+      <ng-template igxCell let-val>
+        <div class="cell__inner">
+          {{ val }}
+        </div>
+      </ng-template>
+    </igx-column>
 
-        <igx-column field="report_date" header="Report Date" sortable="true" [cellClasses]="backgroundCell">
-            <ng-template igxCell let-val>
-                <div class="cell__inner">
-                    {{ val }}
-                </div>
-            </ng-template>
-        </igx-column>
+    <igx-column field="report_date" header="Report Date" sortable="true" [cellClasses]="backgroundCell">
+      <ng-template igxCell let-val>
+        <div class="cell__inner">
+          {{ val }}
+        </div>
+      </ng-template>
+    </igx-column>
 
-        <igx-column field="actual" header="Actual" [cellStyles]="sentimentCellStyle" sortable="true" [cellClasses]="backgroundCell">
-            <ng-template igxCell let-val>
-                <div class="cell__inner">
-                    {{ val }}
-                </div>
-            </ng-template>
-        </igx-column>
+    <igx-column field="actual" header="Actual" [cellStyles]="sentimentCellStyle" sortable="true" [cellClasses]="backgroundCell">
+      <ng-template igxCell let-val>
+        <div class="cell__inner">
+          {{ val }}
+        </div>
+      </ng-template>
+    </igx-column>
 
-        <igx-column field="estimate" header="Estimate" sortable="true" [cellClasses]="backgroundCell">
-            <ng-template igxCell let-val>
-                <div class="cell__inner">
-                    {{ val }}
-                </div>
-            </ng-template>
-        </igx-column>
+    <igx-column field="estimate" header="Estimate" sortable="true" [cellClasses]="backgroundCell">
+      <ng-template igxCell let-val>
+        <div class="cell__inner">
+          {{ val }}
+        </div>
+      </ng-template>
+    </igx-column>
 
-        <igx-column field="difference" header="Difference" sortable="true" [cellClasses]="backgroundCell">
-            <ng-template igxCell let-val>
-                <div class="cell__inner">
-                    {{ val }}
-                </div>
-            </ng-template>
-        </igx-column>
+    <igx-column field="difference" header="Difference" sortable="true" [cellClasses]="backgroundCell">
+      <ng-template igxCell let-val>
+        <div class="cell__inner">
+          {{ val }}
+        </div>
+      </ng-template>
+    </igx-column>
 
-        <igx-column field="percent" header="Percent" sortable="true" [cellClasses]="backgroundCell">
-            <ng-template igxCell let-val>
-                <div class="cell__inner">
-                    {{ val }}
-                </div>
-            </ng-template>
-        </igx-column>
+    <igx-column field="percent" header="Percent" sortable="true" [cellClasses]="backgroundCell">
+      <ng-template igxCell let-val>
+        <div class="cell__inner">
+          {{ val }}
+        </div>
+      </ng-template>
+    </igx-column>
 
-    </igx-grid>
+  </igx-grid>
 </div>

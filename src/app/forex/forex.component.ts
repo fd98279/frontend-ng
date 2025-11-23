@@ -4,7 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { PersistanceService } from '../common/persistance.service';
 
 @Component({
-  templateUrl: './forex.component.html'
+    templateUrl: './forex.component.html',
+    standalone: false
 })
 export class ForexComponent implements AfterViewInit {
 

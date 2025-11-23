@@ -7,6 +7,7 @@ import { OptionService } from './option.service';
 @Component({
     templateUrl: './option-component.html',
     styleUrls: ['option-component.scss'],
+    standalone: false
 })
 
 export class OptionComponent implements OnInit {

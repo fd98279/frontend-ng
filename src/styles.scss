@@ -23,7 +23,7 @@ $green-palette: palette($primary: #09f,
     $error: #ff134a,
     $gray: #626161,
   );
-@include theme($green-palette, $schema: $schema);
+@include theme($green-palette, $schema);
 
 :root {
   @include palette($palette);
@@ -211,15 +211,11 @@ button {
   text-align: center;
 }
 
-@import "@infragistics/igniteui-angular/lib/core/styles/themes/index";
-@include core();
-@include theme($default-palette);
-
 $grid-sample-theme: grid-theme($row-selected-background: #333,
     $row-selected-text-color: #ddd,
     $row-hover-background: #f8f8f8,
     $row-border-color: #f8f8f8,
-    $cell-selected-background: color($default-palette, gray, 800),
+    $cell-selected-background: #333,
     $cell-selected-text-color: #fff);
 
 $progressBar-sample-theme: progress-linear-theme($track-color: rgba(181, 181, 181, .5), $fill-color-default: orange);

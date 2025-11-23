@@ -23,7 +23,8 @@ import { IgniteUIService } from '../../services/ignite-ui-service';
 @Component({
     selector: 'grid-ytd',
     styleUrls: ['./grid.component.scss'],
-    templateUrl: './grid.component.html'
+    templateUrl: './grid.component.html',
+    standalone: false
 })
 export class YTDGridComponent implements OnInit, OnDestroy, AfterViewInit {
 

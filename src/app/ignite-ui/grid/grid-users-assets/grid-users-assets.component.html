@@ -1,49 +1,55 @@
 <div>
-    <igx-grid #grid1 [data]="userassetsEvents"  height="600px" [allowFiltering]="true">
-        <igx-paginator [perPage]="10">
-        </igx-paginator>
-        <igx-column [filterable]="false" width="130px">
-            <ng-template igxCell let-cell="cell">
-                <div class="buttonsArea">
-                    <button igxIconButton="flat" *ngIf="isDetailIcon ==true" (click)="rowDetailParent(cell.row.data)"
-                        class="emplBtn">
-                        <igx-icon>list</igx-icon>
-                    </button>
-                    <button igxIconButton="flat" *ngIf="isUpdateIcon ==true" (click)="updateUserAsset(cell.row.data)"
-                        class="emplBtn">
-                        <igx-icon>update</igx-icon>
-                    </button>
-                    <button igxIconButton="flat" *ngIf="isDeleteIcon ==true" (click)="deleteParent(cell.row.data)"
-                        class="emplBtn">
-                        <igx-icon>delete</igx-icon>
-                    </button>
-                </div>
-            </ng-template>
-        </igx-column>
+  <igx-grid #grid1 [data]="userassetsEvents"  height="600px" [allowFiltering]="true">
+    <igx-paginator [perPage]="10">
+    </igx-paginator>
+    <igx-column [filterable]="false" width="130px">
+      <ng-template igxCell let-cell="cell">
+        <div class="buttonsArea">
+          @if (isDetailIcon ==true) {
+            <button igxIconButton="flat" (click)="rowDetailParent(cell.row.data)"
+              class="emplBtn">
+              <igx-icon>list</igx-icon>
+            </button>
+          }
+          @if (isUpdateIcon ==true) {
+            <button igxIconButton="flat" (click)="updateUserAsset(cell.row.data)"
+              class="emplBtn">
+              <igx-icon>update</igx-icon>
+            </button>
+          }
+          @if (isDeleteIcon ==true) {
+            <button igxIconButton="flat" (click)="deleteParent(cell.row.data)"
+              class="emplBtn">
+              <igx-icon>delete</igx-icon>
+            </button>
+          }
+        </div>
+      </ng-template>
+    </igx-column>
 
-        <igx-column field="USERNAME" header="User Name">
-            <ng-template igxCell let-val>
-                <div class="cell__inner">
-                    {{ val.S }}
-                </div>
-            </ng-template>
-        </igx-column>
+    <igx-column field="USERNAME" header="User Name">
+      <ng-template igxCell let-val>
+        <div class="cell__inner">
+          {{ val.S }}
+        </div>
+      </ng-template>
+    </igx-column>
 
-        <igx-column field="USER_ASSET_NAME" header="Asset Name">
-            <ng-template igxCell let-val>
-                <div class="cell__inner">
-                    {{ val.S }}
-                </div>
-            </ng-template>
-        </igx-column>
+    <igx-column field="USER_ASSET_NAME" header="Asset Name">
+      <ng-template igxCell let-val>
+        <div class="cell__inner">
+          {{ val.S }}
+        </div>
+      </ng-template>
+    </igx-column>
 
-        <igx-column field="USER_ASSET_TYPE" header="Asset Type">
-            <ng-template igxCell let-val>
-                <div class="cell__inner">
-                    {{ val.S }}
-                </div>
-            </ng-template>
-        </igx-column>
+    <igx-column field="USER_ASSET_TYPE" header="Asset Type">
+      <ng-template igxCell let-val>
+        <div class="cell__inner">
+          {{ val.S }}
+        </div>
+      </ng-template>
+    </igx-column>
 
-    </igx-grid>
+  </igx-grid>
 </div>

@@ -2,5 +2,7 @@
 
 <div>
   <h5 class="sravztext_center"></h5>
-  <img *ngIf="tearsheetUrl" [src]="tearsheetUrl" class="sravzimg">
+  @if (tearsheetUrl) {
+    <img [src]="tearsheetUrl" class="sravzimg">
+  }
 </div>

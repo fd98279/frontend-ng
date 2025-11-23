@@ -2,10 +2,9 @@ import { Component } from '@angular/core';
 
 
 @Component({
-  templateUrl: './careers.component.html',
-  providers: [
-
-  ]
+    templateUrl: './careers.component.html',
+    providers: [],
+    standalone: false
 })
 
 

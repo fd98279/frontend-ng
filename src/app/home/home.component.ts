@@ -5,7 +5,8 @@ import { IgniteUIService } from '../ignite-ui/services/ignite-ui-service';
 import { IIgniteUIMessage } from '../ignite-ui/services/ignite-ui-message-model';
 
 @Component({
-  templateUrl: './home.component.html'
+    templateUrl: './home.component.html',
+    standalone: false
 })
 
 export class HomeComponent implements OnInit,  AfterViewInit {

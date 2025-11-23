@@ -10,7 +10,8 @@ import { HttpClient } from '@angular/common/http';
                 <button (click)="fillExact()">Exactly 400 x 400 pixels</button>
             </div>
         </div>
-    `
+    `,
+    standalone: false
 })
 export class SampleComponent implements OnInit {
     columnDefs;

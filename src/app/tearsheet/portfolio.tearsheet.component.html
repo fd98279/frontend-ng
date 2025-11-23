@@ -1,106 +1,152 @@
-<igx-tabs #tabs  *ngIf="displayTabs">
-  <igx-tab-item *ngIf="covarianceAnalysisUrl">
-    <igx-tab-header>
-      <span igxTabHeaderLabel>Covariance Analysis</span>
-    </igx-tab-header>
-    <igx-tab-content>
-      <div class="flex-container">
-        <h5 class="sravztext_center">{{portfolioName}} Covariance Analysis
-        </h5>        
-        <img *ngIf="covarianceAnalysisUrl" [src]="covarianceAnalysisUrl" class="sravzimg">
-      </div>
-    </igx-tab-content>
-  </igx-tab-item>
-  <igx-tab-item *ngIf="PCATearSheetUrl">
-    <igx-tab-header>
-      <span igxTabHeaderLabel>Principal Components Analysis</span>
-    </igx-tab-header>
-    <igx-tab-content>
-      <div class="flex-container">
-        <h5 class="sravztext_center">{{portfolioName}} Principal Components Analysis</h5>
-        <img *ngIf="PCATearSheetUrl" [src]="PCATearSheetUrl" class="sravzimg">
-      </div>
-    </igx-tab-content>
-  </igx-tab-item>
-  <igx-tab-item *ngIf="returnsTearSheetUrl">
-    <igx-tab-header>
-      <span igxTabHeaderLabel>Returns Tear Sheet</span>
-    </igx-tab-header>
-    <igx-tab-content>
-      <h5 class="sravztext_center">{{portfolioName}} Returns Tear Sheet</h5>
-      <img *ngIf="returnsTearSheetUrl" [src]="returnsTearSheetUrl" class="sravzimg">
-    </igx-tab-content>
-  </igx-tab-item>
-  <igx-tab-item *ngIf="timeSeriesUrl">
-    <igx-tab-header>
-      <span igxTabHeaderLabel>Time Series Analysis</span>
-    </igx-tab-header>
-    <igx-tab-content>
-      <h5 class="sravztext_center">{{portfolioName}} Timeseries Analysis</h5>
-      <img *ngIf="timeSeriesUrl" [src]="timeSeriesUrl" class="sravzimg">
-    </igx-tab-content>
-  </igx-tab-item>
-  <igx-tab-item *ngIf="predictFutureUrl">
-    <igx-tab-header>
-      <span igxTabHeaderLabel>Prophet Model Future Prediction</span>
-    </igx-tab-header>
-    <igx-tab-content>
-      <h5 class="sravztext_center">{{portfolioName}} Prediction</h5>
-      <img *ngIf="predictFutureUrl" [src]="predictFutureUrl" class="sravzimg">
-    </igx-tab-content>
-  </igx-tab-item>
-  <igx-tab-item *ngIf="prophetModelUrl">
-    <igx-tab-header>
-      <span igxTabHeaderLabel>Prophet Model Analysis</span>
-    </igx-tab-header>
-    <igx-tab-content>
-      <h5 class="sravztext_center">{{portfolioName}} Prophet Model</h5>
-      <img *ngIf="prophetModelUrl" [src]="prophetModelUrl" class="sravzimg">g">
-    </igx-tab-content>
-  </igx-tab-item>
-  <igx-tab-item *ngIf="evaluatePredictionUrl">
-    <igx-tab-header>
-      <span igxTabHeaderLabel>Prophet Model Prediction Evaluation</span>
-    </igx-tab-header>
-    <igx-tab-content>
-      <h5 class="sravztext_center">{{portfolioName}} Evaluate Prediction</h5>
-      <img *ngIf="evaluatePredictionUrl" [src]="evaluatePredictionUrl" class="sravzimg">
-    </igx-tab-content>
-  </igx-tab-item>
-  <igx-tab-item *ngIf="changePointPriorAnalysisUrl">
-    <igx-tab-header>
-      <span igxTabHeaderLabel>Prophet Model CHP Prior Analysis</span>
-    </igx-tab-header>
-    <igx-tab-content>
-      <h5 class="sravztext_center">{{portfolioName}} Change Point Prior Analysis</h5>
-      <img *ngIf="changePointPriorAnalysisUrl" [src]="changePointPriorAnalysisUrl" class="sravzimg">
-    </igx-tab-content>
-  </igx-tab-item>
-  <igx-tab-item *ngIf="changePointPriorValidationUrl">
-    <igx-tab-header>
-      <span igxTabHeaderLabel>Prophet Model CHP Prior Analysis</span>
-    </igx-tab-header>
-    <igx-tab-content>
-      <h5 class="sravztext_center">{{portfolioName}} Change Point Prior Validation</h5>
-      <img *ngIf="changePointPriorValidationUrl" [src]="changePointPriorValidationUrl" class="sravzimg">
-    </igx-tab-content>
-  </igx-tab-item>
-  <igx-tab-item *ngIf="predictionWithChangePointUrl">
-    <igx-tab-header>
-      <span igxTabHeaderLabel>Prophet Model Predicition With CHP</span>
-    </igx-tab-header>
-    <igx-tab-content>
-      <h5 class="sravztext_center">{{portfolioName}} Prediction with Change Points</h5>
-      <img *ngIf="predictionWithChangePointUrl" [src]="predictionWithChangePointUrl" class="sravzimg">
-    </igx-tab-content>
-  </igx-tab-item>
-  <igx-tab-item *ngIf="LeveragedFundsUrl">
-    <igx-tab-header>
-      <span igxTabHeaderLabel>Leveraged Funds Analysis</span>
-    </igx-tab-header>
-    <igx-tab-content>
-      <h5 class="sravztext_center">{{portfolioName}} Analysis</h5>
-      <img *ngIf="LeveragedFundsUrl" [src]="LeveragedFundsUrl" class="sravzimg">
-    </igx-tab-content>
-  </igx-tab-item>
-</igx-tabs>
+@if (displayTabs) {
+  <igx-tabs #tabs >
+    @if (covarianceAnalysisUrl) {
+      <igx-tab-item>
+        <igx-tab-header>
+          <span igxTabHeaderLabel>Covariance Analysis</span>
+        </igx-tab-header>
+        <igx-tab-content>
+          <div class="flex-container">
+            <h5 class="sravztext_center">{{portfolioName}} Covariance Analysis
+            </h5>
+            @if (covarianceAnalysisUrl) {
+              <img [src]="covarianceAnalysisUrl" class="sravzimg">
+            }
+          </div>
+        </igx-tab-content>
+      </igx-tab-item>
+    }
+    @if (PCATearSheetUrl) {
+      <igx-tab-item>
+        <igx-tab-header>
+          <span igxTabHeaderLabel>Principal Components Analysis</span>
+        </igx-tab-header>
+        <igx-tab-content>
+          <div class="flex-container">
+            <h5 class="sravztext_center">{{portfolioName}} Principal Components Analysis</h5>
+            @if (PCATearSheetUrl) {
+              <img [src]="PCATearSheetUrl" class="sravzimg">
+            }
+          </div>
+        </igx-tab-content>
+      </igx-tab-item>
+    }
+    @if (returnsTearSheetUrl) {
+      <igx-tab-item>
+        <igx-tab-header>
+          <span igxTabHeaderLabel>Returns Tear Sheet</span>
+        </igx-tab-header>
+        <igx-tab-content>
+          <h5 class="sravztext_center">{{portfolioName}} Returns Tear Sheet</h5>
+          @if (returnsTearSheetUrl) {
+            <img [src]="returnsTearSheetUrl" class="sravzimg">
+          }
+        </igx-tab-content>
+      </igx-tab-item>
+    }
+    @if (timeSeriesUrl) {
+      <igx-tab-item>
+        <igx-tab-header>
+          <span igxTabHeaderLabel>Time Series Analysis</span>
+        </igx-tab-header>
+        <igx-tab-content>
+          <h5 class="sravztext_center">{{portfolioName}} Timeseries Analysis</h5>
+          @if (timeSeriesUrl) {
+            <img [src]="timeSeriesUrl" class="sravzimg">
+          }
+        </igx-tab-content>
+      </igx-tab-item>
+    }
+    @if (predictFutureUrl) {
+      <igx-tab-item>
+        <igx-tab-header>
+          <span igxTabHeaderLabel>Prophet Model Future Prediction</span>
+        </igx-tab-header>
+        <igx-tab-content>
+          <h5 class="sravztext_center">{{portfolioName}} Prediction</h5>
+          @if (predictFutureUrl) {
+            <img [src]="predictFutureUrl" class="sravzimg">
+          }
+        </igx-tab-content>
+      </igx-tab-item>
+    }
+    @if (prophetModelUrl) {
+      <igx-tab-item>
+        <igx-tab-header>
+          <span igxTabHeaderLabel>Prophet Model Analysis</span>
+        </igx-tab-header>
+        <igx-tab-content>
+          <h5 class="sravztext_center">{{portfolioName}} Prophet Model</h5>
+          @if (prophetModelUrl) {
+            <img [src]="prophetModelUrl" class="sravzimg">
+            }g">
+          </igx-tab-content>
+        </igx-tab-item>
+      }
+      @if (evaluatePredictionUrl) {
+        <igx-tab-item>
+          <igx-tab-header>
+            <span igxTabHeaderLabel>Prophet Model Prediction Evaluation</span>
+          </igx-tab-header>
+          <igx-tab-content>
+            <h5 class="sravztext_center">{{portfolioName}} Evaluate Prediction</h5>
+            @if (evaluatePredictionUrl) {
+              <img [src]="evaluatePredictionUrl" class="sravzimg">
+            }
+          </igx-tab-content>
+        </igx-tab-item>
+      }
+      @if (changePointPriorAnalysisUrl) {
+        <igx-tab-item>
+          <igx-tab-header>
+            <span igxTabHeaderLabel>Prophet Model CHP Prior Analysis</span>
+          </igx-tab-header>
+          <igx-tab-content>
+            <h5 class="sravztext_center">{{portfolioName}} Change Point Prior Analysis</h5>
+            @if (changePointPriorAnalysisUrl) {
+              <img [src]="changePointPriorAnalysisUrl" class="sravzimg">
+            }
+          </igx-tab-content>
+        </igx-tab-item>
+      }
+      @if (changePointPriorValidationUrl) {
+        <igx-tab-item>
+          <igx-tab-header>
+            <span igxTabHeaderLabel>Prophet Model CHP Prior Analysis</span>
+          </igx-tab-header>
+          <igx-tab-content>
+            <h5 class="sravztext_center">{{portfolioName}} Change Point Prior Validation</h5>
+            @if (changePointPriorValidationUrl) {
+              <img [src]="changePointPriorValidationUrl" class="sravzimg">
+            }
+          </igx-tab-content>
+        </igx-tab-item>
+      }
+      @if (predictionWithChangePointUrl) {
+        <igx-tab-item>
+          <igx-tab-header>
+            <span igxTabHeaderLabel>Prophet Model Predicition With CHP</span>
+          </igx-tab-header>
+          <igx-tab-content>
+            <h5 class="sravztext_center">{{portfolioName}} Prediction with Change Points</h5>
+            @if (predictionWithChangePointUrl) {
+              <img [src]="predictionWithChangePointUrl" class="sravzimg">
+            }
+          </igx-tab-content>
+        </igx-tab-item>
+      }
+      @if (LeveragedFundsUrl) {
+        <igx-tab-item>
+          <igx-tab-header>
+            <span igxTabHeaderLabel>Leveraged Funds Analysis</span>
+          </igx-tab-header>
+          <igx-tab-content>
+            <h5 class="sravztext_center">{{portfolioName}} Analysis</h5>
+            @if (LeveragedFundsUrl) {
+              <img [src]="LeveragedFundsUrl" class="sravzimg">
+            }
+          </igx-tab-content>
+        </igx-tab-item>
+      }
+    </igx-tabs>
+  }

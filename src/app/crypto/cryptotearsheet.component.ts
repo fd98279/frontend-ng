@@ -4,7 +4,8 @@ import { AnalyticsService } from '../analytics.service';
 
 @Component({
     selector: 'crypto-tearsheet',
-    templateUrl: './cryptotearsheet.component.html'
+    templateUrl: './cryptotearsheet.component.html',
+    standalone: false
 })
 export class CryptoTearsheetComponent implements OnInit {
     tearsheetUrl: string;

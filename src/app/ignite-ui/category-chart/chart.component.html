@@ -1,25 +1,27 @@
 <div>
-    <igx-pie-chart height="250px" width="100%" [dataSource]="chartData" valueMemberPath="value" labelMemberPath="name"
-        labelsPosition="bestFit" style="padding-top: 5px;"> </igx-pie-chart>
-    <div class="select" style="padding-top: 5px;">
-        <span> Select Chart Type:
-            <igx-input-group #inputGroup  [igxToggleAction]="dropDown" class="input-group">
-                <input #input class="input" type="text" igxInput [igxDropDownItemNavigation]="dropDown" readonly="true"
-                    placeholder="Choose an option" [value]="type" (keydown.ArrowDown)="openDropDown()" />
-                <igx-suffix igxIconButton="flat" class="dropdownToggleButton" igxRipple>
-                    <igx-icon>arrow_drop{{ dropDown.collapsed ? '_down' : '_up' }}</igx-icon>
-                </igx-suffix>
-            </igx-input-group>
+  <igx-pie-chart height="250px" width="100%" [dataSource]="chartData" valueMemberPath="value" labelMemberPath="name"
+  labelsPosition="bestFit" style="padding-top: 5px;"> </igx-pie-chart>
+  <div class="select" style="padding-top: 5px;">
+    <span> Select Chart Type:
+      <igx-input-group #inputGroup  [igxToggleAction]="dropDown" class="input-group">
+        <input #input class="input" type="text" igxInput [igxDropDownItemNavigation]="dropDown" readonly="true"
+          placeholder="Choose an option" [value]="type" (keydown.ArrowDown)="openDropDown()" />
+        <igx-suffix igxIconButton="flat" class="dropdownToggleButton" igxRipple>
+          <igx-icon>arrow_drop{{ dropDown.collapsed ? '_down' : '_up' }}</igx-icon>
+        </igx-suffix>
+      </igx-input-group>
 
-            <igx-drop-down #dropDown (selectionChanging)="onDDLSelection($event)" [width]="'180px'">
-                <igx-drop-down-item *ngFor="let item of items" [value]="item.field">
-                    {{ item.field }}
-                </igx-drop-down-item>
-            </igx-drop-down>
-        </span>
-    </div>
-    <igx-category-chart style="padding-top: 5px;" [dataSource]="chartData" [chartType]="type" title="Sector Details" width="100%" height="400px"
-        AlignsGridLinesToPixels="true" yAxisMinimumValue="0" xAxisGap="2" [xAxisTitle]="currentDate"
-        yAxisTitle="No of Industries by sector" xAxisTickLength="15" xAxisTitleAngle="0">
-    </igx-category-chart>
+      <igx-drop-down #dropDown (selectionChanging)="onDDLSelection($event)" [width]="'180px'">
+        @for (item of items; track item) {
+          <igx-drop-down-item [value]="item.field">
+            {{ item.field }}
+          </igx-drop-down-item>
+        }
+      </igx-drop-down>
+    </span>
+  </div>
+  <igx-category-chart style="padding-top: 5px;" [dataSource]="chartData" [chartType]="type" title="Sector Details" width="100%" height="400px"
+    AlignsGridLinesToPixels="true" yAxisMinimumValue="0" xAxisGap="2" [xAxisTitle]="currentDate"
+    yAxisTitle="No of Industries by sector" xAxisTickLength="15" xAxisTitleAngle="0">
+  </igx-category-chart>
 </div>

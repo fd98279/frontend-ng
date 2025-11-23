@@ -23,7 +23,8 @@ import { IStockTicker } from '../../../fundamentals/fundamental';
 @Component({
     selector: 'grid-stock-tickers',
     styleUrls: ['./grid.component.scss'],
-    templateUrl: './grid.component.html'
+    templateUrl: './grid.component.html',
+    standalone: false
 })
 export class StockTickersGridComponent implements OnInit, OnDestroy, AfterViewInit {
 

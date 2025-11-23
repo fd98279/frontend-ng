@@ -1,21 +1,27 @@
 <igx-tabs style="padding-top: 10px;" #tabs>
-    <igx-tab-item>
-        <igx-tab-header>
-            <span igxTabHeaderLabel>Interactive Chart</span>
-        </igx-tab-header>
-        <igx-tab-content class="body_chart">
-            <app-financial-chart-overview [chartdata]="chartData" *ngIf="chartData?.length > 0"></app-financial-chart-overview>
-        </igx-tab-content>
-    </igx-tab-item>
-    <igx-tab-item>
-        <igx-tab-header>
-            <span igxTabHeaderLabel>Image</span>
-        </igx-tab-header>
-        <igx-tab-content>
-            <div *ngIf="chartImageUrl">
-                <h5 style="text-align: center">Selected asset(s) charts</h5>
-                <img *ngIf="chartImageUrl" [src]="chartImageUrl" class="sravzimg">
-            </div>
-        </igx-tab-content>
-    </igx-tab-item>
+  <igx-tab-item>
+    <igx-tab-header>
+      <span igxTabHeaderLabel>Interactive Chart</span>
+    </igx-tab-header>
+    <igx-tab-content class="body_chart">
+      @if (chartData?.length > 0) {
+        <app-financial-chart-overview [chartdata]="chartData"></app-financial-chart-overview>
+      }
+    </igx-tab-content>
+  </igx-tab-item>
+  <igx-tab-item>
+    <igx-tab-header>
+      <span igxTabHeaderLabel>Image</span>
+    </igx-tab-header>
+    <igx-tab-content>
+      @if (chartImageUrl) {
+        <div>
+          <h5 style="text-align: center">Selected asset(s) charts</h5>
+          @if (chartImageUrl) {
+            <img [src]="chartImageUrl" class="sravzimg">
+          }
+        </div>
+      }
+    </igx-tab-content>
+  </igx-tab-item>
 </igx-tabs>

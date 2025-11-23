@@ -3,7 +3,9 @@
     <i class="fa fa-arrow-left" aria-hidden="true"></i>
   </a>
 </h5>
-<div class="layout-sample" *ngIf="alerts">
+@if (alerts) {
+  <div class="layout-sample">
     <igx-toast #toast displayTime="3000"></igx-toast>
     <grid-alerts [alerts]="alerts" [isDetailIcon]="true" (alertsSelected)="onalertselected($event)"></grid-alerts>
-</div>
+  </div>
+}

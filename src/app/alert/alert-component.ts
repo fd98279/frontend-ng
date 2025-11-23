@@ -8,6 +8,7 @@ import { UserStore } from '../@core/stores/user.store';
 @Component({
     templateUrl: './alert-component.html',
     styleUrls: ['alert-component.scss'],
+    standalone: false
 })
 
 export class AlertComponent implements OnInit {

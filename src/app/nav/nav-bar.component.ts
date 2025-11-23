@@ -14,10 +14,10 @@ import { Clipboard } from '@angular/cdk/clipboard';
 import { PersistanceService } from '../common/persistance.service';
 
 @Component({
-  selector: 'nav-bar',
-  templateUrl: './nav-bar.component.html',
-  styleUrls: ['./nav-bar.component.scss'],
-
+    selector: 'nav-bar',
+    templateUrl: './nav-bar.component.html',
+    styleUrls: ['./nav-bar.component.scss'],
+    standalone: false
 })
 
 export class NavBarComponent implements OnInit, AfterViewInit, OnDestroy {

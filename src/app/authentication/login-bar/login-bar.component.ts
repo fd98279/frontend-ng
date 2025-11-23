@@ -7,9 +7,10 @@ import { IgxDropDownComponent, ISelectionEventArgs } from '@infragistics/igniteu
 import { ExternalAuthService } from '../services/external-auth.service';
 
 @Component({
-  selector: 'app-login-bar',
-  templateUrl: './login-bar.component.html',
-  styleUrls: ['./login-bar.component.scss']
+    selector: 'app-login-bar',
+    templateUrl: './login-bar.component.html',
+    styleUrls: ['./login-bar.component.scss'],
+    standalone: false
 })
 export class LoginBarComponent {
 

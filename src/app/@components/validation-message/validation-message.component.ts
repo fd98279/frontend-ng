@@ -7,20 +7,33 @@
 import {Component, Input, forwardRef} from '@angular/core';
 
 @Component({
-  selector: 'ngx-validation-message',
-  styleUrls: ['./validation-message.component.scss'],
-  template: `
+    selector: 'ngx-validation-message',
+    styleUrls: ['./validation-message.component.scss'],
+    template: `
       <div class="warning">
+        @if (showMinLength) {
           <span class="caption status-danger"
-             *ngIf="showMinLength"> Min {{ label }} length is {{ minLength }} symbols </span>
+          > Min {{ label }} length is {{ minLength }} symbols </span>
+        }
+        @if (showMaxLength) {
           <span class="caption status-danger"
-             *ngIf="showMaxLength"> Max {{ label }} length is {{ maxLength }} symbols </span>
-          <span class="caption status-danger" *ngIf="showPattern"> Incorrect {{ label }} </span>
-          <span class="caption status-danger" *ngIf="showRequired"> {{ label }} is required</span>
-          <span class="caption status-danger" *ngIf="showMin">Min value of {{ label }} is {{ min }}</span>
-          <span class="caption status-danger" *ngIf="showMax">Max value of {{ label }} is {{ max }}</span>
+          > Max {{ label }} length is {{ maxLength }} symbols </span>
+        }
+        @if (showPattern) {
+          <span class="caption status-danger"> Incorrect {{ label }} </span>
+        }
+        @if (showRequired) {
+          <span class="caption status-danger"> {{ label }} is required</span>
+        }
+        @if (showMin) {
+          <span class="caption status-danger">Min value of {{ label }} is {{ min }}</span>
+        }
+        @if (showMax) {
+          <span class="caption status-danger">Max value of {{ label }} is {{ max }}</span>
+        }
       </div>
-  `,
+      `,
+    standalone: false
 })
 export class NgxValidationMessageComponent {
   @Input()

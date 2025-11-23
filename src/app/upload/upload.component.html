@@ -7,98 +7,113 @@
 
 <!--Card content-->
 <!-- <h6>
-  Sample CSV file should contain following headers and data
-  <br> Date,Volume,High,Last,Low,OpenInterest,Open,Change,Settle
+Sample CSV file should contain following headers and data
+<br> Date,Volume,High,Last,Low,OpenInterest,Open,Change,Settle
   <br> 2018-07-24,108.5700,108.8200,107.2600,107.6600,26307774,1.00,11.12,13.0
-  <br>
-  <br> Settle column is required for Futures
-</h6> -->
+    <br>
+      <br> Settle column is required for Futures
+      </h6> -->
 
 
-<div>
-  Select Multiple File(s)
-  <input type="file" ng2FileSelect [uploader]="uploader" multiple />
-</div>
-<!-- <div>
-  <div ng2FileDrop [ngClass]="{'sravznv-file-over': hasBaseDropZoneOver}" (fileOver)="fileOverBase($event)"
-    [uploader]="uploader" class="well sravzfile-drop-zone">
-    Drop files
-  </div>
-</div> -->
-<div style="margin-top: 20px">
-  <h6>Upload queue</h6>
-  <p>Queue length: {{ uploader?.queue?.length }}</p>
-  <table class="table">
-    <thead>
-      <tr>
-        <th width="30%">Name</th>
-        <th width="30%">Type</th>
-        <th>Size</th>
-        <th>Progress</th>
-        <th>Status</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let item of uploader.queue">
-        <td>
-          <strong>{{ item?.file?.name }}</strong>
-        </td>
-        <td>
-          <asset-type-selector [UploadComponentFileItem]="item" (messageEvent)="receiveMessage($event)">
-          </asset-type-selector>
-        </td>
-
-        <td *ngIf="uploader.isHTML5" nowrap>{{ item?.file?.size/1024/1024 | number:'.2' }} MB</td>
-        <td *ngIf="uploader.isHTML5">
-          <div class="progress" style="margin-bottom: 0;">
-            <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }"></div>
-          </div>
-        </td>
-        <td class="text-center">
-          <span *ngIf="item.isSuccess">
-            <i class="glyphicon glyphicon-ok"></i>
-          </span>
-          <span *ngIf="item.isCancel">
-            <i class="glyphicon glyphicon-ban-circle"></i>
-          </span>
-          <span *ngIf="item.isError">
-            <i class="glyphicon glyphicon-remove"></i>
-          </span>
-        </td>
-        <td nowrap *ngIf="userStore.getUser()?.email != null || userStore.getUser()?.login == 'guest123'">
-          <igx-buttongroup>
-            <button igxButton (click)="item.upload()" [disabled]="item.isReady || item.isUploading || item.isSuccess">
-              <igx-icon>upload</igx-icon>
-            </button>
-            <button igxButton (click)="item.cancel()" [disabled]="!item.isUploading">
-              <igx-icon>cancel</igx-icon>
-            </button>
-            <button igxButton (click)="item.remove()">
-              <igx-icon>remove</igx-icon>
-            </button>
-          </igx-buttongroup>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-
-  <div>
-    <div>
-      <igx-linear-bar [value]="uploader.progress"></igx-linear-bar>
-      <div *ngIf="userStore.getUser()?.email != null || userStore.getUser()?.login == 'guest123'">
-        <igx-buttongroup>
-          <button igxButton (click)="uploader.uploadAll()">
-            <igx-icon>upload</igx-icon>
-          </button>
-          <button igxButton (click)="uploader.cancelAll()">
-            <igx-icon>cancel</igx-icon>
-          </button>
-          <button igxButton ((click)="uploader.clearQueue()">
-            <igx-icon>remove</igx-icon>
-          </button>
-        </igx-buttongroup>
+      <div>
+        Select Multiple File(s)
+        <input type="file" ng2FileSelect [uploader]="uploader" multiple />
       </div>
-    </div>
+      <!-- <div>
+      <div ng2FileDrop [ngClass]="{'sravznv-file-over': hasBaseDropZoneOver}" (fileOver)="fileOverBase($event)"
+        [uploader]="uploader" class="well sravzfile-drop-zone">
+        Drop files
+      </div>
+    </div> -->
+    <div style="margin-top: 20px">
+      <h6>Upload queue</h6>
+      <p>Queue length: {{ uploader?.queue?.length }}</p>
+      <table class="table">
+        <thead>
+          <tr>
+            <th width="30%">Name</th>
+            <th width="30%">Type</th>
+            <th>Size</th>
+            <th>Progress</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (item of uploader.queue; track item) {
+            <tr>
+              <td>
+                <strong>{{ item?.file?.name }}</strong>
+              </td>
+              <td>
+                <asset-type-selector [UploadComponentFileItem]="item" (messageEvent)="receiveMessage($event)">
+                </asset-type-selector>
+              </td>
+              @if (uploader.isHTML5) {
+                <td nowrap>{{ item?.file?.size/1024/1024 | number:'.2' }} MB</td>
+              }
+              @if (uploader.isHTML5) {
+                <td>
+                  <div class="progress" style="margin-bottom: 0;">
+                    <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }"></div>
+                  </div>
+                </td>
+              }
+              <td class="text-center">
+                @if (item.isSuccess) {
+                  <span>
+                    <i class="glyphicon glyphicon-ok"></i>
+                  </span>
+                }
+                @if (item.isCancel) {
+                  <span>
+                    <i class="glyphicon glyphicon-ban-circle"></i>
+                  </span>
+                }
+                @if (item.isError) {
+                  <span>
+                    <i class="glyphicon glyphicon-remove"></i>
+                  </span>
+                }
+              </td>
+              @if (userStore.getUser()?.email != null || userStore.getUser()?.login == 'guest123') {
+                <td nowrap>
+                  <igx-buttongroup>
+                    <button igxButton (click)="item.upload()" [disabled]="item.isReady || item.isUploading || item.isSuccess">
+                      <igx-icon>upload</igx-icon>
+                    </button>
+                    <button igxButton (click)="item.cancel()" [disabled]="!item.isUploading">
+                      <igx-icon>cancel</igx-icon>
+                    </button>
+                    <button igxButton (click)="item.remove()">
+                      <igx-icon>remove</igx-icon>
+                    </button>
+                  </igx-buttongroup>
+                </td>
+              }
+            </tr>
+          }
+        </tbody>
+      </table>
 
-  </div>
+      <div>
+        <div>
+          <igx-linear-bar [value]="uploader.progress"></igx-linear-bar>
+          @if (userStore.getUser()?.email != null || userStore.getUser()?.login == 'guest123') {
+            <div>
+              <igx-buttongroup>
+                <button igxButton (click)="uploader.uploadAll()">
+                  <igx-icon>upload</igx-icon>
+                </button>
+                <button igxButton (click)="uploader.cancelAll()">
+                  <igx-icon>cancel</igx-icon>
+                </button>
+                <button igxButton ((click)="uploader.clearQueue()">
+                  <igx-icon>remove</igx-icon>
+                </button>
+              </igx-buttongroup>
+            </div>
+          }
+        </div>
+
+      </div>

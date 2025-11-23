@@ -6,7 +6,8 @@ import { RouterExtService } from '../common/router.ext.service';
 
 
 @Component({
-    templateUrl: './asset.details.component.html'
+    templateUrl: './asset.details.component.html',
+    standalone: false
 })
 export class AssetDetailsComponent implements OnInit, AfterViewInit {
     public assetName: string;

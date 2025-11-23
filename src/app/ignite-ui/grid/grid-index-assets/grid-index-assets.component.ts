@@ -20,7 +20,8 @@ import { IAsset } from '../../../../app/assets/asset.model';
 @Component({
     selector: 'grid-index-assets',
     styleUrls: ['./grid-index-assets.component.scss'],
-    templateUrl: './grid-index-assets.component.html'
+    templateUrl: './grid-index-assets.component.html',
+    standalone: false
 })
 export class GridIndexAssetsComponent implements OnInit, OnDestroy {
 

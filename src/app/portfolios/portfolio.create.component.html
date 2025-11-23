@@ -5,78 +5,85 @@
         <span class="fa fa-book"></span>
       </a>
       <!-- <a class="pull-right">
-        <span (click)="isCollapsed = !isCollapsed" class="fa fa-youtube"></span>
-      </a> -->
-      <button class="btn btn-primary pull-right btn-sm" [routerLink]="'/portfolio/list'" style="margin-left: 5px;">
-        <i class="fa fa-list"></i>
-      </button>
-      <button class="btn btn-success pull-right btn-sm" (click)="generateRandomPortfolio()" style="margin-left: 5px;">
-        <i class="fa fa-random"></i> Generate Random Portfolio
-      </button>
-    </h5>
-  </div>
+      <span (click)="isCollapsed = !isCollapsed" class="fa fa-youtube"></span>
+    </a> -->
+    <button class="btn btn-primary pull-right btn-sm" [routerLink]="'/portfolio/list'" style="margin-left: 5px;">
+      <i class="fa fa-list"></i>
+    </button>
+    <button class="btn btn-success pull-right btn-sm" (click)="generateRandomPortfolio()" style="margin-left: 5px;">
+      <i class="fa fa-random"></i> Generate Random Portfolio
+    </button>
+  </h5>
+</div>
 </div>
 
 <!-- Random Portfolio Generator Section -->
-<div class="row" style="margin-bottom: 20px;" *ngIf="showRandomGenerator">
-  <div class="col-md-12">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h4><i class="fa fa-magic"></i> Random Portfolio Generator</h4>
-      </div>
-      <div class="panel-body">
-        <div class="row">
-          <div class="col-md-3">
-            <label for="portfolioName">Portfolio Name:</label>
-            <input type="text" class="form-control" id="portfolioName" 
-                   [(ngModel)]="randomPortfolioSettings.portfolioName" 
-                   placeholder="Random Portfolio {{currentDate | date:'MMdd'}}">
-          </div>
-          <div class="col-md-3">
-            <label for="numAssets">Number of Assets (Max 10):</label>
-            <select class="form-control" id="numAssets" [(ngModel)]="randomPortfolioSettings.numberOfAssets">
-              <option value="3">3 Assets</option>
-              <option value="5">5 Assets</option>
-              <option value="7">7 Assets</option>
-              <option value="10">10 Assets</option>
-            </select>
-          </div>
-          <div class="col-md-3">
-            <label for="portfolioStrategy">Portfolio Strategy:</label>
-            <select class="form-control" id="portfolioStrategy" [(ngModel)]="randomPortfolioSettings.strategy">
-              <option value="balanced">Balanced Mix</option>
-              <option value="growthFocused">Growth Focused</option>
-              <option value="conservative">Conservative</option>
-              <option value="aggressive">Aggressive Growth</option>
-              <option value="diversified">Maximum Diversification</option>
-            </select>
-          </div>
-          <div class="col-md-3">
-            <label for="generateButton">&nbsp;</label>
-            <div>
-              <button class="btn btn-primary btn-block" (click)="createRandomPortfolio()">
-                <i class="fa fa-cog fa-spin" *ngIf="isGeneratingRandom"></i>
-                <i class="fa fa-magic" *ngIf="!isGeneratingRandom"></i>
-                Create Random Portfolio
-              </button>
+@if (showRandomGenerator) {
+  <div class="row" style="margin-bottom: 20px;">
+    <div class="col-md-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4><i class="fa fa-magic"></i> Random Portfolio Generator</h4>
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-3">
+              <label for="portfolioName">Portfolio Name:</label>
+              <input type="text" class="form-control" id="portfolioName"
+                [(ngModel)]="randomPortfolioSettings.portfolioName"
+                placeholder="Random Portfolio {{currentDate | date:'MMdd'}}">
+            </div>
+            <div class="col-md-3">
+              <label for="numAssets">Number of Assets (Max 10):</label>
+              <select class="form-control" id="numAssets" [(ngModel)]="randomPortfolioSettings.numberOfAssets">
+                <option value="3">3 Assets</option>
+                <option value="5">5 Assets</option>
+                <option value="7">7 Assets</option>
+                <option value="10">10 Assets</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <label for="portfolioStrategy">Portfolio Strategy:</label>
+              <select class="form-control" id="portfolioStrategy" [(ngModel)]="randomPortfolioSettings.strategy">
+                <option value="balanced">Balanced Mix</option>
+                <option value="growthFocused">Growth Focused</option>
+                <option value="conservative">Conservative</option>
+                <option value="aggressive">Aggressive Growth</option>
+                <option value="diversified">Maximum Diversification</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <label for="generateButton">&nbsp;</label>
+              <div>
+                <button class="btn btn-primary btn-block" (click)="createRandomPortfolio()">
+                  @if (isGeneratingRandom) {
+                    <i class="fa fa-cog fa-spin"></i>
+                  }
+                  @if (!isGeneratingRandom) {
+                    <i class="fa fa-magic"></i>
+                  }
+                  Create Random Portfolio
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-        
-        <!-- Asset Type Distribution -->
-        <div class="row" style="margin-top: 15px;">
-          <div class="col-md-12">
-            <h5>Asset Type Distribution:</h5>
-            <div class="row">
-              <div class="col-md-2" *ngFor="let assetType of assetTypeOptions">
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox" 
-                           [checked]="randomPortfolioSettings.selectedAssetTypes.includes(assetType.type)"
-                           (change)="toggleAssetType(assetType.type, $event.target.checked)">
-                    {{assetType.display}}
-                  </label>
-                </div>
+          <!-- Asset Type Distribution -->
+          <div class="row" style="margin-top: 15px;">
+            <div class="col-md-12">
+              <h5>Asset Type Distribution:</h5>
+              <div class="row">
+                @for (assetType of assetTypeOptions; track assetType) {
+                  <div class="col-md-2">
+                    <div class="checkbox">
+                      <label>
+                        <input type="checkbox"
+                          [checked]="randomPortfolioSettings.selectedAssetTypes.includes(assetType.type)"
+                          (change)="toggleAssetType(assetType.type, $event.target.checked)">
+                        {{assetType.display}}
+                      </label>
+                    </div>
+                  </div>
+                }
               </div>
             </div>
           </div>
@@ -84,12 +91,12 @@
       </div>
     </div>
   </div>
-</div>
+}
 
 <div>
   <grid-portfolio-create [futureQuotes]="futureQuotes" [readOnly]="readOnly" [snpQuotes]="snpQuotes" [indexQuotes]="indexQuotes"
-    [currencyQuotes]="currencyQuotes" [ratesQuotes]="ratesQuotes" [cryptoQuotes]="cryptoQuotes" 
+    [currencyQuotes]="currencyQuotes" [ratesQuotes]="ratesQuotes" [cryptoQuotes]="cryptoQuotes"
     [vixQuotes]="vixQuotes" [etfQuotes]="etfQuotes"
     (createPortfolio)="onPortfolioCreate($event)"
-    (fetchSnpQuotes)="onFetchSnpQuotes($event)"></grid-portfolio-create>
+  (fetchSnpQuotes)="onFetchSnpQuotes($event)"></grid-portfolio-create>
 </div>

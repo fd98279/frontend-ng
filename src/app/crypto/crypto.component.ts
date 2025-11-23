@@ -3,7 +3,8 @@ import { IAsset } from '../assets/asset.model';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  templateUrl: './crypto.component.html'
+    templateUrl: './crypto.component.html',
+    standalone: false
 })
 export class CryptoComponent {
 

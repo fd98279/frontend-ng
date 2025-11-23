@@ -19,7 +19,8 @@ import { IFutureStat } from '../../../futures/futures.model';
 @Component({
     selector: 'grid-futurestats-calender',
     styleUrls: ['./grid-futurestats-calender.component.scss'],
-    templateUrl: './grid-futurestats-calender.component.html'
+    templateUrl: './grid-futurestats-calender.component.html',
+    standalone: false
 })
 export class GridFutureStatsCalenderComponent implements OnInit, OnDestroy {
     @ViewChild(IgxDropDownComponent) public igxDropDown: IgxDropDownComponent;

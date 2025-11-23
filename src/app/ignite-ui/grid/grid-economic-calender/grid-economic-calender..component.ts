@@ -24,7 +24,8 @@ import { IEvent } from '../../../economics/economic.model';
 @Component({
     selector: 'grid-economic-calender',
     styleUrls: ['./grid-economic-calender.component.scss'],
-    templateUrl: './grid-economic-calender.component.html'
+    templateUrl: './grid-economic-calender.component.html',
+    standalone: false
 })
 export class GridEconomicCalenderComponent implements OnInit, OnDestroy, AfterViewInit {
     @ViewChild(IgxDropDownComponent) public igxDropDown: IgxDropDownComponent;
@@ -120,7 +121,10 @@ export class GridEconomicCalenderComponent implements OnInit, OnDestroy, AfterVi
 
 }
 
-@Pipe({ name: 'startsWith' })
+@Pipe({
+    name: 'startsWith',
+    standalone: false
+})
 export class AutocompletePipeStartsWith implements PipeTransform {
     public transform(collection: any[], term = '') {
         return collection.filter((item) => item.toString().toLowerCase().startsWith(term.toString().toLowerCase()));
